@@ -1,0 +1,68 @@
+@use "@angular/material" as mat;
+
+@include mat.core();
+
+$client-primary: mat.define-palette(mat.$indigo-palette);
+$client-accent: mat.define-palette(mat.$pink-palette, A200, A100, A400);
+$client-warn: mat.define-palette(mat.$red-palette);
+$client-theme: mat.define-light-theme(
+	(
+		color: (
+			primary: $client-primary,
+			accent: $client-accent,
+			warn: $client-warn,
+		),
+	)
+);
+
+@include mat.all-component-themes($client-theme);
+
+:root {
+	/* Main colors */
+	--primary-dark-color: hsl(40, 41%, 73%);
+	--secondary-dark-color: hsl(40, 68%, 49%);
+
+	/* Dark palette colors */
+	--dark-color: hsl(220, 28%, 22%);
+	--dark-grey-color: hsl(222, 28%, 28%);
+	--dark-grey-light-color: hsl(220, 39%, 22%);
+	--dark-light-color: hsl(220, 28%, 36%);
+
+	/* Light palette colors */
+	--light-color: hsl(218, 3%, 94%);
+	--light-ice-color: hsl(218, 5%, 92%);
+	--light-blue-color: hsl(219, 7%, 88%);
+}
+
+body {
+	margin: 0;
+	font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+/* Styles for no script content */
+#no-script-content {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	flex: 1;
+
+	.app-logo {
+		height: 300px;
+	}
+
+	.how-do {
+		margin-top: 2rem;
+	}
+
+	.app-btn {
+		position: relative;
+		border-radius: 50px;
+		padding: 0.5rem 1.75rem;
+		overflow: hidden;
+		border: none;
+		background-color: var(--dark-light-color);
+		color: var(--light-ice-color);
+		transition: all 100ms;
+	}
+}
