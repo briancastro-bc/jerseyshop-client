@@ -1,7 +1,40 @@
-<p-card styleClass="card p-shadow-7" class="card">
-    <div class="p-field">
-        <label for="username1">Username</label>
-        <input id="username1" type="username" aria-describedby="username1-help" pInputText />
-        <small id="username1-help">Enter your username to reset your password.</small>
+<form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+    <div class="login__container">
+        <div class="p-fluid">
+            <div class="p-field mb-4">
+                <span class="p-float-label p-input-icon-left">
+                    <i class="pi pi-user"></i>
+                    <input type="text" id="email-input" class="p-inputtext-lg mb-1" pInputText formControlName="email"
+                        pKeyFilter="email" required>
+                    <label for="email-input">Email</label>
+                    <div *ngIf="email?.invalid && (email?.dirty || email?.touched)" class="text-muted text-center">
+                        <div *ngIf="email?.errors?.['required']">
+                            Escribe tu email
+                        </div>
+                        <div *ngIf="email?.errors?.['email']">
+                            El email es inválido
+                        </div>
+                    </div>
+                </span>
+            </div>
+            <div class="p-field mb-5">
+                <span class="p-float-label p-input-icon-left">
+                    <i class="pi pi-lock"></i>
+                    <p-password id="password-input" class="p-inputtext-lg mb-1" formControlName="password" [toggleMask]="true" promptLabel="Type password" weakLabel="Debil" mediumLabel="Medio" strongLabel="Fuerte" required></p-password>
+                    <label for="password-input">Contraseña</label>
+                    <div *ngIf="password?.invalid && (password?.dirty || password?.touched)" class="text-muted text-center">
+                        <div *ngIf="password?.errors?.['required']">
+                           Escribe tu contraseña
+                        </div>
+                    </div>
+                </span>
+            </div>
+            <div class="p-field mb-2">
+                <button pButton type="submit" icon="pi pi-send" iconPos="right" label="Acceder" class="p-button-rounded js__light__btn" [disabled]="!loginForm.valid"></button>
+            </div>
+            <div class="d-flex justify-content-center align-self-center text-center">
+                <a routerLink="../recovery" class="missing__password">¿No recuerdas tu contraseña?</a>
+            </div>
+        </div>
     </div>
-</p-card>
+</form>

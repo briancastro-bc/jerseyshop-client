@@ -5,7 +5,8 @@ import {
 	HttpEvent,
 	HttpInterceptor,
 } from '@angular/common/http';
-import { AuthService, SpinnerService } from '@shared/services/local';
+import { SpinnerService } from '@shared/services/local';
+import { AuthService } from '@modules/public/auth/auth.service';
 import { environment } from 'src/environments/environment';
 import { finalize, Observable } from 'rxjs';
 

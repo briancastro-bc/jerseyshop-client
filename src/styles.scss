@@ -16,6 +16,8 @@ $client-theme: mat.define-light-theme(
 );
 
 @include mat.all-component-themes($client-theme);
+/* Importing Bootstrap SCSS file. */
+@import '~bootstrap/scss/bootstrap';
 
 :root {
 	/* Main colors */
@@ -23,7 +25,7 @@ $client-theme: mat.define-light-theme(
 	--secondary-dark-color: hsl(40, 68%, 49%);
 
 	/* Dark palette colors */
-	--dark-color: hsl(220, 28%, 22%);
+	--dark-color: rgba(46, 52, 64, 1.0);
 	--dark-grey-color: hsl(222, 28%, 28%);
 	--dark-grey-light-color: hsl(220, 39%, 22%);
 	--dark-light-color: hsl(220, 28%, 36%);
@@ -37,6 +39,35 @@ $client-theme: mat.define-light-theme(
 body {
 	margin: 0;
 	font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+body#dark-mode {
+	background-color: var(--dark-color);
+	color: var(--light-color);
+}
+
+/* Customize elements */
+.js__light__btn {
+	border-radius: 0;
+	border-color: var(--light-color) !important;
+	color: var(--light-color) !important;
+}
+
+.js__dark__btn {
+	border-radius: 0;
+	border-color: var(--dark-grey-color);
+	color: var(--light-ice-color);
+}
+
+.overlay {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    //background-color: rgba(3, 3, 3, 0.6);
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 /* Styles for no script content */
@@ -66,3 +97,4 @@ body {
 		transition: all 100ms;
 	}
 }
+
