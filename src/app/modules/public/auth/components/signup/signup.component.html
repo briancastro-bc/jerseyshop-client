@@ -1,1 +1,148 @@
-<p>signup works!</p>
+<p-steps
+	[model]="stepsItems"
+	[readonly]="true"
+	styleClass="mb-3"
+	[activeIndex]="active"
+	(activeIndexChange)="this.changeActive($event)"
+></p-steps>
+<form [formGroup]="signupForm" (ngSubmit)="validate()">
+	<div class="signup__container">
+		<div class="p-fluid row">
+			<div class="p-field col mb-4">
+				<input
+					type="text"
+					class="mb-1"
+					pInputText
+					formControlName="name"
+					pKeyFilter="alpha"
+					id="name"
+					placeholder="Nombre/s"
+					required
+				/>
+				<div
+					*ngIf="name?.invalid && (name?.dirty || name?.touched)"
+					class="text-muted text-center"
+				>
+					<div *ngIf="name?.errors?.['required']">
+						<small>¡Necesitamos tu nombre!</small>
+					</div>
+				</div>
+			</div>
+			<div class="p-field col mb-4">
+				<input
+					type="text"
+					class="mb-1"
+					pInputText
+					formControlName="last_name"
+					pKeyFilter="alpha"
+					id="lastName"
+					placeholder="Apellido/s"
+					required
+				/>
+				<div
+					*ngIf="last_name?.invalid && (last_name?.dirty || last_name?.touched)"
+					class="text-muted text-center"
+				>
+					<div *ngIf="last_name?.errors?.['required']">
+						<small>Y tambien el apellido..</small>
+					</div>
+				</div>
+			</div>
+			<div class="p-field col-12 mb-4">
+				<input
+					type="email"
+					class="mb-1"
+					pInputText
+					formControlName="email"
+					pKeyFilter="email"
+					id="email"
+					placeholder="Dirección de email"
+					required
+				/>
+				<div
+					*ngIf="email?.invalid && (email?.dirty || email?.touched)"
+					class="text-muted text-center"
+				>
+					<div *ngIf="email?.errors?.['required']">
+						<small>Sobretodo tu correo electrónico</small>
+					</div>
+					<div *ngIf="email?.errors?.['email']">
+						<small>Lo haz escrito mal</small>
+					</div>
+					<div *ngIf="email?.errors?.['maxlength']">
+						<small>No te pases de 70 caracteres</small>
+					</div>
+				</div>
+			</div>
+			<div class="p-field col-12 mb-4">
+				<p-password
+					id="password-input"
+					class="mb-1"
+					formControlName="password"
+					[toggleMask]="true"
+					placeholder="Contraseña"
+					promptLabel="Escribe la contraseña"
+					weakLabel="Débil"
+					mediumLabel="Aceptable"
+					strongLabel="Fuerte"
+					required
+				></p-password>
+				<div
+					*ngIf="password?.invalid && (password?.dirty || password?.touched)"
+					class="text-muted text-center"
+				>
+					<div *ngIf="password?.errors?.['required']">
+						<small>Es muy necesaria la contraseña</small>
+					</div>
+					<div *ngIf="password?.errors?.['minlength']">
+						<small>Mínimo 8 caracteres</small>
+					</div>
+				</div>
+			</div>
+			<div class="p-field col-12 mb-4">
+				<p-password
+					id="confirm-password-input"
+					class="mb-1"
+					formControlName="confirm_password"
+					[toggleMask]="true"
+					placeholder="Confirmar contraseña"
+					promptLabel="Escribe la contraseña"
+					weakLabel="Débil"
+					mediumLabel="Aceptable"
+					strongLabel="Fuerte"
+					required
+				></p-password>
+				<div
+					*ngIf="
+						confirm_password?.invalid &&
+						(confirm_password?.dirty || confirm_password?.touched)
+					"
+					class="text-muted text-center"
+				>
+					<div *ngIf="confirm_password?.errors?.['required']">
+						<small>Lo ultimo es confirmar la contraseña</small>
+					</div>
+					<div *ngIf="confirm_password?.errors?.['minlength']">
+						<small>Mínimo 8 caracteres</small>
+					</div>
+				</div>
+			</div>
+			<div class="p-field mb-2">
+				<button
+					pButton
+					type="submit"
+					icon="pi pi-send"
+					iconPos="right"
+					label="Únete"
+					class="p-button-rounded js__light_btn"
+					[disabled]="!signupForm.valid"
+				></button>
+			</div>
+			<div class="d-flex justify-content-center align-self-center text-center">
+				¿Ya tienes una cuenta?<a routerLink="../login" class="ml-1 have-account"
+					>Acceder</a
+				>
+			</div>
+		</div>
+	</div>
+</form>

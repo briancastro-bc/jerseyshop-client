@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from './services';
 
 @Component({
 	selector: 'app-auth',
@@ -6,7 +7,11 @@ import { Component, OnInit } from '@angular/core';
 	styleUrls: ['./auth.component.scss'],
 })
 export class AuthComponent implements OnInit {
-	constructor() {}
+	constructor(private authService: AuthService) {}
 
 	ngOnInit(): void {}
+
+	onSignupFacebook(): void {}
+
+	onSignupGoogle(): void {}
 }

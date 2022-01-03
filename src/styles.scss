@@ -1,5 +1,11 @@
 @use "@angular/material" as mat;
 
+/* Project Fonts */
+@import url("https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,400&family=Roboto+Condensed:ital,wght@0,300;0,400;1,400;1,700&family=Spline+Sans:wght@400;600;700&display=swap");
+
+/* Importing Bootstrap SCSS file. */
+@import "~bootstrap/scss/bootstrap";
+
 @include mat.core();
 
 $client-primary: mat.define-palette(mat.$indigo-palette);
@@ -16,8 +22,6 @@ $client-theme: mat.define-light-theme(
 );
 
 @include mat.all-component-themes($client-theme);
-/* Importing Bootstrap SCSS file. */
-@import '~bootstrap/scss/bootstrap';
 
 :root {
 	/* Main colors */
@@ -25,8 +29,8 @@ $client-theme: mat.define-light-theme(
 	--secondary-dark-color: hsl(40, 68%, 49%);
 
 	/* Dark palette colors */
-	--dark-color: rgba(46, 52, 64, 1.0);
-	--dark-grey-color: hsl(222, 28%, 28%);
+	--dark-color: rgba(46, 52, 64, 1);
+	--dark-grey-color: rgba(59, 66, 82, 1);
 	--dark-grey-light-color: hsl(220, 39%, 22%);
 	--dark-light-color: hsl(220, 28%, 36%);
 
@@ -36,9 +40,12 @@ $client-theme: mat.define-light-theme(
 	--light-blue-color: hsl(219, 7%, 88%);
 }
 
+html,
 body {
-	margin: 0;
-	font-family: Roboto, "Helvetica Neue", sans-serif;
+	//font-family: Roboto, "Helvetica Neue", sans-serif;
+	//font-family: 'Merriweather', serif;
+	//font-family: 'Roboto Condensed', sans-serif;
+	font-family: "Spline Sans", "Helvetica Neue", "Segoe UI", "Open Sans", sans-serif;
 }
 
 body#dark-mode {
@@ -60,14 +67,22 @@ body#dark-mode {
 }
 
 .overlay {
-    position: fixed;
-    width: 100%;
-    height: 100%;
-    //background-color: rgba(3, 3, 3, 0.6);
-    z-index: 1000;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+	position: fixed;
+	width: 100%;
+	height: 100%;
+	background-color: rgb(255, 255, 255);
+	z-index: 2000;
+	display: flex;
+	align-items: center;
+	align-self: center;
+	justify-content: center;
+	flex-direction: column;
+}
+.overlay .loading {
+	color: black;
+	text-align: center;
+	margin-right: auto;
+	margin-left: auto;
 }
 
 /* Styles for no script content */
@@ -97,4 +112,3 @@ body#dark-mode {
 		transition: all 100ms;
 	}
 }
-

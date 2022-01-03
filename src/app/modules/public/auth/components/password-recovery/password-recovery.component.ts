@@ -4,12 +4,12 @@ import { Router } from '@angular/router';
 import { AuthService } from '../../services';
 
 @Component({
-	selector: 'app-login',
-	templateUrl: './login.component.html',
-	styleUrls: ['./login.component.scss'],
+	selector: 'app-password-recovery',
+	templateUrl: './password-recovery.component.html',
+	styleUrls: ['./password-recovery.component.scss'],
 })
-export class LoginComponent implements OnInit {
-	loginForm!: FormGroup;
+export class PasswordRecoveryComponent implements OnInit {
+	recoveryForm!: FormGroup;
 
 	constructor(
 		private formBuilder: FormBuilder,
@@ -18,23 +18,19 @@ export class LoginComponent implements OnInit {
 	) {}
 
 	ngOnInit(): void {
-		this.loginForm = this.formBuilder.group({
+		this.recoveryForm = this.formBuilder.group({
 			email: [null, [Validators.required, Validators.email]],
-			password: [null, [Validators.required]],
 		});
 	}
 
 	onSubmit(): void {
-		this.authService
-			.login(this.loginForm.value)
-			.subscribe((_) => this.router.navigate(['']));
+		this.authService.passwordRecovery(this.recoveryForm.value).subscribe((_) => {
+			this.recoveryForm.reset();
+			this.router.navigate(['/auth']);
+		});
 	}
 
 	get email() {
-		return this.loginForm.get('email');
-	}
-
-	get password() {
-		return this.loginForm.get('password');
+		return this.recoveryForm.get('email');
 	}
 }

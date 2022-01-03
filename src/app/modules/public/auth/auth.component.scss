@@ -1,27 +1,27 @@
-@import url('https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap");
 
 #auth-content .auth__container {
-    max-width: 650px;
-    margin-left: auto;
-    margin-right: auto;
+	max-width: 650px;
+	margin-left: auto;
+	margin-right: auto;
 }
 
 #auth-content .auth__container .header h1 {
-    font-family: 'Permanent Marker', cursive;
-    font-weight: bold;
-    font-size: 3rem;
+	font-family: "Permanent Marker", cursive;
+	font-weight: bold;
+	font-size: 3rem;
 }
 
 #auth-content .auth__container .header h1 a {
-    text-decoration: none;
-    color: var(--dark-light-color);
+	text-decoration: none;
+	color: var(--dark-light-color);
 }
 
 .hyperlink {
 	display: inline-block;
 	padding: 0.1rem 1rem;
 	text-decoration: none;
-    text-transform: uppercase;
+	text-transform: uppercase;
 	color: grey;
 }
 
@@ -35,11 +35,11 @@
 }
 
 .social__auth div button {
-    width: 20rem;
+	width: 20rem;
 }
 
 @media screen and (max-width: 535px) {
-    .social__auth div button {
-        width: 10rem;
-    }
+	.social__auth div button {
+		width: 10rem;
+	}
 }

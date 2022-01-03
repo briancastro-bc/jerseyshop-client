@@ -10,18 +10,20 @@ import { ButtonModule } from 'primeng/button';
 import { KeyFilterModule } from 'primeng/keyfilter';
 import { MessageModule } from 'primeng/message';
 import { MessagesModule } from 'primeng/messages';
-import { ToastModule } from 'primeng/toast';
+import { StepsModule } from 'primeng/steps';
 
 import { AuthRoutingModule } from './auth-routing.module';
 import { AuthComponent } from './auth.component';
 import { LoginComponent } from './components/login/login.component';
 import { SignupComponent } from './components/signup/signup.component';
+import { PasswordRecoveryComponent } from './components/password-recovery/password-recovery.component';
 
 @NgModule({
 	declarations: [
-		AuthComponent, 
-		LoginComponent, 
-		SignupComponent
+		AuthComponent,
+		LoginComponent,
+		SignupComponent,
+		PasswordRecoveryComponent,
 	],
 	imports: [
 		CommonModule,
@@ -34,7 +36,7 @@ import { SignupComponent } from './components/signup/signup.component';
 		KeyFilterModule,
 		MessageModule,
 		MessagesModule,
-		ToastModule
+		StepsModule,
 	],
 	exports: [],
 })
