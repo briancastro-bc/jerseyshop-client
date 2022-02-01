@@ -12,12 +12,15 @@ import { TokenService } from '@shared/services/local';
 export class TokenInterceptor implements HttpInterceptor {
 	constructor(private tokenService: TokenService) {}
 
-	intercept(
-		request: HttpRequest<unknown>,
+	intercept<T>(
+		request: HttpRequest<T>,
 		next: HttpHandler
-	): Observable<HttpEvent<unknown>> {
-		this.tokenService
-			.refreshToken(this.tokenService.token)
-		return next.handle(request);
+	): Observable<HttpEvent<T>> {
+		return next.handle(request).pipe(
+			tap(() => {
+				const token = localStorage.getItem('access_token') // || this.tokenService.token;
+				this.tokenService.refreshToken(token);
+			})
+		);
 	}
 }

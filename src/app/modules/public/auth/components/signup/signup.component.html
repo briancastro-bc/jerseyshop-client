@@ -1,10 +1,3 @@
-<p-steps
-	[model]="stepsItems"
-	[readonly]="true"
-	styleClass="mb-3"
-	[activeIndex]="active"
-	(activeIndexChange)="this.changeActive($event)"
-></p-steps>
 <form [formGroup]="signupForm" (ngSubmit)="validate()">
 	<div class="signup__container">
 		<div class="p-fluid row">
@@ -21,10 +14,10 @@
 				/>
 				<div
 					*ngIf="name?.invalid && (name?.dirty || name?.touched)"
-					class="text-muted text-center"
+					class="text-center p-error block"
 				>
 					<div *ngIf="name?.errors?.['required']">
-						<small>¡Necesitamos tu nombre!</small>
+						<small>Necesitamos saber tu nombre</small>
 					</div>
 				</div>
 			</div>
@@ -41,7 +34,7 @@
 				/>
 				<div
 					*ngIf="last_name?.invalid && (last_name?.dirty || last_name?.touched)"
-					class="text-muted text-center"
+					class="text-center p-error block"
 				>
 					<div *ngIf="last_name?.errors?.['required']">
 						<small>Y tambien el apellido..</small>
@@ -61,16 +54,16 @@
 				/>
 				<div
 					*ngIf="email?.invalid && (email?.dirty || email?.touched)"
-					class="text-muted text-center"
+					class="text-center p-error block"
 				>
 					<div *ngIf="email?.errors?.['required']">
 						<small>Sobretodo tu correo electrónico</small>
 					</div>
 					<div *ngIf="email?.errors?.['email']">
-						<small>Lo haz escrito mal</small>
+						<small>El formato es inválido</small>
 					</div>
 					<div *ngIf="email?.errors?.['maxlength']">
-						<small>No te pases de 70 caracteres</small>
+						<small>Máximo 70 caracteres</small>
 					</div>
 				</div>
 			</div>
@@ -89,7 +82,7 @@
 				></p-password>
 				<div
 					*ngIf="password?.invalid && (password?.dirty || password?.touched)"
-					class="text-muted text-center"
+					class="text-center p-error block"
 				>
 					<div *ngIf="password?.errors?.['required']">
 						<small>Es muy necesaria la contraseña</small>
@@ -117,7 +110,7 @@
 						confirm_password?.invalid &&
 						(confirm_password?.dirty || confirm_password?.touched)
 					"
-					class="text-muted text-center"
+					class="text-center p-error block"
 				>
 					<div *ngIf="confirm_password?.errors?.['required']">
 						<small>Lo ultimo es confirmar la contraseña</small>
@@ -125,6 +118,23 @@
 					<div *ngIf="confirm_password?.errors?.['minlength']">
 						<small>Mínimo 8 caracteres</small>
 					</div>
+				</div>
+			</div>
+			<div class="p-field col-12 mb-4">
+				<p-calendar dateFormat="yy-mm-dd" formControlName="birthday" [required]="true" [showIcon]="true" inputId="birthday" placeholder="Fecha de nacimiento"></p-calendar>
+				<div *ngIf="birthday?.invalid && (birthday?.dirty || birthday?.touched)" class="text-center p-error block">
+					<div *ngIf="birthday?.errors?.['required']">
+						<small>Necesitamos saber tu fecha de nacimiento</small>
+					</div>
+				</div>
+			</div>
+			<div class="p-field col-12 mb-2">
+				<p-checkbox formControlName="accept_advertising" [binary]="true" inputId="accept_advertising" label="Suscribirme a los avisos de la tienda relacionados a nuevo contenido y demás"></p-checkbox>
+			</div>
+			<div class="p-field col-12 mb-4">
+				<p-checkbox formControlName="accept_terms" [binary]="true" inputId="accept_terms" label="Al dar click acepto los términos y políticas de privacidad expuestas explícitamente por la tienda"></p-checkbox>
+				<div *ngIf="accept_terms?.invalid && (accept_terms?.dirty || accept_terms?.touched)">
+
 				</div>
 			</div>
 			<div class="p-field mb-2">

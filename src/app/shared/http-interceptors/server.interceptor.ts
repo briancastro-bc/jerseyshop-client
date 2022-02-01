@@ -20,11 +20,12 @@ export class ServerInterceptor implements HttpInterceptor {
 
 	intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
 		this.spinnerService.showSpinner();
+		const token = localStorage.getItem('access_token') // || this.tokenService.token;
 		const request: HttpRequest<any> = req.clone({
 			url: `${this.server_url}/${req.url}`,
 			withCredentials: true,
 			setHeaders: {
-				Authorization: `Bearer ${this.tokenService.token}`,
+				Authorization: `Bearer ${token}`,
 			},
 		});
 		return next.handle(request).pipe(

@@ -28,17 +28,10 @@ export class SignupComponent implements OnInit {
 			confirm_password: [null, [Validators.required, Validators.minLength(8)]],
 			name: [null, [Validators.required]],
 			last_name: [null, [Validators.required]],
+			birthday: [null, [Validators.required]],
+			accept_advertising: [null, []],
+			accept_terms: [null, [Validators.required]]
 		});
-		this.stepsItems = [
-			{ label: 'Step 1', fragment: 'name' },
-			{ label: 'Step 2', fragment: 'lastName' },
-			{ label: 'Step 3', fragment: 'email' },
-		];
-		this.active = 0;
-	}
-
-	changeActive(active: number): void {
-		this.active = active < 2 ? active + 1 : 0;
 	}
 
 	validate(): void {
@@ -75,5 +68,17 @@ export class SignupComponent implements OnInit {
 
 	get last_name() {
 		return this.signupForm.get('last_name');
+	}
+
+	get birthday() {
+		return this.signupForm.get('birthday');
+	}
+
+	get accept_advertising() {
+		return this.signupForm.get('accept_advertising');
+	}
+
+	get accept_terms() {
+		return this.signupForm.get('accept_terms');
 	}
 }

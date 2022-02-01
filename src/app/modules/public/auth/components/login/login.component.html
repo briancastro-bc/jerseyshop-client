@@ -15,7 +15,7 @@
 					<label for="email-input">Correo electrónico</label>
 					<div
 						*ngIf="email?.invalid && (email?.dirty || email?.touched)"
-						class="text-muted text-center"
+						class="text-center p-error block"
 					>
 						<div *ngIf="email?.errors?.['required']">
 							<small>Debes escribir tu correo electrónico</small>
@@ -39,7 +39,7 @@
 					<label for="password-input">Contraseña</label>
 					<div
 						*ngIf="password?.invalid && (password?.dirty || password?.touched)"
-						class="text-muted text-center"
+						class="text-center p-error block"
 					>
 						<div *ngIf="password?.errors?.['required']">
 							<small>Debes escribir tu contraseña</small>

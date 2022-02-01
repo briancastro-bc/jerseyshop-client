@@ -13,16 +13,12 @@ import { TokenService } from '@shared/services/local';
 	providedIn: 'root',
 })
 export class LoggedGuard implements CanActivate {
+
 	constructor(private tokenService: TokenService, private router: Router) {}
 
-	canActivate(
-		route: ActivatedRouteSnapshot,
-		state: RouterStateSnapshot
-	): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-    if(!this.tokenService.userHasToken()) { // == falso
-      return true;
-    }
-    this.router.navigate(['']);
-    return false;
+	canActivate(): Observable<boolean> | Promise<boolean> | boolean {
+		if(!this.tokenService.userHasToken()) return true;
+		this.router.navigate(['']);
+		return false;
 	}
 }

@@ -10,13 +10,13 @@ import { MessageService } from 'primeng/api';
 })
 export class TokenService {
 
-  Token$: Observable<string> = new Observable<string>();
-  token!: string;
+  //Token$: Subject<string> = new Subject<string>();
+  //token!: string;
 
   constructor(private http: HttpClient, private _messageService: MessageService) { }
 
-  refreshToken(current_token: string): Observable<Auth> {
-    return this.http.post<Auth>('auth/refresh/token', current_token).pipe(
+  refreshToken(access_token: string|null): Observable<Auth> {
+    return this.http.post<Auth>('auth/refresh/token', access_token).pipe(
       filter<Auth>((resp) => resp && !!resp),
       tap((resp: Auth) => {
         console.log(`Refrescando el token...`);
@@ -30,20 +30,20 @@ export class TokenService {
         });
         throw err;
       })
-    )
+    );
   }
 
   saveToken(resp: Auth): void {
-    this.token = resp.data.access_token || resp.data.refresh_token;
-    localStorage.setItem('access_token', this.token);
+    //this.token = resp.data.access_token || resp.data.refresh_token;
+    localStorage.setItem('access_token', resp.data.access_token || resp.data.refresh_token);
   }
 
   removeToken(): void {
-    this.token = "";
+    //this.token = "";
     localStorage.removeItem('access_token');
   }
 
   userHasToken(): boolean {
-    return !!localStorage.getItem('access_token') && this.token != "";
+    return !!localStorage.getItem('access_token'); //&& this.token != "";
   }
 }

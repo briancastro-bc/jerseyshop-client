@@ -11,6 +11,8 @@ import { KeyFilterModule } from 'primeng/keyfilter';
 import { MessageModule } from 'primeng/message';
 import { MessagesModule } from 'primeng/messages';
 import { StepsModule } from 'primeng/steps';
+import { CheckboxModule } from 'primeng/checkbox';
+import { CalendarModule } from 'primeng/calendar';
 
 import { AuthRoutingModule } from './auth-routing.module';
 import { AuthComponent } from './auth.component';
@@ -37,6 +39,8 @@ import { PasswordRecoveryComponent } from './components/password-recovery/passwo
 		MessageModule,
 		MessagesModule,
 		StepsModule,
+		CheckboxModule,
+		CalendarModule
 	],
 	exports: [],
 })

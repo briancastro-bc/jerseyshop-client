@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { MessageService } from 'primeng/api';
-import { catchError, filter, Observable, Subject, tap } from 'rxjs';
+import { catchError, filter, Observable, tap } from 'rxjs';
 
 import { Auth } from '../interfaces/auth.interface';
 import { TokenService } from '@shared/services/local';
@@ -24,7 +24,7 @@ export class AuthService {
 				this._messageService.add({
 					severity: 'error',
 					summary: 'Oh-no!',
-					detail: err.error.data.message,
+					detail: err.error.data.message
 				});
 				throw err;
 			})
@@ -61,7 +61,7 @@ export class AuthService {
 	}
 
 	passwordRecovery(email: Auth): Observable<Auth> {
-		return this.http.post<Auth>('auth/password/recovery', email).pipe(
+		return this.http.post<Auth>('auth/passwordRecovery', email).pipe(
 			filter((resp) => resp && !!resp),
 			tap((resp: Auth) => {
 				console.log(resp);
