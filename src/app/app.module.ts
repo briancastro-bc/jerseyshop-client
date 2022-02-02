@@ -5,6 +5,7 @@ import { ServiceWorkerModule } from '@angular/service-worker';
 import { RouterModule } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { SocketIoModule } from 'ngx-socket-io';
 
 /**
  * {PrimeNG} - Modules
@@ -21,7 +22,7 @@ import { AppComponent } from '@app/app.component';
 import { SpinnerComponent } from '@shared/components/spinner/spinner.component';
 import { httpInterceptorsProviders } from '@shared/http-interceptors';
 import { TokenService } from '@shared/services/local';
-import { environment } from 'src/environments/environment';
+import { environment } from '@env/environment';
 
 @NgModule({
 	declarations: [AppComponent, SpinnerComponent],
@@ -41,6 +42,13 @@ import { environment } from 'src/environments/environment';
 			// Register the ServiceWorker as soon as the app is stable
 			// or after 30 seconds (whichever comes first).
 			registrationStrategy: 'registerWhenStable:30000',
+		}),
+		SocketIoModule.forRoot({
+			url: `${environment.socket_endpoint}/support`,
+			options: {
+				autoConnect: true,
+				reconnectionDelayMax: 20000
+			}
 		}),
 	],
 	providers: [
