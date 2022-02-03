@@ -4,10 +4,11 @@ import {
 	HttpHandler,
 	HttpEvent,
 	HttpInterceptor,
+	HttpResponse
 } from '@angular/common/http';
 import { SpinnerService, TokenService } from '@shared/services/local';
 import { environment } from 'src/environments/environment';
-import { finalize, Observable } from 'rxjs';
+import { finalize, Observable, tap } from 'rxjs';
 
 @Injectable()
 export class ServerInterceptor implements HttpInterceptor {
@@ -29,7 +30,11 @@ export class ServerInterceptor implements HttpInterceptor {
 			},
 		});
 		return next.handle(request).pipe(
-			finalize(() => this.spinnerService.hideSpinner())
+			finalize(() => this.spinnerService.hideSpinner()),
+			tap((res) => {
+				//TODO: probar si puedo tomar el nuevo token de refresco desde aca.
+				console.log(res);
+			})
 		);
 	}
 }
