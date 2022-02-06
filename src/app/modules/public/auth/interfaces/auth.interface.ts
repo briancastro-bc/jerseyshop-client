@@ -1,7 +1,7 @@
 import { ResponseAuth } from './response.interface';
 
 export interface Auth {
-	id?: string;
+	uid?: string;
 	email: string;
 	password?: string;
 	name?: string;
@@ -10,4 +10,10 @@ export interface Auth {
 	refresh_token?: ResponseAuth;
 	current_token?: string;
 	data: any;
+}
+
+export interface RefreshToken {
+	access_token?: string;
+	refresh_token?: boolean;
+	data?: any;
 }

@@ -1,0 +1,7 @@
+<form [formGroup]="roomForm" (ngSubmit)="onSubmit()">
+    <input type="text" formControlName="name" placeholder="Nombre de la sala">
+    <input type="number" formControlName="limit" placeholder="Limite de usuarios">
+    <button [disabled]="!roomForm.valid">
+        Crear
+    </button>
+</form>

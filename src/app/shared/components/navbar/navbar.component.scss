@@ -1,0 +1,37 @@
+header {
+    background-color: black;
+}
+
+header .navbar {
+    padding: 0.5rem;
+}
+
+:host ::ng-deep {
+    .menubar.p-menubar {
+        align-self: center;
+        background-color: var(--dark-color);
+        position: -webkit-sticky;
+        position: sticky;
+        top: 0;
+        width: 100%;
+        text-transform: uppercase;
+        padding: 0.5rem 2rem;
+
+        .p-menubar-button {
+            display: none;
+        }
+        button {
+            color: white;
+        }
+        .active {
+            background-color: var(--dark-light-color);
+        }
+    }
+
+    @media screen and (max-width: 410px) {
+        .menubar.p-menubar {
+            padding: 0 0;
+            font-size: 14px;
+        }
+    }
+}

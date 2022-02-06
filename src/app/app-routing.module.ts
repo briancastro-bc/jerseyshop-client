@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { LoggedGuard } from './shared/guards/logged.guard';
+
+import { NotLoggedGuard, LoggedGuard } from '@shared/guards';
 
 const routes: Routes = [
 	{
@@ -22,6 +23,14 @@ const routes: Routes = [
 		loadChildren: () =>
 			import('./modules/public/auth/auth.module').then((m) => m.AuthModule)
 	},
+	{ 
+		path: 'admin',
+		canActivate: [NotLoggedGuard],
+		data: {
+			title: 'Panel'
+		},
+		loadChildren: () => import('./modules/admin/admin.module').then(m => m.AdminModule) 
+	},
 	{
 		path: '404',
 		data: {
@@ -38,7 +47,9 @@ const routes: Routes = [
 ];
 
 @NgModule({
-	imports: [RouterModule.forRoot(routes)],
+	imports: [RouterModule.forRoot(routes, {
+		useHash: true
+	})],
 	exports: [RouterModule],
 })
 export class AppRoutingModule {}

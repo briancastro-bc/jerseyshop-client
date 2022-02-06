@@ -27,6 +27,6 @@ export class RouteService {
 				switchMap((route) => route.data),
 				map((data) => data['title'])
 			)
-			.subscribe((dataTitle) => this.title.setTitle(`JSHOP | ${dataTitle}`));
+			.subscribe((dataTitle) => this.title.setTitle(`JS | ${dataTitle}`));
 	}
 }

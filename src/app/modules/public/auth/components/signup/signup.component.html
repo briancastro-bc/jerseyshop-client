@@ -1,140 +1,183 @@
 <form [formGroup]="signupForm" (ngSubmit)="validate()">
 	<div class="signup__container">
-		<div class="p-fluid row">
-			<div class="p-field col mb-4">
-				<input
-					type="text"
-					class="mb-1"
-					pInputText
-					formControlName="name"
-					pKeyFilter="alpha"
-					id="name"
-					placeholder="Nombre/s"
-					required
-				/>
-				<div
-					*ngIf="name?.invalid && (name?.dirty || name?.touched)"
-					class="text-center p-error block"
-				>
-					<div *ngIf="name?.errors?.['required']">
-						<small>Necesitamos saber tu nombre</small>
+		<div class="p-fluid formgrid">
+			<div class="grid">
+				<div class="p-field col mb-4">
+					<input
+						type="text"
+						class="mb-1"
+						pInputText
+						pTooltip="Escribe tu nombre"
+						formControlName="name"
+						pKeyFilter="alpha"
+						id="name"
+						tooltipEvent="focus"
+						placeholder="Nombre"
+						required
+					/>
+					<div
+						*ngIf="name?.invalid && (name?.dirty || name?.touched)"
+						class="text-center p-error block"
+					>
+						<div *ngIf="name?.errors?.['required']">
+							<small>
+								<i class="pi pi-exclamation-triangle"></i>
+								Campo requerido
+							</small>
+						</div>
+					</div>
+				</div>
+				<div class="p-field col mb-4">
+					<input
+						type="text"
+						class="mb-1"
+						pInputText
+						pTooltip="Escribe tu apellido"
+						formControlName="last_name"
+						pKeyFilter="alpha"
+						id="lastName"
+						tooltipEvent="focus"
+						placeholder="Apellido"
+						required
+					/>
+					<div
+						*ngIf="last_name?.invalid && (last_name?.dirty || last_name?.touched)"
+						class="text-center p-error block"
+					>
+						<div *ngIf="last_name?.errors?.['required']">
+							<small>
+								<i class="pi pi-exclamation-triangle"></i>
+								Campo requerido
+							</small>
+						</div>
 					</div>
 				</div>
 			</div>
-			<div class="p-field col mb-4">
-				<input
-					type="text"
-					class="mb-1"
-					pInputText
-					formControlName="last_name"
-					pKeyFilter="alpha"
-					id="lastName"
-					placeholder="Apellido/s"
-					required
-				/>
-				<div
-					*ngIf="last_name?.invalid && (last_name?.dirty || last_name?.touched)"
-					class="text-center p-error block"
-				>
-					<div *ngIf="last_name?.errors?.['required']">
-						<small>Y tambien el apellido..</small>
+			<div class="grid">
+				<div class="p-field col-12 mb-4">
+					<input
+						type="email"
+						class="mb-1"
+						pInputText
+						pTooltip="Escribe tu correo electrónico"
+						formControlName="email"
+						pKeyFilter="email"
+						id="email"
+						tooltipEvent="focus"
+						placeholder="Dirección de email"
+						required
+					/>
+					<div
+						*ngIf="email?.invalid && (email?.dirty || email?.touched)"
+						class="text-center p-error block"
+					>
+						<div *ngIf="email?.errors?.['required']">
+							<small>
+								<i class="pi pi-exclamation-triangle"></i>
+								Campo requerido
+							</small>
+						</div>
+						<div *ngIf="email?.errors?.['email']">
+							<small>
+								<i class="pi pi-exclamation-triangle"></i>
+								El formato es inválido
+							</small>
+						</div>
+						<div *ngIf="email?.errors?.['maxlength']">
+							<small>
+								<i class="pi pi-exclamation-triangle"></i>
+								Máximo 70 caracteres
+							</small>
+						</div>
 					</div>
 				</div>
 			</div>
-			<div class="p-field col-12 mb-4">
-				<input
-					type="email"
-					class="mb-1"
-					pInputText
-					formControlName="email"
-					pKeyFilter="email"
-					id="email"
-					placeholder="Dirección de email"
-					required
-				/>
-				<div
-					*ngIf="email?.invalid && (email?.dirty || email?.touched)"
-					class="text-center p-error block"
-				>
-					<div *ngIf="email?.errors?.['required']">
-						<small>Sobretodo tu correo electrónico</small>
-					</div>
-					<div *ngIf="email?.errors?.['email']">
-						<small>El formato es inválido</small>
-					</div>
-					<div *ngIf="email?.errors?.['maxlength']">
-						<small>Máximo 70 caracteres</small>
-					</div>
-				</div>
-			</div>
-			<div class="p-field col-12 mb-4">
-				<p-password
-					id="password-input"
-					class="mb-1"
-					formControlName="password"
-					[toggleMask]="true"
-					placeholder="Contraseña"
-					promptLabel="Escribe la contraseña"
-					weakLabel="Débil"
-					mediumLabel="Aceptable"
-					strongLabel="Fuerte"
-					required
-				></p-password>
-				<div
-					*ngIf="password?.invalid && (password?.dirty || password?.touched)"
-					class="text-center p-error block"
-				>
-					<div *ngIf="password?.errors?.['required']">
-						<small>Es muy necesaria la contraseña</small>
-					</div>
-					<div *ngIf="password?.errors?.['minlength']">
-						<small>Mínimo 8 caracteres</small>
+			<div class="grid">
+				<div class="p-field col-12 mb-4">
+					<p-password
+						id="password-input"
+						class="mb-1"
+						formControlName="password"
+						[toggleMask]="true"
+						placeholder="Contraseña"
+						promptLabel="Escribe la contraseña"
+						weakLabel="Débil"
+						mediumLabel="Aceptable"
+						strongLabel="Fuerte"
+						required
+					></p-password>
+					<div
+						*ngIf="password?.invalid && (password?.dirty || password?.touched)"
+						class="text-center p-error block"
+					>
+						<div *ngIf="password?.errors?.['required']">
+							<small>
+								<i class="pi pi-exclamation-triangle"></i>
+								Campo requerido
+							</small>
+						</div>
+						<div *ngIf="password?.errors?.['minlength']">
+							<small>
+								<i class="pi pi-exclamation-triangle"></i>
+								Mínimo 8 caracteres
+							</small>
+						</div>
 					</div>
 				</div>
 			</div>
-			<div class="p-field col-12 mb-4">
-				<p-password
-					id="confirm-password-input"
-					class="mb-1"
-					formControlName="confirm_password"
-					[toggleMask]="true"
-					placeholder="Confirmar contraseña"
-					promptLabel="Escribe la contraseña"
-					weakLabel="Débil"
-					mediumLabel="Aceptable"
-					strongLabel="Fuerte"
-					required
-				></p-password>
-				<div
-					*ngIf="
-						confirm_password?.invalid &&
-						(confirm_password?.dirty || confirm_password?.touched)
-					"
-					class="text-center p-error block"
-				>
-					<div *ngIf="confirm_password?.errors?.['required']">
-						<small>Lo ultimo es confirmar la contraseña</small>
-					</div>
-					<div *ngIf="confirm_password?.errors?.['minlength']">
-						<small>Mínimo 8 caracteres</small>
+			<div class="grid">
+				<div class="p-field col-12 mb-4">
+					<p-password
+						id="confirm-password-input"
+						class="mb-1"
+						formControlName="confirm_password"
+						[toggleMask]="true"
+						placeholder="Confirmar contraseña"
+						promptLabel="Escribe la contraseña"
+						weakLabel="Débil"
+						mediumLabel="Aceptable"
+						strongLabel="Fuerte"
+						required
+					></p-password>
+					<div
+						*ngIf="
+							confirm_password?.invalid &&
+							(confirm_password?.dirty || confirm_password?.touched)
+						"
+						class="text-center p-error block"
+					>
+						<div *ngIf="confirm_password?.errors?.['required']">
+							<small>
+								<i class="pi pi-exclamation-triangle"></i>
+								Campo requerido
+							</small>
+						</div>
+						<div *ngIf="confirm_password?.errors?.['minlength']">
+							<small>
+								<i class="pi pi-exclamation-triangle"></i>
+								Mínimo 8 caracteres
+							</small>
+						</div>
 					</div>
 				</div>
 			</div>
-			<div class="p-field col-12 mb-4">
-				<p-calendar dateFormat="yy-mm-dd" formControlName="birthday" [required]="true" [showIcon]="true" inputId="birthday" placeholder="Fecha de nacimiento"></p-calendar>
-				<div *ngIf="birthday?.invalid && (birthday?.dirty || birthday?.touched)" class="text-center p-error block">
-					<div *ngIf="birthday?.errors?.['required']">
-						<small>Necesitamos saber tu fecha de nacimiento</small>
+			<div class="grid">
+				<div class="p-field col-12 mb-4">
+					<p-calendar dateFormat="yy-mm-dd" formControlName="birthday" [required]="true" [showIcon]="true" inputId="birthday" placeholder="Fecha de nacimiento"></p-calendar>
+					<div *ngIf="birthday?.invalid && (birthday?.dirty || birthday?.touched)" class="text-center p-error block">
+						<div *ngIf="birthday?.errors?.['required']">
+							<small>
+								<i class="pi pi-exclamation-triangle"></i>
+								Campo requerido
+							</small>
+						</div>
 					</div>
 				</div>
-			</div>
-			<div class="p-field col-12 mb-2">
-				<p-checkbox formControlName="accept_advertising" [binary]="true" inputId="accept_advertising" label="Suscribirme a los avisos de la tienda relacionados a nuevo contenido y demás"></p-checkbox>
-			</div>
-			<div class="p-field col-12 mb-4">
-				<p-checkbox formControlName="accept_terms" [binary]="true" inputId="accept_terms" label="Al dar click acepto los términos y políticas de privacidad expuestas explícitamente por la tienda"></p-checkbox>
-				<div *ngIf="accept_terms?.invalid && (accept_terms?.dirty || accept_terms?.touched)">
-
+				<div class="p-field col-12 mb-2">
+					<p-checkbox formControlName="accept_advertising" [binary]="true" inputId="accept_advertising" label="Suscribirme a los avisos de la tienda relacionados a nuevo contenido y demás"></p-checkbox>
+				</div>
+				<div class="p-field col-12 mb-4">
+					<p-checkbox formControlName="accept_terms" [binary]="true" inputId="accept_terms" label="Al dar click acepto los términos y políticas de privacidad expuestas explícitamente por la tienda"></p-checkbox>
 				</div>
 			</div>
 			<div class="p-field mb-2">
@@ -148,7 +191,7 @@
 					[disabled]="!signupForm.valid"
 				></button>
 			</div>
-			<div class="d-flex justify-content-center align-self-center text-center">
+			<div class="flex justify-content-center align-self-center text-center">
 				¿Ya tienes una cuenta?<a routerLink="../login" class="ml-1 have-account"
 					>Acceder</a
 				>

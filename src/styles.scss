@@ -3,9 +3,6 @@
 /* Project Fonts */
 @import url("https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,400&family=Roboto+Condensed:ital,wght@0,300;0,400;1,400;1,700&family=Spline+Sans:wght@400;600;700&display=swap");
 
-/* Importing Bootstrap SCSS file. */
-@import "~bootstrap/scss/bootstrap";
-
 @include mat.core();
 
 $client-primary: mat.define-palette(mat.$indigo-palette);
@@ -38,6 +35,13 @@ $client-theme: mat.define-light-theme(
 	--light-color: hsl(218, 3%, 94%);
 	--light-ice-color: hsl(218, 5%, 92%);
 	--light-blue-color: hsl(219, 7%, 88%);
+}
+
+*{
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	-webkit-box-sizing: border-box;
 }
 
 html,

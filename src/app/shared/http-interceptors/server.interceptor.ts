@@ -6,7 +6,7 @@ import {
 	HttpInterceptor,
 	HttpResponse
 } from '@angular/common/http';
-import { SpinnerService, TokenService } from '@shared/services/local';
+import { SpinnerService, LocalStorageService } from '@shared/services/local';
 import { environment } from 'src/environments/environment';
 import { finalize, Observable, tap } from 'rxjs';
 
@@ -16,25 +16,21 @@ export class ServerInterceptor implements HttpInterceptor {
 
 	constructor(
 		private spinnerService: SpinnerService,
-		private tokenService: TokenService
+		private localStorage: LocalStorageService
 	) {}
 
 	intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
 		this.spinnerService.showSpinner();
-		const token = localStorage.getItem('access_token') // || this.tokenService.token;
+		const token = this.localStorage.getItem('access_token');
 		const request: HttpRequest<any> = req.clone({
 			url: `${this.server_url}/${req.url}`,
 			withCredentials: true,
 			setHeaders: {
-				Authorization: `Bearer ${token}`,
+				Authorization:  `Bearer ${token != null ? token : null}`,
 			},
 		});
 		return next.handle(request).pipe(
-			finalize(() => this.spinnerService.hideSpinner()),
-			tap((res) => {
-				//TODO: probar si puedo tomar el nuevo token de refresco desde aca.
-				console.log(res);
-			})
+			finalize(() => this.spinnerService.hideSpinner())
 		);
 	}
 }

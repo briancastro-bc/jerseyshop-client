@@ -5,18 +5,6 @@ import { SpinnerService } from '@shared/services/local';
 	selector: 'app-spinner',
 	template: `
 		<div class="overlay" *ngIf="this.spinnerService.isLoading$ | async">
-			<!--<div class="loadingio-spinner-double-ring-fx4qdbdfrx">
-				<div class="ldio-nocxzougzaa">
-					<div></div>
-					<div></div>
-					<div>
-						<div></div>
-					</div>
-					<div>
-						<div></div>
-					</div>
-				</div>
-			</div>-->
 			<div class="lds-ring">
 				<div></div>
 				<div></div>

@@ -18,10 +18,16 @@
 						class="text-center p-error block"
 					>
 						<div *ngIf="email?.errors?.['required']">
-							<small>Debes escribir tu correo electrónico</small>
+							<small>
+								<i class="pi pi-exclamation-triangle"></i>
+								Campo requerido
+							</small>
 						</div>
 						<div *ngIf="email?.errors?.['email']">
-							<small>El correo electrónico es inválido</small>
+							<small>
+								<i class="pi pi-exclamation-triangle"></i>
+								El correo electrónico es inválido
+							</small>
 						</div>
 					</div>
 				</span>
@@ -42,12 +48,15 @@
 						class="text-center p-error block"
 					>
 						<div *ngIf="password?.errors?.['required']">
-							<small>Debes escribir tu contraseña</small>
+							<small>
+								<i class="pi pi-exclamation-triangle"></i>
+								Campo requerido
+							</small>
 						</div>
 					</div>
 				</span>
 			</div>
-			<div class="d-flex justify-content-end text-center mb-4">
+			<div class="flex justify-content-end text-center mb-4">
 				<a routerLink="../recovery" class="ml-1 forgot-password"
 					>¿Olvidaste tu contraseña?</a
 				>

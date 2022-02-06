@@ -14,7 +14,7 @@ import { HomeComponent } from './home.component';
 	imports: [
 		CommonModule, 
 		HomeRoutingModule,
-		SpeedDialModule
+		SpeedDialModule,
 	],
 })
 export class HomeModule {}

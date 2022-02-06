@@ -1,0 +1,31 @@
+<p-menubar styleClass="menubar">
+    <ng-template pTemplate="start">
+        <button pButton pRipple type="button" icon="pi pi-bars" class="p-button-rounded p-button-text mr-2" (click)="displaySidebar()"
+            pTooltip="Menu" tooltipPosition="bottom"></button>
+        <a routerLink="home">
+            <img src="assets/logos/js.svg" alt="Logo principal de Jersey Shop" height="40" width="50">
+        </a>
+    </ng-template>
+    <ng-template pTemplate="end">
+        <button pButton pRipple icon="pi pi-bell" class="p-button-rounded p-button-text" 
+            pTooltip="Notificaciones" tooltipPosition="bottom" routerLink="#" routerLinkActive="active"></button>
+        <button pButton pRipple type="button" icon="pi pi-heart" class="p-button-rounded p-button-text"
+            pTooltip="Favoritos" tooltipPosition="bottom" routerLink="#" routerLinkActive="active"></button>
+        <button pButton pRipple type="button" icon="pi pi-user" class="p-button-rounded p-button-text"
+            [pTooltip]="userSetup.status" tooltipPosition="bottom" routerLink="auth" routerLinkActive="active"></button>
+        <button pButton pRipple type="button" icon="pi pi-shopping-cart" class="p-button-rounded p-button-text"
+            pTooltip="Carrito" tooltipPosition="bottom" routerLink="#" routerLinkActive="active"></button>
+        <ng-template [ngIf]="this.isLoggedIn | async">
+            <button pButton pRipple type="button" icon="pi pi-shield" class="p-button-rounded p-button-text"
+                pTooltip="Panel" tooltipPosition="bottom" routerLink="/admin" routerLinkActive="active"></button>
+            <button pButton pRipple type="button" icon="pi pi-sign-out" class="p-button-rounded p-button-text"
+                pTooltip="Salir" tooltipPosition="bottom" (click)="logout()"></button>
+        </ng-template>
+    </ng-template>
+</p-menubar>
+<p-sidebar [(visible)]="this.userSetup.display" [baseZIndex]="10000" [transitionOptions]="'300ms'" [blockScroll]="true">
+    <ng-template pTemplate="content">
+        <p-panelMenu [model]="sidebarContent">
+        </p-panelMenu>
+    </ng-template>
+</p-sidebar>

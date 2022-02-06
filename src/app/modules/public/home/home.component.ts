@@ -1,7 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { MenuItem } from 'primeng/api';
-
-import { SocketService } from '@shared/services/local';
 
 @Component({
 	selector: 'app-home',
@@ -10,19 +7,7 @@ import { SocketService } from '@shared/services/local';
 })
 export class HomeComponent implements OnInit {
 
-	items!: MenuItem[];
+	constructor() {}
 
-	constructor(private socketService: SocketService) {}
-
-	ngOnInit(): void {
-		this.items = [
-			{
-				icon: 'pi pi-shield',
-				command: () => {
-					this.socketService.createRoom({}).subscribe(res => console.log(res))
-				}
-			}
-		]
-			
-	}
+	ngOnInit(): void {}
 }

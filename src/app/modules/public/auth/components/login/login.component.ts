@@ -26,8 +26,8 @@ export class LoginComponent implements OnInit {
 
 	onSubmit(): void {
 		this.authService
-			.login(this.loginForm.value)
-			.subscribe((_) => this.router.navigate(['']));
+			.logIn(this.loginForm.value)
+			.subscribe(_ => this.router.navigate(['']));
 	}
 
 	get email() {

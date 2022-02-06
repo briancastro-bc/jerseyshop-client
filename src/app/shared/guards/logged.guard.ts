@@ -7,17 +7,17 @@ import {
 	UrlTree,
 } from '@angular/router';
 import { Observable } from 'rxjs';
-import { TokenService } from '@shared/services/local';
+import { AuthService } from '@app/modules/public/auth/services';
 
 @Injectable({
 	providedIn: 'root',
 })
 export class LoggedGuard implements CanActivate {
 
-	constructor(private tokenService: TokenService, private router: Router) {}
+	constructor(private authService: AuthService, private router: Router) {}
 
 	canActivate(): Observable<boolean> | Promise<boolean> | boolean {
-		if(!this.tokenService.userHasToken()) return true;
+		if(!this.authService.userHasToken()) return true;
 		this.router.navigate(['']);
 		return false;
 	}
