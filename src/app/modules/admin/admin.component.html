@@ -1,2 +1,31 @@
-<p>admin works!</p>
-<router-outlet></router-outlet>
+<aside class="sidebar-menu">
+    <nav class="nav">
+        <div>
+            <div class="nav-items">
+                <!--<a routerLink="../admin" routerLinkActive="active" class="nav-link">
+                    <i class="pi pi-desktop nav-icon"></i>
+                    <span class="nav-name">Panel</span>
+                </a>-->
+                <a class="nav-link" routerLink="dashboard" routerLinkActive="active">
+                    <i class="pi pi-box nav-icon"></i>
+                    <span class="nav-name">Dashboard</span>
+                </a>
+                <a class="nav-link" routerLink="rooms" routerLinkActive="active">
+                    <i class="pi pi-th-large nav-icon"></i>
+                    <span class="nav-name">Salas</span>
+                </a>
+                <a class="nav-link" routerLink="inventory" routerLinkActive="active">
+                    <i class="pi pi-briefcase nav-icon"></i>
+                    <span class="nav-name">Inventario</span>
+                </a>
+                <a class="nav-link" routerLink="advertisement" routerLinkActive="active" >
+                    <i class="pi pi-bell nav-icon"></i>
+                    <span class="nav-name">Anuncios</span>
+                </a>
+            </div>
+        </div>
+    </nav>
+</aside>
+<section class="panel-content">
+    <router-outlet></router-outlet>
+</section>

@@ -19,7 +19,8 @@ import { RippleModule } from 'primeng/ripple';
 import { SidebarModule } from 'primeng/sidebar';
 import { PanelMenuModule } from 'primeng/panelmenu';
 import { SpeedDialModule } from 'primeng/speeddial';
-import { MessageService } from 'primeng/api';
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
+import { MessageService, ConfirmationService } from 'primeng/api';
 
 import { AppRoutingModule } from '@app/app-routing.module';
 import { AppComponent } from '@app/app.component';
@@ -47,6 +48,7 @@ import { NavbarComponent } from './shared/components/navbar/navbar.component';
 		SidebarModule,
 		PanelMenuModule,
 		SpeedDialModule,
+		ConfirmDialogModule,
 		ServiceWorkerModule.register('ngsw-worker.js', {
 			enabled: environment.production,
 			// Register the ServiceWorker as soon as the app is stable
@@ -63,6 +65,7 @@ import { NavbarComponent } from './shared/components/navbar/navbar.component';
 	],
 	providers: [
 		MessageService,
+		ConfirmationService,
 		httpInterceptorsProviders
 	],
 	bootstrap: [AppComponent],

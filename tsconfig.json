@@ -7,10 +7,12 @@
 			"@app/*": ["src/app/*"],
 			"@env/*": ["src/environments/*"],
 			"@modules/*": ["src/app/modules/*"],
-			"@shared/*": ["src/app/shared/*"]
+			"@shared/*": ["src/app/shared/*"],
+			"rxjs": ["node_modules/rxjs"]
 		},
 		"outDir": "./dist/out-tsc",
 		"forceConsistentCasingInFileNames": true,
+		"strictPropertyInitialization": false,
 		"strict": true,
 		"noImplicitOverride": true,
 		"noPropertyAccessFromIndexSignature": true,

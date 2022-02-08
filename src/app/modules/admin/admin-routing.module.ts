@@ -7,27 +7,38 @@ const routes: Routes = [
 		path: '', 
 		component: AdminComponent,
 		children: [
-
+			{
+				path: 'dashboard',
+				data: {
+					title: 'Dashboard'
+				},
+				loadChildren: () =>
+					import('./dashboard/dashboard.module').then((m) => m.DashboardModule),
+			},
+			{
+				path: 'inventory',
+				data: {
+					title: 'Inventory'
+				},
+				loadChildren: () =>
+					import('./inventory/inventory.module').then((m) => m.InventoryModule),
+			},
+			{
+				path: 'advertisement',
+				data: {
+					title: 'Advertisements'
+				},
+				loadChildren: () =>
+					import('./advertisement/advertisement.module').then((m) => m.AdvertisementModule),
+			},
+			{
+				path: 'rooms',
+				data: {
+					title: 'Rooms'
+				},
+				loadChildren: () => import('./rooms/rooms.module').then((m) => m.RoomsModule),
+			},
 		]
-	},
-	{
-		path: 'dashboard',
-		loadChildren: () =>
-			import('./dashboard/dashboard.module').then((m) => m.DashboardModule),
-	},
-	{
-		path: 'inventory',
-		loadChildren: () =>
-			import('./inventory/inventory.module').then((m) => m.InventoryModule),
-	},
-	{
-		path: 'advertisement',
-		loadChildren: () =>
-			import('./advertisement/advertisement.module').then((m) => m.AdvertisementModule),
-	},
-	{
-		path: 'rooms',
-		loadChildren: () => import('./rooms/rooms.module').then((m) => m.RoomsModule),
 	},
 ];
 

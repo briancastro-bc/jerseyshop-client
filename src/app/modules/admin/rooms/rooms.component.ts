@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { MenuItem } from 'primeng/api';
 
 @Component({
   selector: 'app-rooms',
@@ -7,9 +8,21 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RoomsComponent implements OnInit {
 
+  tabMenuItems!: MenuItem[];
+
   constructor() { }
 
   ngOnInit(): void {
+    this.tabMenuItems = [
+      {
+        label: 'Ver salas',
+        icon: 'pi pi-eye'
+      },
+      {
+        label: 'Crear sala',
+        icon: 'pi pi-plus'
+      }
+    ]
   }
 
 }

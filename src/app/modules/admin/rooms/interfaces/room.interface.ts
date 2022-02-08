@@ -4,4 +4,5 @@ export interface Room {
     limit?: number;
     is_active?: boolean;
     data?: any;
+    body?: any;
 }
