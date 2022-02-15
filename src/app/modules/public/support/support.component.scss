@@ -1,0 +1,22 @@
+:host ::ng-deep {
+    #support-chat-content {
+        .p-avatar.p-avatar-circle {
+            overflow: visible;
+        }
+    }
+
+    .bg-dark {
+        background-color: var(--dark-color);
+        color: var(--light-color);
+    }
+
+    .bg-dark-grey {
+        background-color: var(--dark-grey-color);
+        color: var(--light-color);
+    }
+
+    .bg-dark-light {
+        background-color: var(--dark-light-color);
+        color: var(--light-color);
+    }
+}

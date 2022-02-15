@@ -1,0 +1,14 @@
+<div class="flex mb-5">
+    <p-avatar [label]="username ? username.charAt(0) : 'D'" shape="circle" size="medium" class="mr-2 align-self-end"></p-avatar>
+    <div class="flex flex-column">
+        <div class="bg-dark-light p-5 w-6 border-round mb-2">
+            <h4 class="mb-1">{{ username ? username : 'Desconocido' | titlecase }}</h4>
+            <p class="text-gray-100 font-light">
+                {{ message }}
+            </p>
+        </div>
+        <small class="text-gray-500">
+            {{ time }}
+        </small>
+    </div>
+</div>

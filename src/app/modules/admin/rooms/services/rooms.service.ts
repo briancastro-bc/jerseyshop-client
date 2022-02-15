@@ -22,17 +22,15 @@ export class RoomsService {
   ) { }
 
 
-  createRoom(data: Room): Observable<Room> {
+  newRoom(data: Room): Observable<Room> {
     return this.http.post<Room>('admin/rooms/create', data).pipe(
       filter(resp => resp && !!resp),
       tap(resp => {
-        console.log(resp);
         this.messageService.add({
           severity: 'success',
           summary: 'Completado',
           detail: resp.data.message
         });
-        this.socketService.onCreateRoom(resp.data);
       }),
       catchError((err: HttpErrorResponse) => {
         this.messageService.add({

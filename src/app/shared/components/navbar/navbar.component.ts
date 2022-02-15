@@ -2,7 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { MenuItem } from 'primeng/api';
 
 import { AuthService } from '@modules/public/auth/services';
-import { Observable, Subject, Subscriber, Subscription } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import { User } from '@app/shared/interfaces';
 
 @Component({

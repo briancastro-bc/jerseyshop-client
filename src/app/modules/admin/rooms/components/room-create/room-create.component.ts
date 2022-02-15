@@ -25,7 +25,7 @@ export class RoomCreateComponent implements OnInit {
   }
 
   onSubmit(): void {
-    this.roomService.createRoom(this.roomForm.value).subscribe();
+    this.roomService.newRoom(this.roomForm.value).subscribe();
   }
 
   get name() {

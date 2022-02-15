@@ -1,5 +1,20 @@
 :host ::ng-deep {
-    .tab-menu {
-        border-radius: 0;
+    .p-toolbar-group-right {
+        .p-button {
+            border: none;
+            border-radius: 0;
+            background-color: black;
+            color: white;
+
+            &:hover {
+                background-color: var(--dark-light-color);
+            }
+        }
+
+        .active {
+            background-color: var(--dark-light-color);
+            border: 1px solid var(--light-color);
+            color: white;
+        }
     }
 }

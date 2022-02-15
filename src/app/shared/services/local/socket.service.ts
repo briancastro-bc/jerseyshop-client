@@ -4,46 +4,82 @@ import { MessageService } from 'primeng/api';
 import { Socket } from 'ngx-socket-io';
 
 import { ISocket } from '@shared/interfaces';
-import { tap, Observable, filter, catchError, throwError } from 'rxjs';
+import { tap, Observable, filter, catchError, throwError, of } from 'rxjs';
 
 @Injectable({
 	providedIn: 'root',
 })
 export class SocketService {
+
 	room?: string;
 
 	constructor(private socket: Socket, private messageService: MessageService) {}
 
 	/**
 	 *
+	 * @param data 
+	 * Emit create_room event to server.
+	 * 
+	 */
+	createRoom(data: ISocket) {
+		this.socket.emit('create_room', {
+			room: data.room
+		});
+		this.onCreateRoom({
+			room: data.room
+		})
+	}
+
+	/**
+	 *
 	 * @param data
-	 * Server event
+	 * Receive the create_room event response.
 	 *
 	 */
 	onCreateRoom(data: ISocket): Observable<ISocket> {
-		this.socket.connect();
-		return this.socket.fromEvent<ISocket>('connect').pipe((res) => {
+		//this.socket.connect(); //If autoconnect is disabled, this line connect the sockets.
+		return this.socket.fromEvent<ISocket>('create_room').pipe(res => {
 			this.room = data.room;
 			this.messageService.add({
-				severity: 'success',
-				summary: 'Completado',
-				detail: `Uniéndose a la sala de soporte # ${data.room}`,
-			});
-			this.socket.emit('create_room', {
-				room: data.room,
+				severity: 'info',
+				summary: 'Aviso',
+				detail: 'Creando sala de soporte'
 			});
 			return res;
 		});
 	}
 
 	/**
+	 * 
+	 * @param data 
+	 * Emit join server event.
+	 * 
+	 */
+	joinRoom(data: ISocket) {
+		this.socket.emit('join', {
+			room: data.room
+		});
+		this.onJoinRoom({
+			room: data.room
+		});
+	}
+
+	/**
 	 *
 	 * @param data
-	 * Server event
+	 * Receive join event response.
 	 *
 	 */
 	onJoinRoom(data: ISocket) {
-		this.socket.emit('join', data);
+		return this.socket.fromEvent('join').pipe((res) => {
+			this.room = data.room;
+			this.messageService.add({
+				severity: 'info',
+				summary: 'Aviso',
+				detail: `Intentando unirse a la sala de soporte #${this.room}`,
+			});
+			return res;
+		});
 	}
 
 	/**
@@ -57,11 +93,19 @@ export class SocketService {
 	}
 
 	// Client events.
-	onMessage(): Observable<ISocket | any> {
-		return this.socket.fromEvent('message').pipe<ISocket | any>((res) => {
+	onMessage(): Observable<ISocket> {
+		return this.socket.fromEvent<ISocket>('message');
+	}
+
+	onUserJoined(): Observable<ISocket> {
+		return this.socket.fromEvent<ISocket>('user_joined').pipe((res) => {
 			console.log(res);
 			return res;
 		});
+	}
+
+	onRoomExist(): Observable<ISocket> {
+		return this.socket.fromEvent('room_exist');
 	}
 
 	onRoomLimit(): Observable<ISocket> {
@@ -72,7 +116,4 @@ export class SocketService {
 		return this.socket.fromEvent('room_not_found');
 	}
 
-	onUserJoined(): Observable<ISocket> {
-		return this.socket.fromEvent('user_joined');
-	}
 }

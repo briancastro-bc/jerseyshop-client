@@ -62,7 +62,7 @@
     }
 
     .panel-content {
-        padding-left: calc($sidebar-width + 1rem);
+        padding-left: $sidebar-width;
     }
 
     @media screen and (min-width: 768px) {

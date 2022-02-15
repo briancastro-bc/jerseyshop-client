@@ -52,6 +52,10 @@ body {
 	font-family: "Spline Sans", "Helvetica Neue", "Segoe UI", "Open Sans", sans-serif;
 }
 
+body::-webkit-scrollbar {
+	display: none;
+}
+
 body#dark-mode {
 	background-color: var(--dark-color);
 	color: var(--light-color);

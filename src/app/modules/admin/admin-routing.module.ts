@@ -34,9 +34,10 @@ const routes: Routes = [
 			{
 				path: 'rooms',
 				data: {
-					title: 'Rooms'
+					title: 'Salas'
 				},
-				loadChildren: () => import('./rooms/rooms.module').then((m) => m.RoomsModule),
+				loadChildren: () => 
+					import('./rooms/rooms.module').then((m) => m.RoomsModule),
 			},
 		]
 	},

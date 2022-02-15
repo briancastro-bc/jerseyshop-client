@@ -17,6 +17,14 @@ const routes: Routes = [
 		loadChildren: () =>
 			import('./modules/public/home/home.module').then((m) => m.HomeModule),
 	},
+	{ 
+		path: 'support',
+		data: {
+			title: 'Soporte'
+		},
+		loadChildren: () => 
+			import('./modules/public/support/support.module').then(m => m.SupportModule) 
+	},
 	{
 		path: 'auth',
 		canActivate: [LoggedGuard],
@@ -47,9 +55,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-	imports: [RouterModule.forRoot(routes, {
-		useHash: true
-	})],
+	imports: [RouterModule.forRoot(routes)],
 	exports: [RouterModule],
 })
 export class AppRoutingModule {}
