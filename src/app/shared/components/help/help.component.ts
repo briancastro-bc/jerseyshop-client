@@ -21,7 +21,7 @@ export class HelpComponent implements OnInit, OnDestroy {
 		private socketService: SocketService,
 		private roomsService: RoomsService,
 		private confirmationService: ConfirmationService,
-		private messageService: MessageService,
+		private messageService: MessageService
 	) {}
 
 	ngOnInit(): void {
@@ -38,7 +38,7 @@ export class HelpComponent implements OnInit, OnDestroy {
 	}
 
 	ngOnDestroy(): void {
-		this.subscriptions$.forEach(subscription => {
+		this.subscriptions$.forEach((subscription) => {
 			subscription.unsubscribe();
 		});
 	}
@@ -52,26 +52,25 @@ export class HelpComponent implements OnInit, OnDestroy {
 			rejectLabel: 'No',
 			accept: () => {
 				this.roomsService.rooms().subscribe((res) => {
-					let random = Math.floor(Math.random() * (res.body.data.rooms.length - 0)) + 0;
+					let random =
+						Math.floor(Math.random() * (res.body.data.rooms.length - 0)) + 0;
 					const room: Room = res.body.data.rooms[random];
 					this.socketService.joinRoom({
 						room: room.code,
 					});
-					this.socketService
-						.onUserJoined()
-						.subscribe((res) => {
-							console.log(res);
-							this.router.navigate(['support'], {
-								queryParams: { 
-									room: this.socketService.room 
-								},
-							});
-							this.messageService.add({
-								severity: 'success',
-								summary: 'Completado',
-								detail: 'Pronto te atenderá un encargado',
-							});
+					this.socketService.onUserJoined().subscribe((res) => {
+						console.log(res);
+						this.router.navigate(['support'], {
+							queryParams: {
+								room: this.socketService.room,
+							},
 						});
+						this.messageService.add({
+							severity: 'success',
+							summary: 'Completado',
+							detail: 'Pronto te atenderá un encargado',
+						});
+					});
 				});
 				this.subscriptions$.push(
 					this.socketService.onRoomLimit().subscribe((_) => {

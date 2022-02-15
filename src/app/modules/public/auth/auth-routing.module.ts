@@ -16,21 +16,21 @@ const routes: Routes = [
 			{
 				path: 'login',
 				data: {
-					title: 'Acceder'
+					title: 'Acceder',
 				},
 				component: LoginComponent,
 			},
 			{
 				path: 'signup',
 				data: {
-					title: 'Regístrate'
+					title: 'Regístrate',
 				},
 				component: SignupComponent,
 			},
 			{
 				path: 'recovery',
 				data: {
-					title: 'Recuperar contraseña'
+					title: 'Recuperar contraseña',
 				},
 				component: PasswordRecoveryComponent,
 			},

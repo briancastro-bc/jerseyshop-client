@@ -1,16 +1,35 @@
-<p-confirmDialog key="create-room" icon="pi pi-question-circle" rejectButtonStyleClass="p-button-text"></p-confirmDialog>
-<p-card *ngFor="let room of data" styleClass="p-card-shadow text-center" header="{{room.name | titlecase}}"
-    subheader="{{room.code}}">
-    <ng-template pTemplate="header">
-        <p-image src="assets/images/support.png" [preview]="true" loading="lazy" width="250" class="card-image"
-            alt="Support representative image"></p-image>
-    </ng-template>
-    <div class="body">
-        {{room.name}}
-        {{room.is_active}}
-        {{room.limit}}
-    </div>
-    <ng-template pTemplate="footer">
-        <p-button label="Crear" icon="pi pi-plus" (onClick)="confirm(room.code)"></p-button>
-    </ng-template>
+<p-confirmDialog
+	key="create-room"
+	icon="pi pi-question-circle"
+	rejectButtonStyleClass="p-button-text"
+></p-confirmDialog>
+<p-card
+	*ngFor="let room of data"
+	styleClass="p-card-shadow text-center"
+	header="{{ room.name | titlecase }}"
+	subheader="{{ room.code }}"
+>
+	<ng-template pTemplate="header">
+		<p-image
+			src="assets/images/support.png"
+			[preview]="true"
+			loading="lazy"
+			width="250"
+			class="card-image"
+			alt="Support representative image"
+		></p-image>
+	</ng-template>
+	<div class="body">
+		{{ room.name }}
+		{{ room.is_active }}
+		{{ room.limit }}
+	</div>
+	<ng-template pTemplate="footer">
+		<p-button
+			label="Crear"
+			icon="pi pi-plus"
+			(onClick)="create(room.code)"
+		></p-button>
+		<p-button label="Unirse" icon="pi pi-plus" (onClick)="join(room.code)"></p-button>
+	</ng-template>
 </p-card>

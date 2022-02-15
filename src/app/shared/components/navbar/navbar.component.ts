@@ -22,7 +22,7 @@ export class NavbarComponent implements OnInit, OnDestroy {
 	constructor(private authService: AuthService) {}
 
 	ngOnInit(): void {
-		this.isLoggedIn = this.authService.isLoggedIn()
+		this.isLoggedIn = this.authService.isLoggedIn();
 		this.setUp();
 		this.sidebarContent = [
 			{
@@ -57,7 +57,7 @@ export class NavbarComponent implements OnInit, OnDestroy {
 	}
 
 	private setUp(): void {
-		this.user$ = this.authService.getUser().subscribe(user => {
+		this.user$ = this.authService.getUser().subscribe((user) => {
 			console.log(user);
 			this.userSetup.status = user.name;
 		});

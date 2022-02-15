@@ -12,40 +12,45 @@ const routes: Routes = [
 	{
 		path: 'home',
 		data: {
-			title: 'Inicio'
+			title: 'Inicio',
 		},
 		loadChildren: () =>
 			import('./modules/public/home/home.module').then((m) => m.HomeModule),
 	},
-	{ 
+	{
 		path: 'support',
 		data: {
-			title: 'Soporte'
+			title: 'Soporte',
 		},
-		loadChildren: () => 
-			import('./modules/public/support/support.module').then(m => m.SupportModule) 
+		loadChildren: () =>
+			import('./modules/public/support/support.module').then(
+				(m) => m.SupportModule
+			),
 	},
 	{
 		path: 'auth',
 		canActivate: [LoggedGuard],
 		loadChildren: () =>
-			import('./modules/public/auth/auth.module').then((m) => m.AuthModule)
+			import('./modules/public/auth/auth.module').then((m) => m.AuthModule),
 	},
-	{ 
+	{
 		path: 'admin',
 		canActivate: [NotLoggedGuard],
 		data: {
-			title: 'Panel'
+			title: 'Panel',
 		},
-		loadChildren: () => import('./modules/admin/admin.module').then(m => m.AdminModule) 
+		loadChildren: () =>
+			import('./modules/admin/admin.module').then((m) => m.AdminModule),
 	},
 	{
 		path: '404',
 		data: {
-			title: 'No encontrado'
+			title: 'No encontrado',
 		},
 		loadChildren: () =>
-			import('./modules/public/not-found/not-found.module').then((m) => m.NotFoundModule),
+			import('./modules/public/not-found/not-found.module').then(
+				(m) => m.NotFoundModule
+			),
 	},
 	{
 		path: '**',

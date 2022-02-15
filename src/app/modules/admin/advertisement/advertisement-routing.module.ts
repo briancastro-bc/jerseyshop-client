@@ -5,7 +5,7 @@ import { AdvertisementComponent } from './advertisement.component';
 const routes: Routes = [{ path: '', component: AdvertisementComponent }];
 
 @NgModule({
-  imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+	imports: [RouterModule.forChild(routes)],
+	exports: [RouterModule],
 })
-export class AdvertisementRoutingModule { }
+export class AdvertisementRoutingModule {}

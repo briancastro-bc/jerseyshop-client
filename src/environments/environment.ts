@@ -5,7 +5,7 @@
 export const environment = {
 	production: false,
 	server_endpoint: 'http://localhost:8000',
-	socket_endpoint: 'http://localhost:8000'
+	socket_endpoint: 'http://localhost:8000',
 };
 
 /*

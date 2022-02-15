@@ -32,15 +32,11 @@ import { httpInterceptorsProviders } from '@common/http-interceptors';
 			url: `${environment.socket_endpoint}/support`,
 			options: {
 				autoConnect: true,
-				reconnectionDelayMax: 20000
-			}
+				reconnectionDelayMax: 20000,
+			},
 		}),
 	],
-	providers: [
-		MessageService,
-		ConfirmationService,
-		httpInterceptorsProviders
-	],
+	providers: [MessageService, ConfirmationService, httpInterceptorsProviders],
 	bootstrap: [AppComponent],
 })
 export class AppModule {}

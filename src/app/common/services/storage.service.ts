@@ -16,8 +16,10 @@ export class StorageService {
 	}
 
 	watch(key: string): Observable<any> {
-		if (!this.subjects.has(key)) this.subjects.set(key, new BehaviorSubject<any>(null));
-		let item = this.storage.getItem(key) !== 'undefined' ? this.storage.getItem(key) : '';
+		if (!this.subjects.has(key))
+			this.subjects.set(key, new BehaviorSubject<any>(null));
+		let item =
+			this.storage.getItem(key) !== 'undefined' ? this.storage.getItem(key) : '';
 		if (!item || item === 'undefined') {
 			item = null;
 		} else {

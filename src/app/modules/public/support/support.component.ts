@@ -4,42 +4,36 @@ import { ISocket } from '@app/shared/interfaces';
 import { SocketService } from '@app/shared/services/local';
 
 @Component({
-  selector: 'app-support',
-  templateUrl: './support.component.html',
-  styleUrls: ['./support.component.scss']
+	selector: 'app-support',
+	templateUrl: './support.component.html',
+	styleUrls: ['./support.component.scss'],
 })
 export class SupportComponent implements OnInit, OnDestroy {
+	@ViewChild('messageInput') messageInput: ElementRef;
+	messages: ISocket[] = [];
+	room: string | undefined;
 
-  @ViewChild('messageInput') messageInput: ElementRef;
-  messages: ISocket[] = [];
+	constructor(private socketService: SocketService) {}
 
-  constructor(
-    private socketService: SocketService
-  ) { }
+	ngOnInit(): void {
+		this.socketService.onMessage().subscribe((message) => {
+			this.messages.push({
+				message: message.message,
+			});
+		});
+		this.room = this.socketService.room;
+	}
 
-  ngOnInit(): void {
-    this.socketService.onMessage().subscribe(
-      message => {
-        this.messages.push({
-          message: message.message
-        })
-      }
-    );
-  }
+	ngOnDestroy(): void {}
 
-  ngOnDestroy(): void {
-    
-  }
-
-  sendChatMessage() {
-    const room = this.socketService.room;
-    const message = this.messageInput.nativeElement.value;
-    this.messageInput.nativeElement.value = '';
-    if(room == undefined) return;
-    this.socketService.onSendMessage({
-      room: room,
-      message: message
-    });
-  }
-
+	sendChatMessage() {
+		const room = this.socketService.room;
+		const message = this.messageInput.nativeElement.value;
+		this.messageInput.nativeElement.value = '';
+		if (room == undefined) return;
+		this.socketService.onSendMessage({
+			room: room,
+			message: message,
+		});
+	}
 }

@@ -4,36 +4,31 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { RoomsService } from '../../services';
 
 @Component({
-  selector: 'app-room-create',
-  templateUrl: './room-create.component.html',
-  styleUrls: ['./room-create.component.scss']
+	selector: 'app-room-create',
+	templateUrl: './room-create.component.html',
+	styleUrls: ['./room-create.component.scss'],
 })
 export class RoomCreateComponent implements OnInit {
+	roomForm!: FormGroup;
 
-  roomForm!: FormGroup;
+	constructor(private formBuilder: FormBuilder, private roomService: RoomsService) {}
 
-  constructor(
-    private formBuilder: FormBuilder,
-    private roomService: RoomsService
-  ) { }
+	ngOnInit(): void {
+		this.roomForm = this.formBuilder.group({
+			name: [null, [Validators.required]],
+			limit: [2, [Validators.required]],
+		});
+	}
 
-  ngOnInit(): void {
-    this.roomForm = this.formBuilder.group({
-      name: [null, [Validators.required]],
-      limit: [2, [Validators.required]]
-    });
-  }
+	onSubmit(): void {
+		this.roomService.newRoom(this.roomForm.value).subscribe();
+	}
 
-  onSubmit(): void {
-    this.roomService.newRoom(this.roomForm.value).subscribe();
-  }
+	get name() {
+		return this.roomForm.get('name');
+	}
 
-  get name() {
-    return this.roomForm.get('name');
-  }
-
-  get limit() {
-    return this.roomForm.get('limit');
-  }
-
+	get limit() {
+		return this.roomForm.get('limit');
+	}
 }

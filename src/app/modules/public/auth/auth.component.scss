@@ -1,45 +1,38 @@
 @import url("https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap");
 
-#auth-content .auth__container {
-	max-width: 650px;
-	margin-left: auto;
-	margin-right: auto;
-}
+:host ::ng-deep {
+	#auth-content .auth__container {
+		max-width: 650px;
+		margin-left: auto;
+		margin-right: auto;
+		margin-top: 10vh;
+		margin-bottom: 5vh;
+	}
 
-/*#auth-content .auth__container .header h1 {
-	font-family: "Permanent Marker", cursive;
-	font-weight: bold;
-	font-size: 3rem;
-}
+	.hyperlink {
+		display: inline-block;
+		padding: 0.1rem 1rem;
+		text-decoration: none;
+		text-transform: uppercase;
+		color: grey;
+	}
 
-#auth-content .auth__container .header h1 a {
-	text-decoration: none;
-	color: var(--dark-light-color);
-}*/
+	.hyperlink:hover {
+		color: var(--light-ice-color);
+	}
 
-.hyperlink {
-	display: inline-block;
-	padding: 0.1rem 1rem;
-	text-decoration: none;
-	text-transform: uppercase;
-	color: grey;
-}
+	.hyperlink__active {
+		color: var(--light-ice-color);
+		border-bottom: 0.1rem #0770cf solid;
+	}
 
-.hyperlink:hover {
-	color: var(--light-ice-color);
-}
-
-.hyperlink__active {
-	color: var(--light-ice-color);
-	border-bottom: 0.1rem #0770cf solid;
-}
-
-.social__auth div button {
-	width: 20rem;
-}
-
-@media screen and (max-width: 535px) {
 	.social__auth div button {
-		width: 10rem;
+		width: 20rem;
+	}
+
+	@media screen and (max-width: 535px) {
+		.social__auth div button {
+			width: 10rem;
+		}
 	}
 }

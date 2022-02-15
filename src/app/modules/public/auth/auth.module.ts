@@ -40,7 +40,7 @@ import { PasswordRecoveryComponent } from './components/password-recovery/passwo
 		MessagesModule,
 		StepsModule,
 		CheckboxModule,
-		CalendarModule
+		CalendarModule,
 	],
 	exports: [],
 })

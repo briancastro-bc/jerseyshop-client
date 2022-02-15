@@ -4,14 +4,8 @@ import { CommonModule } from '@angular/common';
 import { AdvertisementRoutingModule } from './advertisement-routing.module';
 import { AdvertisementComponent } from './advertisement.component';
 
-
 @NgModule({
-  declarations: [
-    AdvertisementComponent
-  ],
-  imports: [
-    CommonModule,
-    AdvertisementRoutingModule
-  ]
+	declarations: [AdvertisementComponent],
+	imports: [CommonModule, AdvertisementRoutingModule],
 })
-export class AdvertisementModule { }
+export class AdvertisementModule {}

@@ -10,24 +10,23 @@ import { tap, Observable, filter, catchError, throwError, of } from 'rxjs';
 	providedIn: 'root',
 })
 export class SocketService {
-
 	room?: string;
 
 	constructor(private socket: Socket, private messageService: MessageService) {}
 
 	/**
 	 *
-	 * @param data 
+	 * @param data
 	 * Emit create_room event to server.
-	 * 
+	 *
 	 */
 	createRoom(data: ISocket) {
 		this.socket.emit('create_room', {
-			room: data.room
+			room: data.room,
 		});
 		this.onCreateRoom({
-			room: data.room
-		})
+			room: data.room,
+		});
 	}
 
 	/**
@@ -38,29 +37,29 @@ export class SocketService {
 	 */
 	onCreateRoom(data: ISocket): Observable<ISocket> {
 		//this.socket.connect(); //If autoconnect is disabled, this line connect the sockets.
-		return this.socket.fromEvent<ISocket>('create_room').pipe(res => {
+		return this.socket.fromEvent<ISocket>('create_room').pipe((res) => {
 			this.room = data.room;
 			this.messageService.add({
 				severity: 'info',
 				summary: 'Aviso',
-				detail: 'Creando sala de soporte'
+				detail: 'Creando sala de soporte',
 			});
 			return res;
 		});
 	}
 
 	/**
-	 * 
-	 * @param data 
+	 *
+	 * @param data
 	 * Emit join server event.
-	 * 
+	 *
 	 */
 	joinRoom(data: ISocket) {
 		this.socket.emit('join', {
-			room: data.room
+			room: data.room,
 		});
 		this.onJoinRoom({
-			room: data.room
+			room: data.room,
 		});
 	}
 
@@ -115,5 +114,4 @@ export class SocketService {
 	onRoomNotFound(): Observable<ISocket> {
 		return this.socket.fromEvent('room_not_found');
 	}
-
 }

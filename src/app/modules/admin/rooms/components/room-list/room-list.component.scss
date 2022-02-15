@@ -1,11 +1,11 @@
 :host ::ng-deep {
-    #card-section {
-        display: flex;
-        flex-direction: row;
-        flex-wrap: wrap;
-    }
+	#card-section {
+		display: flex;
+		flex-direction: row;
+		flex-wrap: wrap;
+	}
 
-    .card-item {
-        justify-content: space-around;
-    }
+	.card-item {
+		justify-content: space-around;
+	}
 }

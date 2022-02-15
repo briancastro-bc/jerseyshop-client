@@ -41,7 +41,9 @@
 						required
 					/>
 					<div
-						*ngIf="last_name?.invalid && (last_name?.dirty || last_name?.touched)"
+						*ngIf="
+							last_name?.invalid && (last_name?.dirty || last_name?.touched)
+						"
 						class="text-center p-error block"
 					>
 						<div *ngIf="last_name?.errors?.['required']">
@@ -107,7 +109,9 @@
 						required
 					></p-password>
 					<div
-						*ngIf="password?.invalid && (password?.dirty || password?.touched)"
+						*ngIf="
+							password?.invalid && (password?.dirty || password?.touched)
+						"
 						class="text-center p-error block"
 					>
 						<div *ngIf="password?.errors?.['required']">
@@ -163,8 +167,20 @@
 			</div>
 			<div class="grid">
 				<div class="p-field col-12 mb-4">
-					<p-calendar dateFormat="yy-mm-dd" formControlName="birthday" [required]="true" [showIcon]="true" inputId="birthday" placeholder="Fecha de nacimiento"></p-calendar>
-					<div *ngIf="birthday?.invalid && (birthday?.dirty || birthday?.touched)" class="text-center p-error block">
+					<p-calendar
+						dateFormat="yy-mm-dd"
+						formControlName="birthday"
+						[required]="true"
+						[showIcon]="true"
+						inputId="birthday"
+						placeholder="Fecha de nacimiento"
+					></p-calendar>
+					<div
+						*ngIf="
+							birthday?.invalid && (birthday?.dirty || birthday?.touched)
+						"
+						class="text-center p-error block"
+					>
 						<div *ngIf="birthday?.errors?.['required']">
 							<small>
 								<i class="pi pi-exclamation-triangle"></i>
@@ -174,10 +190,20 @@
 					</div>
 				</div>
 				<div class="p-field col-12 mb-2">
-					<p-checkbox formControlName="accept_advertising" [binary]="true" inputId="accept_advertising" label="Suscribirme a los avisos de la tienda relacionados a nuevo contenido y demás"></p-checkbox>
+					<p-checkbox
+						formControlName="accept_advertising"
+						[binary]="true"
+						inputId="accept_advertising"
+						label="Suscribirme a los avisos de la tienda relacionados a nuevo contenido y demás"
+					></p-checkbox>
 				</div>
 				<div class="p-field col-12 mb-4">
-					<p-checkbox formControlName="accept_terms" [binary]="true" inputId="accept_terms" label="Al dar click acepto los términos y políticas de privacidad expuestas explícitamente por la tienda"></p-checkbox>
+					<p-checkbox
+						formControlName="accept_terms"
+						[binary]="true"
+						inputId="accept_terms"
+						label="Al dar click acepto los términos y políticas de privacidad expuestas explícitamente por la tienda"
+					></p-checkbox>
 				</div>
 			</div>
 			<div class="p-field mb-2">

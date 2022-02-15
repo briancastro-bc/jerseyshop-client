@@ -6,35 +6,35 @@ import { RoomListComponent } from './components/room-list/room-list.component';
 import { RoomCreateComponent } from './components/room-create/room-create.component';
 
 const routes: Routes = [
-  { 
-    path: '', 
-    component: RoomsComponent,
-    children: [
-      {
-        path: '',
-        redirectTo: 'list',
-        pathMatch: 'full'
-      },
-      {
-        path: 'list',
-        data: {
-          title: 'Lista de salas'
-        },
-        component: RoomListComponent
-      },
-      {
-        path: 'create',
-        data: {
-          title: 'Crear sala'
-        },
-        component: RoomCreateComponent
-      }
-    ]
-  }
+	{
+		path: '',
+		component: RoomsComponent,
+		children: [
+			{
+				path: '',
+				redirectTo: 'list',
+				pathMatch: 'full',
+			},
+			{
+				path: 'list',
+				data: {
+					title: 'Lista de salas',
+				},
+				component: RoomListComponent,
+			},
+			{
+				path: 'create',
+				data: {
+					title: 'Crear sala',
+				},
+				component: RoomCreateComponent,
+			},
+		],
+	},
 ];
 
 @NgModule({
-  imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+	imports: [RouterModule.forChild(routes)],
+	exports: [RouterModule],
 })
-export class RoomsRoutingModule { }
+export class RoomsRoutingModule {}

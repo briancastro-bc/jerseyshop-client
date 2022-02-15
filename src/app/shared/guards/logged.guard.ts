@@ -13,11 +13,10 @@ import { AuthService } from '@app/modules/public/auth/services';
 	providedIn: 'root',
 })
 export class LoggedGuard implements CanActivate {
-
 	constructor(private authService: AuthService, private router: Router) {}
 
 	canActivate(): Observable<boolean> | Promise<boolean> | boolean {
-		if(!this.authService.userHasToken()) return true;
+		if (!this.authService.userHasToken()) return true;
 		this.router.navigate(['']);
 		return false;
 	}

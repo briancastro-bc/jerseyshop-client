@@ -1,81 +1,78 @@
 :host ::ng-deep {
+	$sidebar-width: 68px;
 
-    $sidebar-width: 68px;
+	.sidebar-menu {
+		font-family: "Spline Sans", sans-serif;
+		position: fixed;
+		display: block;
+		left: 0;
+		width: $sidebar-width;
+		height: 100vh;
+		background: var(--dark-color);
+		padding: 0.5rem 1rem 0 0;
+		transition: all 0.3s ease;
+		border-right: 1px solid grey;
+		z-index: 100;
+	}
 
-    .sidebar-menu {
-        font-family: 'Spline Sans', sans-serif;
-        position: fixed;
-        display: block;
-        left: 0;
-        width: $sidebar-width;
-        height: 100vh;
-        background: var(--dark-color);
-        padding: .5rem 1rem 0 0;
-        transition: all 0.3s ease;
-        border-right: 1px solid grey;
-        z-index: 100;
-    }
+	.nav {
+		height: 100%;
+		display: flex;
+		flex-direction: column;
+		justify-content: space-between;
+		overflow: hidden;
 
-    .nav {
-        height: 100%;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-        overflow: hidden;
+		&-logo,
+		&-link {
+			display: grid;
+			grid-template-columns: max-content max-content;
+			align-items: center;
+			column-gap: 1rem;
+			padding: 0.5rem 0 0.5rem 1.5rem;
+		}
 
-        &-logo, &-link {
-            display: grid;
-            grid-template-columns: max-content max-content;
-            align-items: center;
-            column-gap: 1rem;
-            padding: .5rem 0 .5rem 1.5rem;
-        }
+		&-link {
+			text-decoration: none;
+			position: relative;
+			color: white;
+			margin-bottom: 1.5rem;
+			transition: 0.3s;
 
-        &-link {
-            text-decoration: none;
-            position: relative;
-            color: white;
-            margin-bottom: 1.5rem;
-            transition: .3s;
+			&:hover {
+				color: gray;
+			}
+		}
 
-            &:hover {
-                color: gray;
-            }
-        }
+		&-icon {
+			font-size: 1.25rem;
+		}
+	}
 
-        &-icon {
-            font-size: 1.25rem;
-        }
-    }
+	.active {
+		color: var(--dark-light-color);
 
-    .active {
-        color: var(--dark-light-color);
+		&::before {
+			content: "";
+			position: absolute;
+			left: 0;
+			width: 3px;
+			height: 32px;
+			background-color: var(--light-ice-color);
+		}
+	}
 
-        &::before {
-            content: '';
-            position: absolute;
-            left: 0;
-            width: 3px;
-            height: 32px;
-            background-color: var(--light-ice-color);
-        }
-    }
+	.panel-content {
+		padding-left: $sidebar-width;
+	}
 
-    .panel-content {
-        padding-left: $sidebar-width;
-    }
+	@media screen and (min-width: 768px) {
+		.panel-content {
+			padding-left: calc(($sidebar-width + 140px) + 0rem);
+		}
 
-    @media screen and (min-width: 768px) {
-
-        .panel-content {
-            padding-left: calc(($sidebar-width + 140px) + 0rem);
-        }
-
-        .sidebar-menu {
-            width: calc($sidebar-width + 140px);
-            padding: 1rem 1rem 0 0;
-        }
-
-    }
-
+		.sidebar-menu {
+			width: calc($sidebar-width + 140px);
+			padding: 1rem 1rem 0 0;
+		}
+	}
 }

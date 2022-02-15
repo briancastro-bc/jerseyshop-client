@@ -1,64 +1,92 @@
 <section id="support-chat-content" class="h-screen flex overflow-hidden">
-    <div class="bg-dark w-3 p-4">
-        <h3 class="text-2xl mb-3">Chat de soporte</h3>
-        <!--CONNECTED PEOPLE COMPONENT-->
-        <div class="flex overflow-auto w-full mb-6">
-            <div class="align-self-center text-center mr-4">
-                <div class="relative w-12 mb-2">
-                    <!--<img src="" alt="User" class="">-->
-                    <p-avatar label="A" pBadge severity="danger" value="0" shape="circle" size="large"></p-avatar>
-                    <!--<div class="absolute bg-green-300 p-1 border-circle bottom-0 right-5"></div>-->
-                </div>
-                <small>Antonio</small>
-            </div>
-        </div>
-        <!--CONNECTED PEOPLE-->
-        <div class="overflow-auto h-4">
-            <div class="flex bg-dark-light border-round p-3 mb-1">
-                <p-avatar label="B" shape="circle" size="large" class="mr-2"></p-avatar>
-                <div class="w-full overflow-hidden">
-                    <div class="flex align-items-center mb-1">
-                        <p class="font-light mr-1 flex-grow-1">Brian Castro</p>
-                        <small class="text-gray-500">9:30AM</small>
-                    </div>
-                    <small class="text-overflow-ellipsis overflow-hidden white-space-nowrap block">
-                        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptatibus ipsam aspernatur atque ipsum, impedit distinctio. Aut fugiat pariatur ex inventore?
-                    </small>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="bg-dark-grey w-9">
-        <!-- HEADER COMPONENT -->
-        <div class="px-6 py-3 border-bottom-1">
-            <div class="flex">
-                <div class="flex flex-grow-1">
-                    <div class="mb-2 mr-4">
-                        <p-avatar label="B" pBadge severity="success" value="" shape="circle" size="large"></p-avatar>
-                    </div>
-                    <div class="align-self-center">
-                        <p class="font-bold">Brian Castro</p>
-                        <small class="text-200">En linea</small>
-                    </div>
-                </div>
-                <div class="flex">
-                    <div class="align-self-center">
-                        <p># abc-123</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- HEADER COMPONENT END -->
-        <!-- CHAT COMPONENT -->
-        <div class="py-4 px-6 overflow-auto h-30rem">
-            <chat-message *ngFor="let message of messages" [username]="message.sid" [message]="message.message"></chat-message>
-        </div>
-        <!-- CHAT COMPONENT END -->
-        <div class="py-1 px-4">
-            <div class="flex">
-                <input type="text" pInputText placeholder="Escribe tu mensaje..." #messageInput class="px-2 w-full">
-                <p-button icon="pi pi-send" (onClick)="sendChatMessage()"></p-button>
-            </div>
-        </div>
-    </div>
+	<div class="bg-dark w-3 p-4">
+		<h3 class="text-2xl mb-3">Chat de soporte</h3>
+		<!--CONNECTED PEOPLE COMPONENT-->
+		<div class="flex overflow-auto w-full mb-6">
+			<div class="align-self-center text-center mr-4">
+				<div class="relative w-12 mb-2">
+					<!--<img src="" alt="User" class="">-->
+					<p-avatar
+						label="A"
+						pBadge
+						severity="danger"
+						value="0"
+						shape="circle"
+						size="large"
+					></p-avatar>
+					<!--<div class="absolute bg-green-300 p-1 border-circle bottom-0 right-5"></div>-->
+				</div>
+				<small>Antonio</small>
+			</div>
+		</div>
+		<!--CONNECTED PEOPLE-->
+		<div class="overflow-auto h-4">
+			<div class="flex bg-dark-light border-round p-3 mb-1">
+				<p-avatar label="B" shape="circle" size="large" class="mr-2"></p-avatar>
+				<div class="w-full overflow-hidden">
+					<div class="flex align-items-center mb-1">
+						<p class="font-light mr-1 flex-grow-1">Brian Castro</p>
+						<small class="text-gray-500">9:30AM</small>
+					</div>
+					<small
+						class="text-overflow-ellipsis overflow-hidden white-space-nowrap block"
+					>
+						Lorem, ipsum dolor sit amet consectetur adipisicing elit.
+						Voluptatibus ipsam aspernatur atque ipsum, impedit distinctio. Aut
+						fugiat pariatur ex inventore?
+					</small>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="bg-dark-grey w-9">
+		<!-- HEADER COMPONENT -->
+		<div class="px-6 py-3 border-bottom-1">
+			<div class="flex">
+				<div class="flex flex-grow-1">
+					<div class="mb-2 mr-4">
+						<p-avatar
+							label="B"
+							pBadge
+							severity="success"
+							value=""
+							shape="circle"
+							size="large"
+						></p-avatar>
+					</div>
+					<div class="align-self-center">
+						<p class="font-bold">Brian Castro</p>
+						<small class="text-200">En linea</small>
+					</div>
+				</div>
+				<div class="flex">
+					<div class="align-self-center">
+						<p># {{ room }}</p>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- HEADER COMPONENT END -->
+		<!-- CHAT COMPONENT -->
+		<div class="py-4 px-6 overflow-auto h-30rem">
+			<chat-message
+				*ngFor="let message of messages"
+				[username]="message.sid"
+				[message]="message.message"
+			></chat-message>
+		</div>
+		<!-- CHAT COMPONENT END -->
+		<div class="py-1 px-4">
+			<div class="flex">
+				<input
+					type="text"
+					pInputText
+					placeholder="Escribe tu mensaje..."
+					#messageInput
+					class="px-2 w-full"
+				/>
+				<p-button icon="pi pi-send" (onClick)="sendChatMessage()"></p-button>
+			</div>
+		</div>
+	</div>
 </section>

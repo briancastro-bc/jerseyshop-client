@@ -6,16 +6,8 @@ import { SupportRoutingModule } from './support-routing.module';
 import { SupportComponent } from './support.component';
 import { ChatMessageComponent } from './components/chat-message/chat-message.component';
 
-
 @NgModule({
-  declarations: [
-    SupportComponent,
-    ChatMessageComponent
-  ],
-  imports: [
-    CommonModule,
-    SupportRoutingModule,
-    SharedModule,
-  ]
+	declarations: [SupportComponent, ChatMessageComponent],
+	imports: [CommonModule, SupportRoutingModule, SharedModule],
 })
-export class SupportModule { }
+export class SupportModule {}

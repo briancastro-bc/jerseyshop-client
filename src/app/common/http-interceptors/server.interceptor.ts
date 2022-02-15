@@ -4,7 +4,7 @@ import {
 	HttpHandler,
 	HttpEvent,
 	HttpInterceptor,
-	HttpResponse
+	HttpResponse,
 } from '@angular/common/http';
 import { SpinnerService, LocalStorageService } from '@shared/services/local';
 import { environment } from 'src/environments/environment';
@@ -26,11 +26,11 @@ export class ServerInterceptor implements HttpInterceptor {
 			url: `${this.server_url}/${req.url}`,
 			withCredentials: true,
 			setHeaders: {
-				Authorization:  `Bearer ${token != null ? token : null}`,
+				Authorization: `Bearer ${token != null ? token : null}`,
 			},
 		});
-		return next.handle(request).pipe(
-			finalize(() => this.spinnerService.hideSpinner())
-		);
+		return next
+			.handle(request)
+			.pipe(finalize(() => this.spinnerService.hideSpinner()));
 	}
 }

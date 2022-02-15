@@ -12,16 +12,17 @@ import { RoomCardComponent } from './components/room-card/room-card.component';
 
 @NgModule({
 	declarations: [
-    RoomsComponent, 
-    RoomCreateComponent, 
-    RoomListComponent, RoomCardComponent
-  ],
+		RoomsComponent,
+		RoomCreateComponent,
+		RoomListComponent,
+		RoomCardComponent,
+	],
 	imports: [
 		CommonModule,
 		RoomsRoutingModule,
 		FormsModule,
 		ReactiveFormsModule,
-    SharedModule
+		SharedModule,
 	],
 })
 export class RoomsModule {}

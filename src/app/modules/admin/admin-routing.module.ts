@@ -3,14 +3,14 @@ import { RouterModule, Routes } from '@angular/router';
 import { AdminComponent } from './admin.component';
 
 const routes: Routes = [
-	{ 
-		path: '', 
+	{
+		path: '',
 		component: AdminComponent,
 		children: [
 			{
 				path: 'dashboard',
 				data: {
-					title: 'Dashboard'
+					title: 'Dashboard',
 				},
 				loadChildren: () =>
 					import('./dashboard/dashboard.module').then((m) => m.DashboardModule),
@@ -18,7 +18,7 @@ const routes: Routes = [
 			{
 				path: 'inventory',
 				data: {
-					title: 'Inventory'
+					title: 'Inventory',
 				},
 				loadChildren: () =>
 					import('./inventory/inventory.module').then((m) => m.InventoryModule),
@@ -26,20 +26,22 @@ const routes: Routes = [
 			{
 				path: 'advertisement',
 				data: {
-					title: 'Advertisements'
+					title: 'Advertisements',
 				},
 				loadChildren: () =>
-					import('./advertisement/advertisement.module').then((m) => m.AdvertisementModule),
+					import('./advertisement/advertisement.module').then(
+						(m) => m.AdvertisementModule
+					),
 			},
 			{
 				path: 'rooms',
 				data: {
-					title: 'Salas'
+					title: 'Salas',
 				},
-				loadChildren: () => 
+				loadChildren: () =>
 					import('./rooms/rooms.module').then((m) => m.RoomsModule),
 			},
-		]
+		],
 	},
 ];
 
