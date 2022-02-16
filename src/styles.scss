@@ -1,7 +1,7 @@
 @use "@angular/material" as mat;
 
 /* Project Fonts */
-@import url("https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,400&family=Roboto+Condensed:ital,wght@0,300;0,400;1,400;1,700&family=Spline+Sans:wght@400;600;700&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,400&family=Poppins:wght@300;400;500;600;700;900&family=Roboto+Condensed:ital,wght@0,300;0,400;1,400;1,700&family=Sora:wght@300;400;700;800&family=Spline+Sans:wght@400;600;700&display=swap');
 
 @include mat.core();
 
@@ -46,10 +46,7 @@ $client-theme: mat.define-light-theme(
 
 html,
 body {
-	//font-family: Roboto, "Helvetica Neue", sans-serif;
-	//font-family: 'Merriweather', serif;
-	//font-family: 'Roboto Condensed', sans-serif;
-	font-family: "Spline Sans", "Helvetica Neue", "Segoe UI", "Open Sans", sans-serif;
+	font-family: 'Poppins', sans-serif;
 }
 
 body::-webkit-scrollbar {

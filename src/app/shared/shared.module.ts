@@ -18,6 +18,7 @@ import { ImageModule } from 'primeng/image';
 import { AvatarModule } from 'primeng/avatar';
 import { BadgeModule } from 'primeng/badge';
 import { InputTextModule } from 'primeng/inputtext';
+import { CarouselModule } from 'primeng/carousel'
 
 import { HelpComponent, NavbarComponent, SpinnerComponent } from '@shared/components';
 
@@ -41,6 +42,7 @@ import { HelpComponent, NavbarComponent, SpinnerComponent } from '@shared/compon
 		AvatarModule,
 		BadgeModule,
 		InputTextModule,
+		CarouselModule,
 	],
 	exports: [
 		NavbarComponent,
@@ -62,6 +64,7 @@ import { HelpComponent, NavbarComponent, SpinnerComponent } from '@shared/compon
 		AvatarModule,
 		BadgeModule,
 		InputTextModule,
+		CarouselModule,
 	],
 })
 export class SharedModule {}

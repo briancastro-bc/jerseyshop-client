@@ -52,7 +52,11 @@ export class RoomsService {
 				this.rooms$.next(res.body.data.rooms);
 			}),
 			catchError((err: HttpErrorResponse) => {
-				console.log(err);
+				this.messageService.add({
+					severity: 'error',
+					summary: 'Oh-no!',
+					detail: 'No hay salas de soporte disponibles'
+				});
 				return throwError(() => err);
 			})
 		);

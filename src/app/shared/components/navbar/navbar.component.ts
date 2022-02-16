@@ -3,7 +3,6 @@ import { MenuItem } from 'primeng/api';
 
 import { AuthService } from '@modules/public/auth/services';
 import { Observable, Subscription } from 'rxjs';
-import { User } from '@app/shared/interfaces';
 
 @Component({
 	selector: 'app-navbar',
@@ -58,8 +57,7 @@ export class NavbarComponent implements OnInit, OnDestroy {
 
 	private setUp(): void {
 		this.user$ = this.authService.getUser().subscribe((user) => {
-			console.log(user);
-			this.userSetup.status = user.name;
+			this.userSetup.status = user ? user.name : 'Perfil';
 		});
 	}
 }

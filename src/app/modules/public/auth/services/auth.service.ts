@@ -13,6 +13,7 @@ import { Auth, RefreshToken } from '../interfaces/auth.interface';
 	providedIn: 'root',
 })
 export class AuthService {
+
 	private user$ = new Subject<User>();
 	private isLoggedIn$ = new Subject<boolean>();
 	private loggedIn!: boolean;
@@ -43,7 +44,7 @@ export class AuthService {
 				this.messageService.add({
 					severity: 'error',
 					summary: 'Oh-no!',
-					detail: err.message || err.error.data.message,
+					detail: err.error.data ? err.error.data.message : err.message,
 				});
 				return throwError(() => err);
 			})
@@ -69,7 +70,7 @@ export class AuthService {
 				this.messageService.add({
 					severity: 'error',
 					summary: 'Oh-no!',
-					detail: err.message || err.error.data.message,
+					detail: err.error.data ? err.error.data.message : err.message,
 				});
 				return throwError(() => err);
 			})

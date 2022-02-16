@@ -52,8 +52,7 @@ export class HelpComponent implements OnInit, OnDestroy {
 			rejectLabel: 'No',
 			accept: () => {
 				this.roomsService.rooms().subscribe((res) => {
-					let random =
-						Math.floor(Math.random() * (res.body.data.rooms.length - 0)) + 0;
+					let random = Math.floor(Math.random() * (res.body.data.rooms.length - 0)) + 0;
 					const room: Room = res.body.data.rooms[random];
 					this.socketService.joinRoom({
 						room: room.code,

@@ -1,5 +1,3 @@
-@import url("https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap");
-
 :host ::ng-deep {
 	#auth-content .auth__container {
 		max-width: 650px;
@@ -7,6 +5,10 @@
 		margin-right: auto;
 		margin-top: 10vh;
 		margin-bottom: 5vh;
+
+		.p-card {
+			font-family: 'Sora', sans-serif;
+		}
 	}
 
 	.hyperlink {
