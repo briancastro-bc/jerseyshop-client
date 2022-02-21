@@ -10,6 +10,7 @@ import { Observable, Subscription } from 'rxjs';
 	styleUrls: ['./navbar.component.scss'],
 })
 export class NavbarComponent implements OnInit, OnDestroy {
+
 	userSetup: any = {
 		status: 'Acceder',
 		display: false,
@@ -23,24 +24,6 @@ export class NavbarComponent implements OnInit, OnDestroy {
 	ngOnInit(): void {
 		this.isLoggedIn = this.authService.isLoggedIn();
 		this.setUp();
-		this.sidebarContent = [
-			{
-				label: 'Categorias',
-				items: [
-					{
-						label: 'New',
-						icon: 'pi pi-fw pi-plus',
-						items: [
-							{ label: 'User', icon: 'pi pi-fw pi-user-plus' },
-							{ label: 'Filter', icon: 'pi pi-fw pi-filter' },
-						],
-					},
-					{ label: 'Open', icon: 'pi pi-fw pi-external-link' },
-					{ separator: true },
-					{ label: 'Quit', icon: 'pi pi-fw pi-times' },
-				],
-			},
-		];
 	}
 
 	ngOnDestroy(): void {

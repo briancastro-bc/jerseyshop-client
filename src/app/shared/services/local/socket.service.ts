@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-import { MessageService } from 'primeng/api';
+import { Router } from '@angular/router';
 import { Socket } from 'ngx-socket-io';
+import { Observable } from 'rxjs';
+import { MessageService } from 'primeng/api';
 
 import { ISocket } from '@shared/interfaces';
-import { tap, Observable, filter, catchError, throwError, of } from 'rxjs';
 
 @Injectable({
 	providedIn: 'root',
@@ -12,7 +12,11 @@ import { tap, Observable, filter, catchError, throwError, of } from 'rxjs';
 export class SocketService {
 	room?: string;
 
-	constructor(private socket: Socket, private messageService: MessageService) {}
+	constructor(
+		private router: Router,
+		private socket: Socket, 
+		private messageService: MessageService
+	) {}
 
 	/**
 	 *
@@ -91,6 +95,24 @@ export class SocketService {
 		this.socket.ioSocket.send(data);
 	}
 
+	leaveRoom(data: ISocket) {
+		this.socket.emit('leave', {
+			room: data.room
+		});
+	}
+
+	onUserLeft() {
+		return this.socket.fromEvent('user_left').pipe(res => {
+			this.messageService.add({
+				severity: 'info',
+				summary: 'Information',
+				detail: 'Abandonándo la sala...'
+			});
+			this.router.navigate(['']);
+			return res
+		});
+	}
+
 	// Client events.
 	onMessage(): Observable<ISocket> {
 		return this.socket.fromEvent<ISocket>('message');
@@ -98,7 +120,6 @@ export class SocketService {
 
 	onUserJoined(): Observable<ISocket> {
 		return this.socket.fromEvent<ISocket>('user_joined').pipe((res) => {
-			console.log(res);
 			return res;
 		});
 	}

@@ -1,4 +1,4 @@
-<section id="auth-content" class="flex align-items-center">
+<!--<section id="auth-content" class="flex align-items-center">
 	<div class="auth__container">
 		<div class="content mb-4">
 			<p-card>
@@ -54,6 +54,30 @@
 				<span>|</span>
 				<a routerLink="/terms" class="ml-2">Términos y condiciones</a>
 			</div>
+		</div>
+	</div>
+</section>-->
+<section class="auth-container">
+	<div class="grid">
+		<div class="col container">
+			<div class="social-links flex justify-content-around align-self-center mb-5">
+				<a routerLink="login" class="hyperlink" routerLinkActive="hyperlink__active">Acceder</a>
+				<a routerLink="signup" class="hyperlink" routerLinkActive="hyperlink__active">Registrarse</a>
+			</div>
+			<router-outlet></router-outlet>
+			<hr class="mt-2">
+			<div class="social-auth">
+				<h4 class="text-center mb-3">O Bien</h4>
+				<div class="social-buttons flex">
+					<button pButton type="button" icon="pi pi-facebook" iconPos="left" label="Continuar con Facebook"
+						class="p-button-outlined facebook-btn" (click)="onSignupFacebook()"></button>
+					<button pButton type="button" icon="pi pi-google" iconPos="left" label="Continuar con Google"
+						class="p-button-outlined google-btn" (click)="onSignupGoogle()"></button>
+				</div>
+			</div>
+		</div>
+		<div class="col image-container">
+			<img src="assets/images/auth-background.svg" class="image-background" alt="Represantive clothes background" loading="lazy">
 		</div>
 	</div>
 </section>

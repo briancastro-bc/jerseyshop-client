@@ -52,10 +52,6 @@ export class TokenInterceptor implements HttpInterceptor {
 										Authorization: `Bearer ${res.data.access_token}`,
 									},
 								});
-								this.localStorage.updateItem(
-									'access_token',
-									res.data.access_token
-								);
 								return next.handle(request);
 							}),
 							catchError((err: HttpErrorResponse) => {

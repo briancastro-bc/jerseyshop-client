@@ -1,8 +1,9 @@
-<p-carousel [value]="products" [numVisible]="3" [numScroll]="3" [circular]="true" [responsiveOptions]="responsiveCarousel">
-    <ng-template pTemplate="header">
-        <h3 class="text-center">Ofertas</h3>
+<p-galleria [value]="products" [responsiveOptions]="responsiveOptions" [showThumbnails]="false" [showIndicators]="true" [autoPlay]="true" [circular]="true">
+    <ng-template pTemplate="item" let-item>
+        <img [src]="item.image" class="galleria-image" />
     </ng-template>
-    <ng-template let-product pTemplate="item">
-        <p-image class="carousel-image" [src]="product.image" [preview]="true" loading="lazy" alt="Product image"></p-image>
+    <ng-template pTemplate="caption" let-item>
+        <h4 style="margin-bottom: .5rem; color: #ffffff;">Image title</h4>
+        <p>Image description</p>
     </ng-template>
-</p-carousel>
+</p-galleria>

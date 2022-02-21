@@ -15,7 +15,7 @@ export class RoomListComponent implements OnInit {
 
 	ngOnInit(): void {
 		this.roomsService.rooms().subscribe((res) => {
-			this.data = res.body.data.rooms;
+			this.data = res.data.rooms;
 		});
 	}
 }

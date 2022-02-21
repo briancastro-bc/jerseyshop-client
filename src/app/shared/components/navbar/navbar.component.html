@@ -27,8 +27,7 @@
 			class="p-button-rounded p-button-text"
 			pTooltip="Notificaciones"
 			tooltipPosition="bottom"
-			routerLink="#"
-			routerLinkActive="active"
+			(click)="op.toggle($event)"
 		></button>
 		<button
 			pButton
@@ -87,6 +86,16 @@
 			></button>
 		</ng-template>
 	</ng-template>
+	<p-overlayPanel styleClass="notification-panel" #op [dismissable]="true" [showCloseIcon]="true">
+		<ng-template pTemplate>
+			<h2>Notificaciones</h2>
+			<div class="notification">
+				<h2>title</h2>
+				<p>Description</p>
+				<small>00:00</small>
+			</div>
+		</ng-template>
+	</p-overlayPanel>
 </p-menubar>
 <p-sidebar
 	[(visible)]="this.userSetup.display"

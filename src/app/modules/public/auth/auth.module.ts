@@ -2,23 +2,12 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
 
-// PrimeNG components.
-import { CardModule } from 'primeng/card';
-import { InputTextModule } from 'primeng/inputtext';
-import { PasswordModule } from 'primeng/password';
-import { ButtonModule } from 'primeng/button';
-import { KeyFilterModule } from 'primeng/keyfilter';
-import { MessageModule } from 'primeng/message';
-import { MessagesModule } from 'primeng/messages';
-import { StepsModule } from 'primeng/steps';
-import { CheckboxModule } from 'primeng/checkbox';
-import { CalendarModule } from 'primeng/calendar';
-
 import { AuthRoutingModule } from './auth-routing.module';
 import { AuthComponent } from './auth.component';
 import { LoginComponent } from './components/login/login.component';
 import { SignupComponent } from './components/signup/signup.component';
 import { PasswordRecoveryComponent } from './components/password-recovery/password-recovery.component';
+import { SharedModule } from '@app/shared/shared.module';
 
 @NgModule({
 	declarations: [
@@ -31,16 +20,7 @@ import { PasswordRecoveryComponent } from './components/password-recovery/passwo
 		CommonModule,
 		AuthRoutingModule,
 		ReactiveFormsModule,
-		CardModule,
-		InputTextModule,
-		PasswordModule,
-		ButtonModule,
-		KeyFilterModule,
-		MessageModule,
-		MessagesModule,
-		StepsModule,
-		CheckboxModule,
-		CalendarModule,
+		SharedModule,
 	],
 	exports: [],
 })

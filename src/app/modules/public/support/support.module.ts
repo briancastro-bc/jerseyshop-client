@@ -8,6 +8,10 @@ import { ChatMessageComponent } from './components/chat-message/chat-message.com
 
 @NgModule({
 	declarations: [SupportComponent, ChatMessageComponent],
-	imports: [CommonModule, SupportRoutingModule, SharedModule],
+	imports: [
+		CommonModule, 
+		SupportRoutingModule, 
+		SharedModule
+	],
 })
 export class SupportModule {}

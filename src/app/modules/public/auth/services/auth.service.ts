@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-import { MessageService } from 'primeng/api';
 import { catchError, filter, Observable, Subject, tap, throwError } from 'rxjs';
+import { MessageService } from '@app/common/services';
 
 import { User } from '@shared/interfaces';
 import { LocalStorageService } from '@shared/services/local';
@@ -20,9 +20,9 @@ export class AuthService {
 
 	constructor(
 		private http: HttpClient,
-		private messageService: MessageService,
+		private router: Router,
 		private localStorage: LocalStorageService,
-		private router: Router
+		private message: MessageService,
 	) {}
 
 	logIn(user: Auth): Observable<Auth> {
@@ -34,18 +34,10 @@ export class AuthService {
 				this.loggedIn = true;
 				this.isLoggedIn$.next(this.loggedIn);
 				this.user$.next(resp.data.user);
-				this.messageService.add({
-					severity: 'success',
-					summary: 'Bienvenido',
-					detail: 'Es un placer para nosotros tenerte por aquí',
-				});
+				this.message.success('Parece que todo ha ido bien, bienvenido!', 'Hecho');
 			}),
 			catchError((err: HttpErrorResponse) => {
-				this.messageService.add({
-					severity: 'error',
-					summary: 'Oh-no!',
-					detail: err.error.data ? err.error.data.message : err.message,
-				});
+				this.message.error(err.error.data ? err.error.data.message : err.message, 'Oh-no');
 				return throwError(() => err);
 			})
 		);
@@ -60,18 +52,10 @@ export class AuthService {
 				this.loggedIn = true;
 				this.isLoggedIn$.next(this.loggedIn);
 				this.user$.next(resp.data.user);
-				this.messageService.add({
-					severity: 'success',
-					summary: 'Completado',
-					detail: resp.data.message,
-				});
+				this.message.success(resp.data.message, 'Completado');
 			}),
 			catchError((err: HttpErrorResponse) => {
-				this.messageService.add({
-					severity: 'error',
-					summary: 'Oh-no!',
-					detail: err.error.data ? err.error.data.message : err.message,
-				});
+				this.message.error(err.error.data ? err.error.data.message : err.message, 'Oh-no');
 				return throwError(() => err);
 			})
 		);
@@ -101,18 +85,10 @@ export class AuthService {
 			filter((resp) => resp && !!resp),
 			tap((resp: Auth) => {
 				console.log(resp);
-				this.messageService.add({
-					severity: 'success',
-					summary: 'Completado',
-					detail: resp.data.message,
-				});
+				this.message.success(resp.data.message, 'Hecho');
 			}),
 			catchError((err: HttpErrorResponse) => {
-				this.messageService.add({
-					severity: 'error',
-					summary: 'Oh-no!',
-					detail: err.message || err.error.data.message,
-				});
+				this.message.error(err.error.data ? err.error.data.message : err.message, 'Oh-no');
 				return throwError(() => err);
 			})
 		);

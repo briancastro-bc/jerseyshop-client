@@ -5,6 +5,7 @@ import { ServiceWorkerModule } from '@angular/service-worker';
 import { RouterModule } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 import { SocketIoModule } from 'ngx-socket-io';
+import { ToastrModule } from 'ngx-toastr';
 import { MessageService, ConfirmationService } from 'primeng/api';
 
 import { environment } from '@env/environment';
@@ -34,6 +35,19 @@ import { httpInterceptorsProviders } from '@common/http-interceptors';
 				autoConnect: true,
 				reconnectionDelayMax: 20000,
 			},
+		}),
+		ToastrModule.forRoot({
+			closeButton: true,
+			timeOut: 5000,
+			extendedTimeOut: 2000,
+			progressBar: true,
+			positionClass: 'toast-top-right',
+			tapToDismiss: true,
+			onActivateTick: true,
+			maxOpened: 3,
+			autoDismiss: true,
+			//iconClasses: {},
+			preventDuplicates: true,
 		}),
 	],
 	providers: [MessageService, ConfirmationService, httpInterceptorsProviders],

@@ -19,6 +19,12 @@ import { AvatarModule } from 'primeng/avatar';
 import { BadgeModule } from 'primeng/badge';
 import { InputTextModule } from 'primeng/inputtext';
 import { CarouselModule } from 'primeng/carousel'
+import { CalendarModule } from 'primeng/calendar';
+import { CheckboxModule } from 'primeng/checkbox';
+import { KeyFilterModule } from 'primeng/keyfilter';
+import { PasswordModule } from 'primeng/password';
+import { GalleriaModule } from 'primeng/galleria';
+import { OverlayPanelModule } from 'primeng/overlaypanel';
 
 import { HelpComponent, NavbarComponent, SpinnerComponent } from '@shared/components';
 
@@ -43,6 +49,12 @@ import { HelpComponent, NavbarComponent, SpinnerComponent } from '@shared/compon
 		BadgeModule,
 		InputTextModule,
 		CarouselModule,
+		CalendarModule,
+		CheckboxModule,
+		PasswordModule,
+		KeyFilterModule,
+		GalleriaModule,
+		OverlayPanelModule,
 	],
 	exports: [
 		NavbarComponent,
@@ -65,6 +77,12 @@ import { HelpComponent, NavbarComponent, SpinnerComponent } from '@shared/compon
 		BadgeModule,
 		InputTextModule,
 		CarouselModule,
+		CalendarModule,
+		CheckboxModule,
+		PasswordModule,
+		KeyFilterModule,
+		GalleriaModule,
+		OverlayPanelModule,
 	],
 })
 export class SharedModule {}

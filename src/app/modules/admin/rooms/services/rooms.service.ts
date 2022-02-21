@@ -49,13 +49,13 @@ export class RoomsService {
 	rooms(): Observable<Room> {
 		return this.http.get<Room>('rooms').pipe(
 			tap((res) => {
-				this.rooms$.next(res.body.data.rooms);
+				this.rooms$.next(res.data.rooms);
 			}),
 			catchError((err: HttpErrorResponse) => {
 				this.messageService.add({
 					severity: 'error',
 					summary: 'Oh-no!',
-					detail: 'No hay salas de soporte disponibles'
+					detail: 'No hay salas de soporte disponibles' 
 				});
 				return throwError(() => err);
 			})

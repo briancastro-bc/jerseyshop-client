@@ -1,12 +1,5 @@
-header {
-	background-color: black;
-}
-
-header .navbar {
-	padding: 0.5rem;
-}
-
 :host ::ng-deep {
+
 	.menubar.p-menubar {
 		align-self: center;
 		background-color: var(--dark-color);
@@ -22,13 +15,28 @@ header .navbar {
 		.p-menubar-button {
 			display: none;
 		}
+
 		button {
 			color: white;
 		}
+
 		.active {
 			background-color: var(--dark-light-color);
 		}
+
+		.notification-panel.p-overlaypanel-content {
+
+			.notification {
+				width: 100%;
+				display: flex;
+				flex-direction: row;
+				text-align: center;
+			}
+		}
+
 	}
+
+
 
 	@media screen and (max-width: 410px) {
 		.menubar.p-menubar {
@@ -36,4 +44,5 @@ header .navbar {
 			font-size: 14px;
 		}
 	}
+
 }

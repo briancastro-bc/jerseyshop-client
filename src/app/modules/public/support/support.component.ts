@@ -1,6 +1,8 @@
 import { Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
-import { ISocket } from '@app/shared/interfaces';
+import { Router } from '@angular/router';
+import { MessageService } from 'primeng/api';
 
+import { ISocket } from '@app/shared/interfaces';
 import { SocketService } from '@app/shared/services/local';
 
 @Component({
@@ -13,7 +15,11 @@ export class SupportComponent implements OnInit, OnDestroy {
 	messages: ISocket[] = [];
 	room: string | undefined;
 
-	constructor(private socketService: SocketService) {}
+	constructor(
+		private router: Router,
+		private socketService: SocketService,
+		private messageService: MessageService
+	) {}
 
 	ngOnInit(): void {
 		this.socketService.onMessage().subscribe((message) => {
@@ -35,5 +41,12 @@ export class SupportComponent implements OnInit, OnDestroy {
 			room: room,
 			message: message,
 		});
+	}
+
+	leftRoom() {
+		this.socketService.leaveRoom({
+			room: this.room
+		});
+		this.socketService.onUserLeft().subscribe()
 	}
 }
