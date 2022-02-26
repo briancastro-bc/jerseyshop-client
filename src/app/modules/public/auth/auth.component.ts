@@ -7,11 +7,15 @@ import { AuthService } from './services';
 	styleUrls: ['./auth.component.scss'],
 })
 export class AuthComponent implements OnInit {
-	constructor(private authService: AuthService) {}
+	constructor(
+		private authService: AuthService
+	) {}
 
 	ngOnInit(): void {}
 
 	onSignupFacebook(): void {}
 
-	onSignupGoogle(): void {}
+	onSignupGoogle(): void {
+		this.authService.googleLogin().subscribe();
+	}
 }

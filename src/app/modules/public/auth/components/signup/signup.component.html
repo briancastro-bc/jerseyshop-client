@@ -1,8 +1,8 @@
 <form [formGroup]="signupForm" (ngSubmit)="validate()">
-	<div class="signup__container">
+	<div class="signup-container">
 		<div class="p-fluid formgrid">
 			<div class="grid">
-				<div class="p-field col mb-4">
+				<div class="field col-6 mb-4">
 					<input
 						type="text"
 						class="mb-1"
@@ -17,17 +17,16 @@
 					/>
 					<div
 						*ngIf="name?.invalid && (name?.dirty || name?.touched)"
-						class="text-center p-error block"
+						class="text-center block"
 					>
 						<div *ngIf="name?.errors?.['required']">
-							<small>
-								<i class="pi pi-exclamation-triangle"></i>
+							<small class="required-field">
 								Campo requerido
 							</small>
 						</div>
 					</div>
 				</div>
-				<div class="p-field col mb-4">
+				<div class="field col-6 mb-4">
 					<input
 						type="text"
 						class="mb-1"
@@ -44,11 +43,10 @@
 						*ngIf="
 							last_name?.invalid && (last_name?.dirty || last_name?.touched)
 						"
-						class="text-center p-error block"
+						class="text-center block"
 					>
 						<div *ngIf="last_name?.errors?.['required']">
-							<small>
-								<i class="pi pi-exclamation-triangle"></i>
+							<small class="required-field">
 								Campo requerido
 							</small>
 						</div>
@@ -66,28 +64,25 @@
 						pKeyFilter="email"
 						id="email"
 						tooltipEvent="focus"
-						placeholder="Dirección de email"
+						placeholder="Correo electrónico"
 						required
 					/>
 					<div
 						*ngIf="email?.invalid && (email?.dirty || email?.touched)"
-						class="text-center p-error block"
+						class="text-center block"
 					>
 						<div *ngIf="email?.errors?.['required']">
-							<small>
-								<i class="pi pi-exclamation-triangle"></i>
+							<small class="required-field">
 								Campo requerido
 							</small>
 						</div>
 						<div *ngIf="email?.errors?.['email']">
-							<small>
-								<i class="pi pi-exclamation-triangle"></i>
+							<small class="required-field">
 								El formato es inválido
 							</small>
 						</div>
 						<div *ngIf="email?.errors?.['maxlength']">
-							<small>
-								<i class="pi pi-exclamation-triangle"></i>
+							<small class="required-field">
 								Máximo 70 caracteres
 							</small>
 						</div>
@@ -112,17 +107,15 @@
 						*ngIf="
 							password?.invalid && (password?.dirty || password?.touched)
 						"
-						class="text-center p-error block"
+						class="text-center block"
 					>
 						<div *ngIf="password?.errors?.['required']">
-							<small>
-								<i class="pi pi-exclamation-triangle"></i>
+							<small class="required-field">
 								Campo requerido
 							</small>
 						</div>
 						<div *ngIf="password?.errors?.['minlength']">
-							<small>
-								<i class="pi pi-exclamation-triangle"></i>
+							<small class="required-field">
 								Mínimo 8 caracteres
 							</small>
 						</div>
@@ -148,17 +141,15 @@
 							confirm_password?.invalid &&
 							(confirm_password?.dirty || confirm_password?.touched)
 						"
-						class="text-center p-error block"
+						class="text-center block"
 					>
 						<div *ngIf="confirm_password?.errors?.['required']">
-							<small>
-								<i class="pi pi-exclamation-triangle"></i>
+							<small class="required-field">
 								Campo requerido
 							</small>
 						</div>
 						<div *ngIf="confirm_password?.errors?.['minlength']">
-							<small>
-								<i class="pi pi-exclamation-triangle"></i>
+							<small class="required-field">
 								Mínimo 8 caracteres
 							</small>
 						</div>
@@ -179,11 +170,10 @@
 						*ngIf="
 							birthday?.invalid && (birthday?.dirty || birthday?.touched)
 						"
-						class="text-center p-error block"
+						class="text-center block"
 					>
 						<div *ngIf="birthday?.errors?.['required']">
-							<small>
-								<i class="pi pi-exclamation-triangle"></i>
+							<small class="required-field">
 								Campo requerido
 							</small>
 						</div>
@@ -206,21 +196,22 @@
 					></p-checkbox>
 				</div>
 			</div>
-			<div class="p-field mb-2">
+			<div class="p-field mb-3">
 				<button
 					pButton
 					type="submit"
 					icon="pi pi-send"
 					iconPos="right"
 					label="Únete"
-					class="p-button-rounded js__light_btn"
+					class="o-button p-button-rounded"
 					[disabled]="!signupForm.valid"
 				></button>
 			</div>
 			<div class="flex justify-content-center align-self-center text-center">
-				¿Ya tienes una cuenta?<a routerLink="../login" class="ml-1 have-account"
-					>Acceder</a
-				>
+				¿Ya tienes una cuenta?
+				<a routerLink="../login" class="ml-1 have-account">
+					Acceder
+				</a>
 			</div>
 		</div>
 	</div>

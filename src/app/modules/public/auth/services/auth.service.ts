@@ -61,6 +61,25 @@ export class AuthService {
 		);
 	}
 
+	googleLogin(): Observable<any> {
+		return this.http.get<any>('auth/google', {
+			headers: {
+				ContentType: 'application/json'
+			}
+		}).pipe(
+			filter(response => response && !!response),
+			tap(
+				response => {
+					console.log(response);
+				}
+			),
+			catchError((err: HttpErrorResponse) => {
+				this.message.error(err.error.data ? err.error.data.message : err.message, 'Oh-no');
+				return throwError(() => err);
+			})
+		)
+	}
+
 	verifyAccount(access_token: string): Observable<Auth> {
 		//TODO: Complete account verification.
 		return this.http

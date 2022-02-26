@@ -1,112 +1,146 @@
-@use "@angular/material" as mat;
-
-/* Project Fonts */
-@import url('https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,400&family=Poppins:wght@300;400;500;600;700;900&family=Roboto+Condensed:ital,wght@0,300;0,400;1,400;1,700&family=Sora:wght@300;400;700;800&family=Spline+Sans:wght@400;600;700&display=swap');
-
-@include mat.core();
-
-$client-primary: mat.define-palette(mat.$indigo-palette);
-$client-accent: mat.define-palette(mat.$pink-palette, A200, A100, A400);
-$client-warn: mat.define-palette(mat.$red-palette);
-$client-theme: mat.define-light-theme(
-	(
-		color: (
-			primary: $client-primary,
-			accent: $client-accent,
-			warn: $client-warn,
-		),
-	)
-);
-
-@include mat.all-component-themes($client-theme);
+@import url("https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,200;0,300;0,400;0,500;0,700;0,800;0,900;1,300&family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,400&family=Poppins:wght@300;400;500;600;700;900&family=Roboto+Condensed:ital,wght@0,300;0,400;1,400;1,700&family=Sora:wght@300;400;700;800&family=Spline+Sans:wght@400;600;700&display=swap");
 
 :root {
-	/* Main colors */
-	--primary-dark-color: hsl(40, 41%, 73%);
-	--secondary-dark-color: hsl(40, 68%, 49%);
+	--hue-color: 40;
 
-	/* Dark palette colors */
-	--dark-color: rgba(46, 52, 64, 1);
-	--dark-grey-color: rgba(59, 66, 82, 1);
-	--dark-grey-light-color: hsl(220, 39%, 22%);
-	--dark-light-color: hsl(220, 28%, 36%);
-
-	/* Light palette colors */
-	--light-color: hsl(218, 3%, 94%);
-	--light-ice-color: hsl(218, 5%, 92%);
-	--light-blue-color: hsl(219, 7%, 88%);
+	/* COLORS: hue, saturation, lightness */
+	--primary-color: hsl(var(--hue-color), 100%, 50%);
+	--primary-alt-color: hsl(var(--hue-color), 70%, 50%);
+	--light: hsl(var(--hue-color), 0%, 100%);
+	--dark: hsl(var(--hue-color), 0%, 0%);
 }
 
 * {
-	margin: 0;
-	padding: 0;
 	box-sizing: border-box;
 	-webkit-box-sizing: border-box;
 }
 
-html,
+html {
+	scroll-behavior: smooth;
+}
+
 body {
-	font-family: 'Poppins', sans-serif;
+	margin: 0;
+	padding: 0;
+	font-family: "Poppins", sans-serif;
+
+	&::-webkit-scrollbar {
+		width: 8px;
+		height: -5px;
+	}
+
+	&::-webkit-scrollbar-track {
+		background-color: transparent;
+	}
+
+	&::-webkit-scrollbar-thumb {
+		border-radius: 15px;
+		width: 6px;
+		height: 5px;
+		background-color: var(--primary-color);
+	}
+
+}
+	body::selection {
+		background-color: var(--primary-color);
+		color: white;
+	}
+
+	body::-moz-selection {
+		background-color: var(--primary-color);
+		color: white;
+	}
+
+h1,
+h2,
+h3,
+h4 {
+	font-weight: 500;
 }
 
-body::-webkit-scrollbar {
-	display: none;
+a {
+	text-decoration: none;
 }
 
-body#dark-mode {
-	background-color: var(--dark-color);
-	color: var(--light-color);
+img {
+	max-width: 100%;
+	height: auto;
 }
 
-/* Customize elements */
-.js__light__btn {
+/* CUSTOM ELEMENTS */
+.o-button {
+	background-color: var(--primary-color);
+	border: 0;
 	border-radius: 0;
-	border-color: var(--light-color) !important;
-	color: var(--light-color) !important;
+	box-shadow: 5px 5px 25px rgb(0, 0, 0, 0.5);
+
+	&:hover {
+		background-color: var(--primary-alt-color) !important;
+	}
 }
 
-.js__dark__btn {
-	border-radius: 0;
-	border-color: var(--dark-grey-color);
-	color: var(--light-ice-color);
+.required-field {
+	color: rgb(0, 0, 0, 0.5);
 }
 
+/* SPINNER BACKGROUND STYLES */
 .overlay {
 	position: fixed;
 	width: 100%;
 	height: 100%;
-	background-color: rgb(255, 255, 255);
+	background-color: var(--dark);
 	z-index: 2000;
 	display: flex;
 	align-items: center;
 	align-self: center;
 	justify-content: center;
 	flex-direction: column;
-}
-.overlay .loading {
-	color: black;
-	text-align: center;
-	margin-right: auto;
-	margin-left: auto;
+
+	.loading {
+		color: var(--light);
+		text-align: center;
+		margin-right: auto;
+		margin-left: auto;
+	}
+
+	&::-webkit-scrollbar {
+		display: none;
+	}
 }
 
-/* Styles for no script content */
+/* NO SCRIPT STYLES */
 #no-script-content {
+	background-color: var(--light-white);
 	display: flex;
-	flex-direction: column;
-	justify-content: center;
 	align-items: center;
-	flex: 1;
+	justify-content: center;
+	align-self: center;
+	flex-direction: column;
 
 	.app-logo {
 		height: 300px;
 	}
 
-	.how-do {
-		margin-top: 2rem;
+	.title {
+		font-size: 4rem;
+		font-weight: 600;
+		margin-bottom: 0.2rem;
+		text-shadow: 1px 1px 2px var(--dark-color);
+		word-spacing: 0.5rem;
 	}
 
-	.app-btn {
+	.sub-title {
+		font-size: 2rem;
+		margin-bottom: 0.5rem;
+		font-style: italic;
+	}
+
+	p {
+		font-size: 20px;
+		margin-bottom: 0.5rem;
+	}
+
+	.button {
 		position: relative;
 		border-radius: 50px;
 		padding: 0.5rem 1.75rem;
@@ -115,5 +149,24 @@ body#dark-mode {
 		background-color: var(--dark-light-color);
 		color: var(--light-ice-color);
 		transition: all 100ms;
+	}
+}
+
+@media screen and (max-width: 768px) {
+	#no-script-content {
+		text-align: center;
+		padding: 0 1rem;
+
+		.title {
+			font-size: 3rem;
+		}
+
+		.sub-title {
+			font-size: 1rem;
+		}
+
+		p {
+			font-size: 16px;
+		}
 	}
 }

@@ -4,11 +4,10 @@ import {
 	HttpHandler,
 	HttpEvent,
 	HttpInterceptor,
-	HttpResponse,
 } from '@angular/common/http';
 import { SpinnerService, LocalStorageService } from '@shared/services/local';
 import { environment } from 'src/environments/environment';
-import { finalize, Observable, tap } from 'rxjs';
+import { finalize, Observable } from 'rxjs';
 
 @Injectable()
 export class ServerInterceptor implements HttpInterceptor {

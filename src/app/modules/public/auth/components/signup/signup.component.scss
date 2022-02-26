@@ -1,14 +1,25 @@
-.signup__container {
-	width: 80%;
-	margin-left: auto;
-	margin-right: auto;
-}
+:host ::ng-deep {
+	.signup-container {
+		width: 80%;
+		margin-left: auto;
+		margin-right: auto;
+	}
 
-.have-account {
-	text-decoration: none;
-	color: #0770cf;
-}
+	.p-button-rounded {
+		border-radius: 10px;
+	}
 
-.have-account:hover {
-	color: var(--light-ice-color);
+	.p-calendar .p-button {
+		background-color: var(--primary-color);
+		border: none;
+	}
+
+	.have-account {
+		text-decoration: none;
+		color: var(--primary-color);
+
+		&:hover {
+			color: var(--primary-alt-color);
+		}
+	}
 }

@@ -6,12 +6,13 @@
 		position: fixed;
 		display: block;
 		left: 0;
+		top: 80px;
 		width: $sidebar-width;
 		height: 100vh;
-		background: var(--dark-color);
+		background: var(--light);
 		padding: 0.5rem 1rem 0 0;
 		transition: all 0.3s ease;
-		border-right: 1px solid grey;
+		border-right: 2px solid rgb(0, 0, 0, 0.2);
 		z-index: 100;
 	}
 
@@ -34,12 +35,12 @@
 		&-link {
 			text-decoration: none;
 			position: relative;
-			color: white;
+			color: var(--dark);
 			margin-bottom: 1.5rem;
 			transition: 0.3s;
 
 			&:hover {
-				color: gray;
+				color: var(--primary-color);
 			}
 		}
 
@@ -49,7 +50,7 @@
 	}
 
 	.active {
-		color: var(--dark-light-color);
+		color: var(--primary-color);
 
 		&::before {
 			content: "";
@@ -57,7 +58,7 @@
 			left: 0;
 			width: 3px;
 			height: 32px;
-			background-color: var(--light-ice-color);
+			background-color: var(--primary-color);
 		}
 	}
 

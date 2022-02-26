@@ -1,23 +1,29 @@
-.login__container {
-	width: 80%;
-	margin-left: auto;
-	margin-right: auto;
-}
+:host ::ng-deep {
+	.login-container {
+		width: 80%;
+		margin-left: auto;
+		margin-right: auto;
+	}
 
-.forgot-password {
-	text-decoration: none;
-	color: rgb(94, 99, 99);
-}
+	.forgot-password {
+		text-decoration: none;
+		color: rgb(94, 99, 99);
+	}
 
-.forgot-password:hover {
-	color: var(--light-ice-color);
-}
+	.forgot-password:hover {
+		color: var(--light-ice-color);
+	}
 
-.not-have-account {
-	text-decoration: none;
-	color: #0770cf;
-}
+	.not-have-account {
+		text-decoration: none;
+		color: var(--primary-color);
+	}
 
-.not-have-account:hover {
-	color: var(--light-ice-color);
+	.not-have-account:hover {
+		color: var(--primary-alt-color);
+	}
+
+	.p-button-rounded {
+		border-radius: 10px;
+	}
 }

@@ -4,16 +4,20 @@
 			&.speeddial-left {
 				position: fixed;
 				padding: 1rem 1rem;
-				//position: -webkit-sticky;
 				left: 0;
 				bottom: 0;
 			}
+
 			.support-button {
-				background-color: var(--light-blue-color);
-				color: rgb(19, 19, 19);
-				border: none;
+				background-color: var(--primary-color);
+				color: white;
 				width: 3rem;
 				height: 3rem;
+				border: none;
+			}
+
+			.p-speeddial-action {
+				background-color: var(--primary-alt-color);
 			}
 		}
 	}
