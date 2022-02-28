@@ -13,6 +13,7 @@ import { AppRoutingModule } from '@app/app-routing.module';
 import { AppComponent } from '@app/app.component';
 import { SharedModule } from '@shared/shared.module';
 import { httpInterceptorsProviders } from '@common/http-interceptors';
+import { NotificationService } from './common/services';
 
 @NgModule({
 	declarations: [AppComponent],
@@ -50,7 +51,12 @@ import { httpInterceptorsProviders } from '@common/http-interceptors';
 			preventDuplicates: true,
 		}),
 	],
-	providers: [MessageService, ConfirmationService, httpInterceptorsProviders],
+	providers: [
+		MessageService, 
+		ConfirmationService, 
+		NotificationService,
+		httpInterceptorsProviders
+	],
 	bootstrap: [AppComponent],
 })
 export class AppModule {}

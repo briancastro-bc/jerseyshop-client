@@ -9,6 +9,7 @@ import { RouteService } from '@shared/services/local/route.service';
 	styleUrls: ['./app.component.scss'],
 })
 export class AppComponent implements OnInit {
+
 	constructor(
 		private routeService: RouteService,
 		private primeNgConfig: PrimeNGConfig

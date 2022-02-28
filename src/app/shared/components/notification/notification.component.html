@@ -1,0 +1,26 @@
+<div class="notification-container" #notification>
+    <div class="notification-content">
+        <div class="notification-header">
+            <h2 class="title">Notificaciones</h2>
+            <a (click)="reload()" class="reload">
+                <i class="pi pi-replay"></i>
+            </a>
+        </div>
+        <hr>
+        <div *ngIf="notifications$ | async; else noNotifications">
+            <div *ngFor="let room of notifications$ | async" class="notification-card" (click)="goToUrl(room.hyperlink!)">
+                <h3 class="title">{{ room.title | titlecase }}</h3>
+                <a class="description">{{ room.description }}</a>
+                <small class="time-ago">
+                    <i class="pi pi-clock"></i>
+                    <span>{{ room.time_ago | date }}</span>
+                </small>
+            </div>
+        </div>
+        <ng-template #noNotifications>
+            <div class="notification-none">
+                <div class="title">No hay notificaciones</div>
+            </div>
+        </ng-template>
+    </div>
+</div>

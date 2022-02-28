@@ -27,10 +27,10 @@ import { GalleriaModule } from 'primeng/galleria';
 import { OverlayPanelModule } from 'primeng/overlaypanel';
 
 import { HelpComponent, NavbarComponent, SpinnerComponent } from '@shared/components';
-import { DarkModeToggleComponent } from './components/dark-mode-toggle/dark-mode-toggle.component';
+import { NotificationComponent } from './components/notification/notification.component';
 
 @NgModule({
-	declarations: [SpinnerComponent, NavbarComponent, HelpComponent, DarkModeToggleComponent],
+	declarations: [SpinnerComponent, NavbarComponent, HelpComponent, NotificationComponent],
 	imports: [
 		CommonModule,
 		ToastModule,
@@ -61,6 +61,7 @@ import { DarkModeToggleComponent } from './components/dark-mode-toggle/dark-mode
 		NavbarComponent,
 		SpinnerComponent,
 		HelpComponent,
+		NotificationComponent,
 		ToastModule,
 		ScrollTopModule,
 		TooltipModule,

@@ -25,6 +25,22 @@ export class RoomsService {
 
 	constructor(private http: HttpClient, private messageService: MessageService) {}
 
+	rooms(): Observable<Room> {
+		return this.http.get<Room>('rooms').pipe(
+			tap((res) => {
+				this.rooms$.next(res.data.rooms);
+			}),
+			catchError((err: HttpErrorResponse) => {
+				this.messageService.add({
+					severity: 'error',
+					summary: 'Oh-no!',
+					detail: 'No hay salas de soporte disponibles' 
+				});
+				return throwError(() => err);
+			})
+		);
+	}
+
 	newRoom(data: Room): Observable<Room> {
 		return this.http.post<Room>('admin/rooms/create', data).pipe(
 			filter((resp) => resp && !!resp),
@@ -46,21 +62,6 @@ export class RoomsService {
 		);
 	}
 
-	rooms(): Observable<Room> {
-		return this.http.get<Room>('rooms').pipe(
-			tap((res) => {
-				this.rooms$.next(res.data.rooms);
-			}),
-			catchError((err: HttpErrorResponse) => {
-				this.messageService.add({
-					severity: 'error',
-					summary: 'Oh-no!',
-					detail: 'No hay salas de soporte disponibles' 
-				});
-				return throwError(() => err);
-			})
-		);
-	}
 
 	getRooms(): Observable<Room[]> {
 		return this.rooms$.asObservable();
