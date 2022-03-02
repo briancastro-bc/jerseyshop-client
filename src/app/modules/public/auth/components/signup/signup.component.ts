@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { MessageService, MenuItem } from 'primeng/api';
-import { AuthService } from '../../services';
+import { AuthService } from '@common/services';
 
 @Component({
 	selector: 'app-signup',
@@ -12,6 +12,7 @@ import { AuthService } from '../../services';
 export class SignupComponent implements OnInit {
 	signupForm!: FormGroup;
 	stepsItems!: MenuItem[];
+	genderOptions: any[];
 	active!: number;
 
 	constructor(
@@ -19,7 +20,12 @@ export class SignupComponent implements OnInit {
 		private formBuilder: FormBuilder,
 		private messageService: MessageService,
 		private router: Router
-	) {}
+	) {
+		this.genderOptions = [
+			{ label: 'Masculino', value: 'm' },
+			{ label: 'Femenino', value: 'f' }
+		]
+	}
 
 	ngOnInit(): void {
 		this.signupForm = this.formBuilder.group({
@@ -34,6 +40,10 @@ export class SignupComponent implements OnInit {
 			birthday: [null, [Validators.required]],
 			accept_advertising: [null, []],
 			accept_terms: [null, [Validators.required]],
+			profile: this.formBuilder.group({
+				phone_number: [null, [Validators.required]],
+				gender: [null, [Validators.required]]
+			})
 		});
 	}
 
@@ -83,5 +93,13 @@ export class SignupComponent implements OnInit {
 
 	get accept_terms() {
 		return this.signupForm.get('accept_terms');
+	}
+
+	get phone_number() {
+		return this.signupForm.get('profile.phone_number');
+	}
+
+	get gender() {
+		return this.signupForm.get('profile.gender')
 	}
 }

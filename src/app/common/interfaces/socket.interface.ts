@@ -1,4 +1,4 @@
-export interface ISocket {
+export interface Support {
 	sid?: string;
 	room?: string;
 	message?: string;

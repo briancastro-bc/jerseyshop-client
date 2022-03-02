@@ -25,6 +25,7 @@ import { KeyFilterModule } from 'primeng/keyfilter';
 import { PasswordModule } from 'primeng/password';
 import { GalleriaModule } from 'primeng/galleria';
 import { OverlayPanelModule } from 'primeng/overlaypanel';
+import { SelectButtonModule } from 'primeng/selectbutton';
 
 import { HelpComponent, NavbarComponent, SpinnerComponent } from '@shared/components';
 import { NotificationComponent } from './components/notification/notification.component';
@@ -56,6 +57,7 @@ import { NotificationComponent } from './components/notification/notification.co
 		KeyFilterModule,
 		GalleriaModule,
 		OverlayPanelModule,
+		SelectButtonModule,
 	],
 	exports: [
 		NavbarComponent,
@@ -85,6 +87,7 @@ import { NotificationComponent } from './components/notification/notification.co
 		KeyFilterModule,
 		GalleriaModule,
 		OverlayPanelModule,
+		SelectButtonModule,
 	],
 })
 export class SharedModule {}

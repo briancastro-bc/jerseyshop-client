@@ -1,19 +1,16 @@
-import { Component, OnDestroy, OnInit, AfterViewInit, ViewChild } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { MenuItem } from 'primeng/api';
 import { Observable, Subscription } from 'rxjs';
 
-import { AuthService } from '@modules/public/auth/services';
+import { AuthService } from '@app/common/services';
 import { NotificationService } from '@app/common/services';
-import { NotificationComponent } from '@shared/components/notification/notification.component';
 
 @Component({
 	selector: 'app-navbar',
 	templateUrl: './navbar.component.html',
 	styleUrls: ['./navbar.component.scss'],
 })
-export class NavbarComponent implements OnInit, AfterViewInit, OnDestroy {
-
-	@ViewChild(NotificationComponent) notificationComponent!: NotificationComponent;
+export class NavbarComponent implements OnInit, OnDestroy {
 
 	userSetup: any = {
 		status: 'Acceder',
@@ -31,11 +28,7 @@ export class NavbarComponent implements OnInit, AfterViewInit, OnDestroy {
 
 	ngOnInit(): void {
 		this.isLoggedIn = this.authService.isLoggedIn();
-		this.setUp();
-	}
-
-	ngAfterViewInit(): void {
-		//this.notificationComponent.reload();
+		//this.setUp();
 	}
 
 	ngOnDestroy(): void {
@@ -55,9 +48,9 @@ export class NavbarComponent implements OnInit, AfterViewInit, OnDestroy {
 		this.authService.logOut();
 	}
 
-	private setUp(): void {
+	/*private setUp(): void {
 		this.user$ = this.authService.getUser().subscribe((user) => {
-			this.userSetup.status = user ? user.name : 'Perfil';
+			this.userSetup.status = 'Perfil';
 		});
-	}
+	}*/
 }

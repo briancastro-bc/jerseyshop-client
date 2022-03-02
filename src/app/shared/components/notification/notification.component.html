@@ -7,8 +7,8 @@
             </a>
         </div>
         <hr>
-        <div *ngIf="notifications$ | async; else noNotifications">
-            <div *ngFor="let room of notifications$ | async" class="notification-card" (click)="goToUrl(room.hyperlink!)">
+        <div *ngIf="notifications.length > 0; else noNotifications">
+            <div *ngFor="let room of notifications" class="notification-card" (click)="goToUrl(room.hyperlink!)">
                 <h3 class="title">{{ room.title | titlecase }}</h3>
                 <a class="description">{{ room.description }}</a>
                 <small class="time-ago">

@@ -1,4 +1,4 @@
-import { Auth } from '@modules/public/auth/interfaces/auth.interface';
+import { Auth } from '@common/interfaces';
 
 export interface User extends Auth {
 	birthday: string;
@@ -8,4 +8,5 @@ export interface User extends Auth {
 	created_at?: Date;
 	groups?: string[];
 	permissions?: string[];
+	isLoggedIn?: boolean;
 }

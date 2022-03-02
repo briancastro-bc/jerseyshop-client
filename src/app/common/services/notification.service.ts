@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { EventEmitter, Injectable, Output } from '@angular/core';
-import { Advertisement } from '@app/shared/interfaces';
+import { Advertisement } from '@app/common/interfaces';
 import { from, Observable, Subject } from 'rxjs';
 import { map, tap } from 'rxjs/operators';
 

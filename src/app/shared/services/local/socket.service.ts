@@ -4,7 +4,7 @@ import { Socket } from 'ngx-socket-io';
 import { Observable } from 'rxjs';
 import { MessageService } from 'primeng/api';
 
-import { ISocket } from '@shared/interfaces';
+import { Support } from '@common/interfaces';
 
 @Injectable({
 	providedIn: 'root',
@@ -24,7 +24,7 @@ export class SocketService {
 	 * Emit create_room event to server.
 	 *
 	 */
-	createRoom(data: ISocket) {
+	createRoom(data: Support) {
 		this.socket.emit('create_room', {
 			room: data.room,
 		});
@@ -39,9 +39,9 @@ export class SocketService {
 	 * Receive the create_room event response.
 	 *
 	 */
-	onCreateRoom(data: ISocket): Observable<ISocket> {
+	onCreateRoom(data: Support): Observable<Support> {
 		//this.socket.connect(); //If autoconnect is disabled, this line connect the sockets.
-		return this.socket.fromEvent<ISocket>('create_room').pipe((res) => {
+		return this.socket.fromEvent<Support>('create_room').pipe((res) => {
 			this.room = data.room;
 			this.messageService.add({
 				severity: 'info',
@@ -58,7 +58,7 @@ export class SocketService {
 	 * Emit join server event.
 	 *
 	 */
-	joinRoom(data: ISocket) {
+	joinRoom(data: Support) {
 		this.socket.emit('join', {
 			room: data.room,
 		});
@@ -73,7 +73,7 @@ export class SocketService {
 	 * Receive join event response.
 	 *
 	 */
-	onJoinRoom(data: ISocket) {
+	onJoinRoom(data: Support) {
 		return this.socket.fromEvent('join').pipe((res) => {
 			this.room = data.room;
 			this.messageService.add({
@@ -91,11 +91,11 @@ export class SocketService {
 	 * Server event
 	 *
 	 */
-	onSendMessage(data: ISocket) {
+	onSendMessage(data: Support) {
 		this.socket.ioSocket.send(data);
 	}
 
-	leaveRoom(data: ISocket) {
+	leaveRoom(data: Support) {
 		this.socket.emit('leave', {
 			room: data.room
 		});
@@ -114,25 +114,25 @@ export class SocketService {
 	}
 
 	// Client events.
-	onMessage(): Observable<ISocket> {
-		return this.socket.fromEvent<ISocket>('message');
+	onMessage(): Observable<Support> {
+		return this.socket.fromEvent<Support>('message');
 	}
 
-	onUserJoined(): Observable<ISocket> {
-		return this.socket.fromEvent<ISocket>('user_joined').pipe((res) => {
+	onUserJoined(): Observable<Support> {
+		return this.socket.fromEvent<Support>('user_joined').pipe((res) => {
 			return res;
 		});
 	}
 
-	onRoomExist(): Observable<ISocket> {
+	onRoomExist(): Observable<Support> {
 		return this.socket.fromEvent('room_exist');
 	}
 
-	onRoomLimit(): Observable<ISocket> {
+	onRoomLimit(): Observable<Support> {
 		return this.socket.fromEvent('room_limit');
 	}
 
-	onRoomNotFound(): Observable<ISocket> {
+	onRoomNotFound(): Observable<Support> {
 		return this.socket.fromEvent('room_not_found');
 	}
 }

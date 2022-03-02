@@ -18,7 +18,7 @@ import {
 import { MessageService } from 'primeng/api';
 
 import { LocalStorageService } from '@shared/services/local';
-import { AuthService } from '@app/modules/public/auth/services';
+import { AuthService } from '@common/services';
 
 @Injectable()
 export class TokenInterceptor implements HttpInterceptor {

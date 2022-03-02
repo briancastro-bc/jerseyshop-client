@@ -2,7 +2,7 @@ import { Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/co
 import { Router } from '@angular/router';
 import { MessageService } from 'primeng/api';
 
-import { ISocket } from '@app/shared/interfaces';
+import { Support } from '@app/common/interfaces';
 import { SocketService } from '@app/shared/services/local';
 
 @Component({
@@ -12,7 +12,7 @@ import { SocketService } from '@app/shared/services/local';
 })
 export class SupportComponent implements OnInit, OnDestroy {
 	@ViewChild('messageInput') messageInput: ElementRef;
-	messages: ISocket[] = [];
+	messages: Support[] = [];
 	room: string | undefined;
 
 	constructor(

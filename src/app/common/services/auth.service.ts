@@ -2,9 +2,9 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { catchError, filter, Observable, Subject, tap, throwError } from 'rxjs';
-import { MessageService } from '@app/common/services';
 
-import { User } from '@shared/interfaces';
+import { MessageService } from '@app/common/services';
+import { User } from '@app/common/interfaces';
 import { LocalStorageService } from '@shared/services/local';
 
 import { Auth, RefreshToken } from '../interfaces/auth.interface';
@@ -14,7 +14,7 @@ import { Auth, RefreshToken } from '../interfaces/auth.interface';
 })
 export class AuthService {
 
-	private user$ = new Subject<User>();
+	//private user$ = new Subject<User>();
 	private isLoggedIn$ = new Subject<boolean>();
 	private loggedIn!: boolean;
 
@@ -29,11 +29,10 @@ export class AuthService {
 		return this.http.post<Auth>('auth/login', user).pipe(
 			filter<Auth>((resp) => resp && !!resp),
 			tap((resp: Auth) => {
-				console.log(resp);
 				this.localStorage.saveItem('access_token', resp.data.access_token);
 				this.loggedIn = true;
 				this.isLoggedIn$.next(this.loggedIn);
-				this.user$.next(resp.data.user);
+				//this.user$.next(resp.data.user);
 				this.message.success('Parece que todo ha ido bien, bienvenido!', 'Hecho');
 			}),
 			catchError((err: HttpErrorResponse) => {
@@ -47,11 +46,10 @@ export class AuthService {
 		return this.http.post<Auth>('auth/signup', user).pipe(
 			filter<Auth>((resp) => resp && !!resp),
 			tap((resp: Auth) => {
-				console.log(resp);
 				this.localStorage.saveItem('access_token', resp.data.access_token);
 				this.loggedIn = true;
 				this.isLoggedIn$.next(this.loggedIn);
-				this.user$.next(resp.data.user);
+				//this.user$.next(resp.data.user);
 				this.message.success(resp.data.message, 'Completado');
 			}),
 			catchError((err: HttpErrorResponse) => {
@@ -103,7 +101,6 @@ export class AuthService {
 		return this.http.post<Auth>('auth/passwordRecovery', email).pipe(
 			filter((resp) => resp && !!resp),
 			tap((resp: Auth) => {
-				console.log(resp);
 				this.message.success(resp.data.message, 'Hecho');
 			}),
 			catchError((err: HttpErrorResponse) => {
@@ -129,9 +126,9 @@ export class AuthService {
 		return this.isLoggedIn$.asObservable();
 	}
 
-	getUser(): Observable<User> {
+	/*getUser(): Observable<User> {
 		return this.user$.asObservable();
-	}
+	}*/
 
 	logOut(): void {
 		this.localStorage.removeItem('access_token');

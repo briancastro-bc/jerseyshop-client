@@ -1,8 +1,7 @@
-import { Component, HostBinding, Input, OnInit, OnDestroy, AfterContentInit, ViewChild, ElementRef } from '@angular/core';
-import { elementAt, map, Observable, Subject } from 'rxjs';
+import { Component, HostBinding, OnInit, OnDestroy } from '@angular/core';
 
 import { NotificationService } from '@app/common/services';
-import { Advertisement } from '@app/shared/interfaces';
+import { Advertisement } from '@app/common/interfaces';
 
 @Component({
   selector: 'app-notification',
@@ -11,7 +10,8 @@ import { Advertisement } from '@app/shared/interfaces';
 })
 export class NotificationComponent implements OnInit, OnDestroy {
 
-  notifications$: Observable<Advertisement[]> = this.notificationService.notifications$;
+  //notifications$: Observable<Advertisement[]> = this.notificationService.notifications$;
+  notifications: Advertisement[] = []
 
   @HostBinding('class.is-open')
   isOpen: boolean = false;
@@ -21,7 +21,11 @@ export class NotificationComponent implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit(): void {
-    this.notificationService.getNotifications().subscribe();
+    this.notificationService.getNotifications().subscribe(
+      response => {
+        this.notifications = response.data.advertisements;
+      }
+    );
     this.notificationService.change.subscribe(isOpen => {
       this.isOpen = isOpen;
     });

@@ -53,6 +53,53 @@
 					</div>
 				</div>
 			</div>
+			<div class="grid" formGroupName="profile">
+				<div class="field col-6 mb-4">
+					<input
+						type="text"
+						pInputText
+						pTooltip="Teléfono"
+						formControlName="phone_number"
+						pKeyFilter="pnum"
+						id="phone_number"
+						tooltipEvent="focus"
+						placeholder="Teléfono"
+						required
+					/>
+					<div
+						*ngIf="phone_number?.invalid && (phone_number?.dirty || phone_number?.touched)"
+						class="text-center block"
+					>
+						<div *ngIf="phone_number?.errors?.['required']">
+							<small class="required-field">
+								Campo requerido
+							</small>
+						</div>
+					</div>
+				</div>
+				<div class="field col-6 mb-4">
+					<p-selectButton 
+						[options]="genderOptions" 
+						formControlName="gender" 
+						class="mb-1" 
+						pTooltip="Genero" 
+						tooltipPosition="top" 
+						required
+					></p-selectButton>
+					<div
+						*ngIf="
+							gender?.invalid && (gender?.dirty || gender?.touched)
+						"
+						class="text-center block"
+					>
+						<div *ngIf="gender?.errors?.['required']">
+							<small class="required-field">
+								Campo requerido
+							</small>
+						</div>
+					</div>
+				</div>
+			</div>
 			<div class="grid">
 				<div class="p-field col-12 mb-4">
 					<input
