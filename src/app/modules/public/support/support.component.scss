@@ -1,22 +1,18 @@
-:host ::ng-deep {
-	#support-chat-content {
+	.support-chat {
+		width: 100%;
+		height: 100vh;
+		min-height: 100%;
+
+		.support-chat-sidebar {
+			display: flex;
+			flex-direction: column;
+			align-content: center;
+			border-right: 2px solid rgba($color: #000000, $alpha: 0.2);
+			max-width: 360px;
+			padding: .5rem 1rem;
+		}
+
 		.p-avatar.p-avatar-circle {
 			overflow: visible;
 		}
 	}
-
-	.bg-dark {
-		background-color: var(--dark-color);
-		color: var(--light-color);
-	}
-
-	.bg-dark-grey {
-		background-color: var(--dark-grey-color);
-		color: var(--light-color);
-	}
-
-	.bg-dark-light {
-		background-color: var(--dark-light-color);
-		color: var(--light-color);
-	}
-}

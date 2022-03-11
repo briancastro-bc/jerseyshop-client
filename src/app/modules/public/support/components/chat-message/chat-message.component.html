@@ -1,19 +1,21 @@
-<div class="flex mb-5">
+<div class="chat-message">
 	<p-avatar
 		[label]="username ? username.charAt(0) : 'D'"
 		shape="circle"
 		size="medium"
-		class="mr-2 align-self-end"
+		class="chat-message-avatar mr-2 align-self-end"
 	></p-avatar>
-	<div class="flex flex-column">
-		<div class="bg-dark-light p-4 w-6 border-round mb-2">
-			<h4 class="mb-1">{{ username ? username : ("Desconocido" | titlecase) }}</h4>
-			<p class="text-gray-100 font-light">
+	<div class="chat-message-container">
+		<div class="chat-message-content">
+			<h4 class="message-author">
+				{{ username ? username : "Desconocido" | titlecase }}
+			</h4>
+			<p class="message">
 				{{ message }}
 			</p>
+			<small class="message-time">
+				{{ time }}
+			</small>
 		</div>
-		<small class="text-gray-500">
-			{{ time }}
-		</small>
 	</div>
 </div>
