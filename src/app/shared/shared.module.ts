@@ -26,6 +26,8 @@ import { PasswordModule } from 'primeng/password';
 import { GalleriaModule } from 'primeng/galleria';
 import { OverlayPanelModule } from 'primeng/overlaypanel';
 import { SelectButtonModule } from 'primeng/selectbutton';
+import { DynamicDialogModule } from 'primeng/dynamicdialog';
+import { EditorModule } from 'primeng/editor';
 
 import { HelpComponent, NavbarComponent, SpinnerComponent } from '@shared/components';
 import { NotificationComponent } from './components/notification/notification.component';
@@ -58,6 +60,8 @@ import { NotificationComponent } from './components/notification/notification.co
 		GalleriaModule,
 		OverlayPanelModule,
 		SelectButtonModule,
+		DynamicDialogModule,
+		EditorModule,
 	],
 	exports: [
 		NavbarComponent,
@@ -88,6 +92,8 @@ import { NotificationComponent } from './components/notification/notification.co
 		GalleriaModule,
 		OverlayPanelModule,
 		SelectButtonModule,
+		DynamicDialogModule,
+		EditorModule,
 	],
 })
 export class SharedModule {}

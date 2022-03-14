@@ -1,10 +1,11 @@
 import { Component, OnInit, OnDestroy, Input } from '@angular/core';
 import { Router } from '@angular/router';
-import { SocketService } from '@app/shared/services/local';
-import { ConfirmationService, MessageService } from 'primeng/api';
+import { ConfirmationService } from 'primeng/api';
 import { Subscription } from 'rxjs';
 
-import { Room } from '../../interfaces';
+import { SocketService } from '@app/shared/services/local';
+import { MessageService } from '@common/services'
+import { Room } from '@common/interfaces';
 
 @Component({
 	selector: 'app-room-card',
@@ -18,9 +19,9 @@ export class RoomCardComponent implements OnInit, OnDestroy {
 
 	constructor(
 		private router: Router,
+		private message: MessageService,
 		private socketService: SocketService,
 		private confirmService: ConfirmationService,
-		private messageService: MessageService
 	) {}
 
 	ngOnInit(): void {}
@@ -44,11 +45,7 @@ export class RoomCardComponent implements OnInit, OnDestroy {
 				this.onJoinInRoom(room);
 				this.subscriptions$.push(
 					this.socketService.onRoomExist().subscribe((res) => {
-						this.messageService.add({
-							severity: 'error',
-							summary: 'Error',
-							detail: 'La sala ya ha sido creada',
-						});
+						this.message.error('La sala ya esta activa');
 					})
 				);
 			},
@@ -71,11 +68,7 @@ export class RoomCardComponent implements OnInit, OnDestroy {
 					room: room,
 				},
 			});
-			this.messageService.add({
-				severity: 'info',
-				summary: 'Aviso',
-				detail: `Te hemos unido a la sala de soporte #${room}`,
-			});
+			this.message.info(`Te hemos unido a la sala de soporte #${room}`);
 		});
 	}
 }

@@ -19,15 +19,20 @@
 		</a>
 	</ng-template>
 	<ng-template pTemplate="end">
-		<button
+		<!--<button
 			pButton
 			pRipple
+			pBadge
+			[value]="(notifications$ | async)?.length?.toString()!"
 			icon="pi pi-bell"
 			class="p-button-rounded p-button-text {{ active ? 'active' : '' }}"
 			pTooltip="Notificaciones"
 			tooltipPosition="bottom"
 			(click)="showNotifications()"
-		></button>
+		></button>-->
+		<a class="notification-button {{ active ? 'active-n' : ''}}" (click)="showNotifications()" pTooltip="Notificaciones" tooltipPosition="bottom">
+			<i class="icon pi pi-bell" pBadge [value]="(notifications$ | async)?.length?.toString()!"></i>
+		</a>
 		<button
 			pButton
 			pRipple

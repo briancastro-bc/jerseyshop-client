@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
-import { RoomsService } from '../../services';
+import { RoomsService } from '@common/services';
 
 @Component({
 	selector: 'app-room-create',

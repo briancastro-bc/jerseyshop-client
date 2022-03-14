@@ -15,10 +15,9 @@ import {
 	take,
 	switchMap,
 } from 'rxjs';
-import { MessageService } from 'primeng/api';
 
 import { LocalStorageService } from '@shared/services/local';
-import { AuthService } from '@common/services';
+import { AuthService, MessageService } from '@common/services';
 
 @Injectable()
 export class TokenInterceptor implements HttpInterceptor {
@@ -28,7 +27,7 @@ export class TokenInterceptor implements HttpInterceptor {
 	constructor(
 		private localStorage: LocalStorageService,
 		private authService: AuthService,
-		private messageService: MessageService
+		private message: MessageService
 	) {}
 
 	intercept<T>(request: HttpRequest<T>, next: HttpHandler): Observable<HttpEvent<any>> {
@@ -44,9 +43,9 @@ export class TokenInterceptor implements HttpInterceptor {
 						this.tokenSubject$.next(null);
 						return this.authService.refreshToken().pipe(
 							switchMap((res) => {
-								console.log(res);
 								this.refreshTokenInProgress = false;
 								this.tokenSubject$.next(res.data.access_token);
+								console.log('Refreshing token')
 								request = request.clone({
 									setHeaders: {
 										Authorization: `Bearer ${res.data.access_token}`,
@@ -55,14 +54,9 @@ export class TokenInterceptor implements HttpInterceptor {
 								return next.handle(request);
 							}),
 							catchError((err: HttpErrorResponse) => {
+								console.log('Refreshing token fail');
 								this.refreshTokenInProgress = false;
-								this.messageService.add({
-									severity: 'error',
-									summary: 'Error',
-									detail:
-										err.error.detail.data.message ||
-										'Por favor vuelve a iniciar sesion',
-								});
+								this.message.error('Vuelve a iniciar sesion');
 								this.authService.logOut();
 								return throwError(() => err);
 							})

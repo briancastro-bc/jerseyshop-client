@@ -2,8 +2,8 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { Socket } from 'ngx-socket-io';
 import { Observable } from 'rxjs';
-import { MessageService } from 'primeng/api';
 
+import { MessageService } from '@common/services';
 import { Support } from '@common/interfaces';
 
 @Injectable({
@@ -15,7 +15,7 @@ export class SocketService {
 	constructor(
 		private router: Router,
 		private socket: Socket, 
-		private messageService: MessageService
+		private message: MessageService
 	) {}
 
 	/**
@@ -43,11 +43,7 @@ export class SocketService {
 		//this.socket.connect(); //If autoconnect is disabled, this line connect the sockets.
 		return this.socket.fromEvent<Support>('create_room').pipe((res) => {
 			this.room = data.room;
-			this.messageService.add({
-				severity: 'info',
-				summary: 'Aviso',
-				detail: 'Creando sala de soporte',
-			});
+			this.message.info('Creando sala de soporte...');
 			return res;
 		});
 	}
@@ -76,11 +72,7 @@ export class SocketService {
 	onJoinRoom(data: Support) {
 		return this.socket.fromEvent('join').pipe((res) => {
 			this.room = data.room;
-			this.messageService.add({
-				severity: 'info',
-				summary: 'Aviso',
-				detail: `Intentando unirse a la sala de soporte #${this.room}`,
-			});
+			this.message.info(`Intentando unirse a la sala de soporte #${this.room}`);
 			return res;
 		});
 	}
@@ -103,11 +95,7 @@ export class SocketService {
 
 	onUserLeft() {
 		return this.socket.fromEvent('user_left').pipe(res => {
-			this.messageService.add({
-				severity: 'info',
-				summary: 'Information',
-				detail: 'Abandonándo la sala...'
-			});
+			this.message.info('Abandonando la sala de soporte...');
 			this.router.navigate(['']);
 			return res
 		});

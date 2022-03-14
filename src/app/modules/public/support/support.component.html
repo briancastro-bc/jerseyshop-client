@@ -1,68 +1,78 @@
 <section class="support-chat">
 	<!-- CHAT SIDEBAR COMPONENT -->
 	<div class="support-chat-sidebar">
-	    <h3 class="text-2xl mb-3">Chat de soporte</h3>
+	    <h3 class="title">Chat de soporte</h3>
 	    <!--CONNECTED PEOPLE COMPONENT-->
-	    <div class="flex overflow-auto w-full mb-6">
-	        <div class="align-self-center text-center mr-4">
-	            <div class="relative w-12 mb-2">
-	                <!--<img src="" alt="User" class="">-->
-	                <p-avatar label="A" pBadge severity="danger" value="0" shape="circle" size="large"></p-avatar>
-	                <!--<div class="absolute bg-green-300 p-1 border-circle bottom-0 right-5"></div>-->
-	            </div>
-	            <small>Antonio</small>
-	        </div>
-	    </div>
+		<div class="connected-people">
+			<div class="container" *ngFor="let person of people">
+				<p-avatar 
+					[label]="person.label" 
+					pBadge 
+					severity="danger" 
+					value="0" 
+					shape="circle" 
+					size="large"
+					[style]="{'background-color': 'green'}"
+				></p-avatar>
+				<p>{{ person.name }}</p>
+			</div>
+		</div>
 	    <!--CONNECTED PEOPLE-->
-	    <div class="overflow-auto h-4">
-	        <div class="flex bg-dark-light border-round p-3 mb-1">
-	            <p-avatar label="B" shape="circle" size="large" class="mr-2"></p-avatar>
-	            <div class="w-full overflow-hidden">
-	                <div class="flex align-items-center mb-1">
-	                    <p class="font-light mr-1 flex-grow-1">Brian Castro</p>
-	                    <small class="text-gray-500">9:30AM</small>
-	                </div>
+		<!-- CREATED SUPPORT ROOMS -->
+		<div class="created-rooms h-4">
+			<div class="room" *ngFor="let room of rooms">
+	            <p-avatar 
+					[label]="room.label" 
+					shape="circle" 
+					size="large" 
+					class="mr-2"
+				></p-avatar>
+				<div class="room-about">
+					<div class="container">
+	                    <p class="font-light mr-1 flex-grow-1">
+							{{ room.name }}
+						</p>
+	                    <!--<small class="text-gray-500">9:30AM</small>-->
+					</div>
 	                <small class="text-overflow-ellipsis overflow-hidden white-space-nowrap block">
-	                    Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-	                    Voluptatibus ipsam aspernatur atque ipsum, impedit distinctio. Aut
-	                    fugiat pariatur ex inventore?
+						{{ room.description }}
 	                </small>
-	            </div>
-	        </div>
-	    </div>
-	</div>
-	<!-- END CHAT SIDEBAR COMPONENT -->
-	<div class="bg-dark-grey w-9">
-		<!-- HEADER COMPONENT -->
-		<div class="px-6 py-3 border-bottom-1">
-			<div class="flex">
-				<div class="flex flex-grow-1">
-					<div class="mb-2 mr-4">
-						<p-avatar
-							label="B"
-							pBadge
-							severity="success"
-							value=""
-							shape="circle"
-							size="large"
-						></p-avatar>
-					</div>
-					<div class="align-self-center">
-						<p class="font-bold">Brian Castro</p>
-						<small class="text-200">En linea</small>
-					</div>
-				</div>
-				<div class="flex">
-					<div class="align-self-center">
-						<p># {{ room }}</p>
-					</div>
-					<p-button icon="pi pi-sign-out" label="Salir" class="align-self-center" (onClick)="leftRoom()"></p-button>
 				</div>
 			</div>
 		</div>
+		<!-- END CREATED SUPPORT ROOMS -->
+	</div>
+	<!-- END CHAT SIDEBAR COMPONENT -->
+	<div class="support-chat-container">
+		<!-- HEADER COMPONENT -->
+		<header class="support-header">
+			<div class="contact">
+				<div class="avatar">
+					<p-avatar
+						label="B"
+						pBadge
+						severity="success"
+						value=""
+						shape="circle"
+						size="large"
+					></p-avatar>
+				</div>
+				<div class="information">
+					<p class="username">Brian Castro</p>
+					<small class="status">En linea</small>
+				</div>
+			</div>
+			<div class="room-options">
+				<p pTooltip="Sala" tooltipPosition="bottom">#{{ room }}</p>
+				<a (click)="leftRoom()" class="left-button">
+					Salir
+					<i class="icon pi pi-sign-out"></i>
+				</a>
+			</div>
+		</header>
 		<!-- HEADER COMPONENT END -->
 		<!-- CHAT COMPONENT -->
-		<div class="py-4 px-6 overflow-auto h-30rem">
+		<div class="support-body">
 			<chat-message
 				*ngFor="let message of messages"
 				[username]="message.sid"
@@ -70,16 +80,20 @@
 			></chat-message>
 		</div>
 		<!-- CHAT COMPONENT END -->
-		<div class="py-1 px-4">
-			<div class="flex">
+		<div class="support-footer">
+			<div class="content">
 				<input
 					type="text"
 					pInputText
 					placeholder="Escribe tu mensaje..."
 					#messageInput
-					class="px-2 w-full"
+					class="message-input w-full"
+					(keyup.enter)="sendChatMessage()" 
 				/>
-				<p-button icon="pi pi-send" (onClick)="sendChatMessage()"></p-button>
+				<a (click)="sendChatMessage()" class="send-button">
+					Enviar
+					<i class="icon pi pi-send"></i>
+				</a>
 			</div>
 		</div>
 	</div>

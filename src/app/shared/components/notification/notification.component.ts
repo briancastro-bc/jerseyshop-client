@@ -10,8 +10,8 @@ import { Advertisement } from '@app/common/interfaces';
 })
 export class NotificationComponent implements OnInit, OnDestroy {
 
-  //notifications$: Observable<Advertisement[]> = this.notificationService.notifications$;
-  notifications: Advertisement[] = []
+  notifications$ = this.notificationService.publicNotifications$;
+  //notifications: Advertisement[];
 
   @HostBinding('class.is-open')
   isOpen: boolean = false;
@@ -21,11 +21,7 @@ export class NotificationComponent implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit(): void {
-    this.notificationService.getNotifications().subscribe(
-      response => {
-        this.notifications = response.data.advertisements;
-      }
-    );
+    this.notificationService.getPublicNotifications().subscribe();
     this.notificationService.change.subscribe(isOpen => {
       this.isOpen = isOpen;
     });

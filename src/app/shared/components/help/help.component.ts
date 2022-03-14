@@ -1,11 +1,11 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
-import { ConfirmationService, MenuItem, MessageService } from 'primeng/api';
+import { ConfirmationService, MenuItem } from 'primeng/api';
 
 import { SocketService } from '@shared/services/local';
-import { RoomsService } from '@modules/admin/rooms/services';
-import { Room } from '@modules/admin/rooms/interfaces';
+import { MessageService, RoomsService } from '@common/services';
+import { Room } from '@common/interfaces';
 
 @Component({
 	selector: 'app-help',
@@ -13,15 +13,16 @@ import { Room } from '@modules/admin/rooms/interfaces';
 	styleUrls: ['./help.component.scss'],
 })
 export class HelpComponent implements OnInit, OnDestroy {
+
 	supportItems: MenuItem[];
 	subscriptions$: Subscription[] = [];
 
 	constructor(
 		private router: Router,
-		private socketService: SocketService,
+		private supportRoomService: SocketService,
 		private roomsService: RoomsService,
 		private confirmationService: ConfirmationService,
-		private messageService: MessageService
+		private message: MessageService
 	) {}
 
 	ngOnInit(): void {
@@ -54,43 +55,31 @@ export class HelpComponent implements OnInit, OnDestroy {
 				this.roomsService.rooms().subscribe((res) => {
 					let random = Math.floor(Math.random() * (res.data.rooms.length - 0)) + 0;
 					const room: Room = res.data.rooms[random];
-					this.socketService.joinRoom({
+					this.supportRoomService.joinRoom({
 						room: room.code,
 					});
-					this.socketService.onUserJoined().subscribe((res) => {
+					this.supportRoomService.onUserJoined().subscribe((res) => {
 						this.router.navigate(['support'], {
 							queryParams: {
-								room: this.socketService.room,
+								room: this.supportRoomService.room,
 							},
 						});
-						this.messageService.add({
-							severity: 'success',
-							summary: 'Completado',
-							detail: 'Pronto te atenderá un encargado',
-						});
+						this.message.success('Pronto serás atendido');
 					});
 				});
 				this.subscriptions$.push(
-					this.socketService.onRoomLimit().subscribe((_) => {
-						this.messageService.add({
-							severity: 'error',
-							summary: 'Error',
-							detail: 'El limite de la sala fue superado',
-						});
+					this.supportRoomService.onRoomLimit().subscribe((_) => {
+						this.message.error('El limite de la sala fue superado');
 					})
 				);
 				this.subscriptions$.push(
-					this.socketService.onRoomNotFound().subscribe((_) => {
-						this.messageService.add({
-							severity: 'error',
-							summary: 'Error',
-							detail: 'La sala está inactiva',
-						});
+					this.supportRoomService.onRoomNotFound().subscribe((_) => {
+						this.message.error('La sala esta inactiva');
 					})
 				);
 			},
 			reject: () => {
-				console.log('Rejected');
+				// TODO: Logica on rejected
 			},
 			key: 'join-room',
 		});

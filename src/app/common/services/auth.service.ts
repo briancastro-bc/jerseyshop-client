@@ -33,7 +33,7 @@ export class AuthService {
 				this.loggedIn = true;
 				this.isLoggedIn$.next(this.loggedIn);
 				//this.user$.next(resp.data.user);
-				this.message.success('Parece que todo ha ido bien, bienvenido!', 'Hecho');
+				this.message.success('¡Te damos nuevamente la bienvenida!', 'Hecho');
 			}),
 			catchError((err: HttpErrorResponse) => {
 				this.message.error(err.error.data ? err.error.data.message : err.message, 'Oh-no');

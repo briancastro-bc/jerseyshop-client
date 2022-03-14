@@ -23,6 +23,7 @@ body {
 	margin: 0;
 	padding: 0;
 	font-family: "Poppins", sans-serif;
+	scroll-behavior: smooth;
 
 	&::-webkit-scrollbar {
 		width: 8px;
@@ -36,17 +37,7 @@ body {
 		border-radius: 20px;
 		background-color: var(--primary-color);
 	}
-
 }
-	body::selection {
-		background-color: var(--primary-color);
-		color: white;
-	}
-
-	body::-moz-selection {
-		background-color: var(--primary-color);
-		color: white;
-	}
 
 h1,
 h2,
@@ -57,6 +48,10 @@ h4 {
 
 a {
 	text-decoration: none;
+}
+
+ul {
+	list-style: none;
 }
 
 img {
@@ -165,5 +160,14 @@ img {
 		p {
 			font-size: 16px;
 		}
+	}
+}
+
+@keyframes fadeIn {
+	from {
+		opacity: 0;
+	}
+	to {
+		opacity: 1;
 	}
 }

@@ -7,13 +7,13 @@
             </a>
         </div>
         <hr>
-        <div *ngIf="notifications.length > 0; else noNotifications">
-            <div *ngFor="let room of notifications" class="notification-card" (click)="goToUrl(room.hyperlink!)">
-                <h3 class="title">{{ room.title | titlecase }}</h3>
-                <a class="description">{{ room.description }}</a>
+        <div *ngIf="(notifications$ | async)?.length! > 0; else noNotifications">
+            <div *ngFor="let notification of notifications$ | async" class="notification-card" (click)="goToUrl(notification.hyperlink!)">
+                <h3 class="title">{{ notification.title | titlecase }}</h3>
+                <span class="description">{{ notification.description }}</span>
                 <small class="time-ago">
                     <i class="pi pi-clock"></i>
-                    <span>{{ room.time_ago | date }}</span>
+                    <span>{{ notification.time_ago | date }}</span>
                 </small>
             </div>
         </div>

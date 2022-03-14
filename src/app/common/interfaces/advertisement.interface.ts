@@ -8,4 +8,5 @@ export interface Advertisement extends Base {
     time_ago?: Date;
     is_active?: boolean;
     is_public?: boolean;
+    expired_date?: Date;
 }

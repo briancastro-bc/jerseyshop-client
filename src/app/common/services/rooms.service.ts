@@ -11,19 +11,19 @@ import {
 	from,
 } from 'rxjs';
 
-import { MessageService } from 'primeng/api';
-
-import { SocketService } from '@shared/services/local/socket.service';
-
+import { MessageService } from '@common/services';
 import { Room } from '../interfaces/room.interface';
 
 @Injectable({
 	providedIn: 'root',
 })
 export class RoomsService {
-	private rooms$ = new Subject<Room[]>();
+	private rooms$: Subject<Room[]> = new Subject<Room[]>();
 
-	constructor(private http: HttpClient, private messageService: MessageService) {}
+	constructor(
+		private http: HttpClient, 
+		private message: MessageService
+	) {}
 
 	rooms(): Observable<Room> {
 		return this.http.get<Room>('rooms').pipe(
@@ -31,11 +31,7 @@ export class RoomsService {
 				this.rooms$.next(res.data.rooms);
 			}),
 			catchError((err: HttpErrorResponse) => {
-				this.messageService.add({
-					severity: 'error',
-					summary: 'Oh-no!',
-					detail: 'No hay salas de soporte disponibles' 
-				});
+				this.message.error('No hay salas de soporte disponibles');
 				return throwError(() => err);
 			})
 		);
@@ -45,18 +41,10 @@ export class RoomsService {
 		return this.http.post<Room>('admin/rooms/create', data).pipe(
 			filter((resp) => resp && !!resp),
 			tap((resp) => {
-				this.messageService.add({
-					severity: 'success',
-					summary: 'Completado',
-					detail: resp.data.message,
-				});
+				this.message.success(resp.data.message, 'Completado');
 			}),
 			catchError((err: HttpErrorResponse) => {
-				this.messageService.add({
-					severity: 'error',
-					summary: 'Oh-no!',
-					detail: err.error.data.message || err.message,
-				});
+				this.message.error(err.error.data.message || err.message, 'Oh-no!');
 				return throwError(() => err);
 			})
 		);
@@ -65,17 +53,5 @@ export class RoomsService {
 
 	getRooms(): Observable<Room[]> {
 		return this.rooms$.asObservable();
-	}
-
-	/**
-	 *
-	 * @method randomRoom Toma una indice aleatorio de la lista de rooms y lo devuelve.
-	 * @returns una sala aleatoria de la lista de salas
-	 *
-	 */
-	randomRoom(): void {
-		this.rooms$.subscribe((res) => {
-			console.log(res);
-		});
 	}
 }

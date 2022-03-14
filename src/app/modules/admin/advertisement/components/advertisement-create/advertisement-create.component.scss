@@ -1,0 +1,27 @@
+.advertisement-create {
+    max-width: 768px;
+    margin: 0 auto 0 auto;
+
+    .container {
+        margin: 1.5rem 0;
+
+        .help-information {
+            text-align: center;
+        }
+
+        form {
+
+            .help-content {
+                display: flex;
+                flex-direction: column;
+                flex-wrap: nowrap;
+                justify-content: center;
+                margin: 0 1rem;
+
+                .description {
+                    margin: 0;
+                }
+            }
+        }
+    }
+}

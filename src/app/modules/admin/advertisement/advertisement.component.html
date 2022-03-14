@@ -1,1 +1,84 @@
-<p>advertisement works!</p>
+<section class="notification-panel">
+    <div class="notification-statistics">
+        <div class="title">
+            <span class="text">
+                anuncios & notificaciones
+            </span>
+        </div>
+        <div class="container">
+            <div class="statistic-card">
+                <div class="content">
+                    <h4 class="length" pTooltip="Cantidad de anuncios" tooltipPosition="top">
+                        <i class="icon pi pi-bell"></i>
+                        {{ (privateNotifications$ | async)?.length }}
+                    </h4>
+                    <p class="description">
+                        Anuncios creados
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="notification-tools">
+        <span class="p-input-icon-left">
+            <i class="pi pi-search"></i>
+            <input pInputText type="text" [(ngModel)]="search" class="search-input p-inputtext-sm" placeholder="Buscar anuncio..">
+        </span>
+        <div class="options-group">
+            <a class="new-notification-button" (click)="create()">
+                <i class="pi pi-plus"></i>
+                nuevo
+            </a>
+        </div>
+    </div>
+    <ul class="notification-list" *ngIf="(privateNotifications$ | async)?.length! > 0; else loading">
+        <li class="notification-element" *ngFor="let notification of privateNotifications$ | async">
+            <div class="notification-content">
+                <small class="identifier">
+                    <i class="pi pi-hashtag"></i>
+                    {{ notification.uid }}
+                </small>
+                <h3 class="title">
+                    <a href="{{ notification.hyperlink }}" target="__blank" class="hyperlink">
+                        {{ notification.title | titlecase }}
+                    </a>
+                    <span class="status">
+                        {{ notification.is_active ? 'Activo' : 'Inactivo' }}
+                    </span>
+                </h3>
+                <p class="description">
+                    {{ notification.description }}
+                </p>
+                <div class="details">
+                    <strong>
+                        <span class="time-ago">
+                            <i class="icon pi pi-clock"></i>
+                            {{ notification.time_ago | date }}
+                        </span>
+                        <span class="visibility">
+                            <i class="icon pi pi-eye"></i>
+                            {{ notification.is_public ? 'Publico' : 'Privado' }}
+                        </span>
+                        <span class="expired-date">
+                            <i class="icon pi pi-calendar-times"></i>
+                            {{ notification.expired_date | date }}
+                        </span>
+                    </strong>
+                </div>
+            </div>
+            <div class="notification-options">
+                <p-button label="Editar"></p-button>
+            </div>
+        </li>
+    </ul>
+    <ng-template #loading>
+        <ul class="notification-list">
+            <li class="notification-element">
+                <div class="notification-content">
+                    <h3 class="title">No se encontro</h3>
+                    <p class="description">No coincidieron anuncios con la busqueda o no hay ninguno creado</p>
+                </div>
+            </li>
+        </ul>
+    </ng-template>
+</section>

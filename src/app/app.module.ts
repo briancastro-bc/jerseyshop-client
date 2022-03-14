@@ -3,9 +3,11 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { RouterModule } from '@angular/router';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { SocketIoModule } from 'ngx-socket-io';
 import { ToastrModule } from 'ngx-toastr';
+import { DialogService } from 'primeng/dynamicdialog';
 import { MessageService, ConfirmationService } from 'primeng/api';
 
 import { environment } from '@env/environment';
@@ -13,7 +15,6 @@ import { AppRoutingModule } from '@app/app-routing.module';
 import { AppComponent } from '@app/app.component';
 import { SharedModule } from '@shared/shared.module';
 import { httpInterceptorsProviders } from '@common/http-interceptors';
-import { NotificationService } from './common/services';
 
 @NgModule({
 	declarations: [AppComponent],
@@ -23,6 +24,8 @@ import { NotificationService } from './common/services';
 		AppRoutingModule,
 		HttpClientModule,
 		RouterModule,
+		FormsModule,
+		ReactiveFormsModule,
 		SharedModule, //Own module with all project dependencies
 		ServiceWorkerModule.register('ngsw-worker.js', {
 			enabled: environment.production,
@@ -53,9 +56,9 @@ import { NotificationService } from './common/services';
 	],
 	providers: [
 		MessageService, 
-		ConfirmationService, 
-		NotificationService,
-		httpInterceptorsProviders
+		ConfirmationService,
+		DialogService, 
+		httpInterceptorsProviders,
 	],
 	bootstrap: [AppComponent],
 })

@@ -1,18 +1,223 @@
-	.support-chat {
-		width: 100%;
-		height: 100vh;
-		min-height: 100%;
+.support-chat {
+	width: 100%;
+	height: 100vh;
+	min-height: 100%;
+	display: flex;
+	flex-direction: row;
+	flex-wrap: nowrap;
 
-		.support-chat-sidebar {
-			display: flex;
-			flex-direction: column;
-			align-content: center;
-			border-right: 2px solid rgba($color: #000000, $alpha: 0.2);
-			max-width: 360px;
-			padding: .5rem 1rem;
+	.support-chat-sidebar {
+		display: flex;
+		flex-direction: column;
+		align-content: center;
+		border-right: 2px solid rgba($color: #000000, $alpha: 0.2);
+		max-width: 20%;
+		padding: 0.5rem 1rem;
+
+		.title {
+			font-weight: 600;
+			font-size: 1.5rem;
+			text-align: center;
+			margin: 1rem 0 1.5rem 0;
 		}
 
-		.p-avatar.p-avatar-circle {
-			overflow: visible;
+		.connected-people {
+			width: 100%;
+			max-height: 15%;
+			padding: .5rem 1rem;
+			display: flex;
+			flex-direction: row;
+			flex-wrap: nowrap;
+			overflow-x: auto;
+			overflow-y: hidden;
+
+			.container {
+				text-align: center;
+				margin-right: 1rem;
+
+				p {
+					margin: .5rem 0;
+				}
+			}
+
+			&::-webkit-scrollbar {
+				height: 5px;
+			}
+
+			&::-webkit-scrollbar-thumb {
+				border-radius: 10rem;
+				background-color: var(--primary-color);
+			}
+		}
+
+		.created-rooms {
+			overflow-y: auto;
+			margin: 1rem 0 0 0;
+
+			&::-webkit-scrollbar {
+				height: 5px;
+				width: 5px;
+			}
+
+			&::-webkit-scrollbar-thumb {
+				border-radius: 10rem;
+				background-color: var(--primary-color);
+			}
+
+			.room {
+				display: flex;
+				flex-direction: row;
+				align-items: center;
+				padding: 1rem;
+				margin: .5rem;
+
+				&:hover {
+					background-color: var(--primary-color);
+					color: var(--light);
+					cursor: pointer;
+				}
+
+				.room-about {
+					width: 100%;
+					overflow: hidden;
+
+					.container {
+						display: flex;
+						flex-direction: row;
+						align-items: center;
+					}
+				}
+			}
 		}
 	}
+
+	.support-chat-container {
+		width: 100%;
+		min-height: 100%;
+		display: flex;
+		flex-direction: column;
+
+		.support-header {
+			background-color: var(--light);
+			position: sticky;
+			position: -webkit-sticky;
+			top: 5rem;
+			display: flex;
+			flex-direction: row;
+			flex-wrap: nowrap;
+			justify-content: space-between;
+			padding: 1rem 1rem;
+			border-bottom: 1px solid rgba($color: #000000, $alpha: 0.2);
+			z-index: 100;
+
+			.contact {
+				display: inline-flex;
+				flex-direction: row;
+				align-items: center;
+				justify-content: start;
+
+				.information {
+					margin-left: 1rem;
+
+					.username {
+						font-weight: 600;
+						margin: 0;
+					}
+
+					.status {
+						color: rgba($color: #000000, $alpha: 0.5);
+					}
+				}
+			}
+
+			.room-options {
+				display: inline-flex;
+				flex-direction: row;
+				align-items: center;
+
+				p {
+					cursor: pointer;
+					margin: 0 1rem 0 0;
+				}
+
+				.left-button {
+					background-color: var(--primary-color);
+					padding: 0.5rem 0.5rem;
+					color: var(--light);
+					border-radius: 0.2rem;
+
+					.icon {
+						margin-left: 0.2rem;
+					}
+
+					&:hover {
+						cursor: pointer;
+						background-color: var(--primary-alt-color);
+					}
+				}
+			}
+		}
+
+		.support-body {
+			height: 90%;
+			padding: 1rem 2rem;
+			overflow-y: auto;
+		}
+
+		.support-footer {
+			background-color: var(--light);
+			position: sticky;
+			bottom: 0;
+			width: 100%;
+			padding: 1rem 1rem;
+			border-top: 1px solid rgba($color: #000000, $alpha: 0.2);
+
+			.content {
+				display: flex;
+				flex-direction: row;
+				flex-wrap: nowrap;
+				align-items: center;
+				justify-content: end;
+
+				.message-input {
+					border-radius: .5rem 0 0 .5rem;
+				}
+
+				.send-button {
+					background-color: var(--primary-color);
+					color: var(--light);
+					display: inline-flex;
+					flex-direction: row;
+					align-items: center;
+					padding: .65rem .75rem;
+					border-radius: 0px .5rem .5rem 0px;
+
+					.icon {
+						margin-left: .2rem;
+					}
+
+					&:hover {
+						cursor: pointer;
+						background-color: var(--primary-alt-color);
+					}
+				}
+			}
+		}
+	}
+}
+
+@media screen and (max-width: 768px) {
+	
+	.support-chat {
+
+		.support-chat-sidebar {
+			display: none;
+		}
+
+		.support-chat-container {
+			.support-header {
+				top: 5rem;
+			}
+		}
+	}
+}

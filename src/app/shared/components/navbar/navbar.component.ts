@@ -4,6 +4,7 @@ import { Observable, Subscription } from 'rxjs';
 
 import { AuthService } from '@app/common/services';
 import { NotificationService } from '@app/common/services';
+import { Advertisement } from '@app/common/interfaces';
 
 @Component({
 	selector: 'app-navbar',
@@ -12,6 +13,7 @@ import { NotificationService } from '@app/common/services';
 })
 export class NavbarComponent implements OnInit, OnDestroy {
 
+	notifications$: Observable<Advertisement[]> = this.notificationService.publicNotifications$;
 	userSetup: any = {
 		status: 'Acceder',
 		display: false,

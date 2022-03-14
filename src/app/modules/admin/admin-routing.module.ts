@@ -18,7 +18,7 @@ const routes: Routes = [
 			{
 				path: 'inventory',
 				data: {
-					title: 'Inventory',
+					title: 'Inventario',
 				},
 				loadChildren: () =>
 					import('./inventory/inventory.module').then((m) => m.InventoryModule),
@@ -26,7 +26,7 @@ const routes: Routes = [
 			{
 				path: 'advertisement',
 				data: {
-					title: 'Advertisements',
+					title: 'Notificaciones',
 				},
 				loadChildren: () =>
 					import('./advertisement/advertisement.module').then(

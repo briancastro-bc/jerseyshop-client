@@ -1,0 +1,106 @@
+<div class="advertisement-create">
+    <div class="container">
+        <div class="help-information">
+            <p>
+                Los anuncios pueden referir a productos de tu tienda y a enlaces
+                externos.
+            </p>
+        </div>
+        <form [formGroup]="advertisementForm" (ngSubmit)="onSubmit()">
+            <div class="p-fluid formgrid">
+                <div class="field col-12">
+                    <span class="p-float-label p-input-icon-left">
+                        <i class="pi pi-tag"></i>
+                        <input pInputText type="text" id="titleInput" formControlName="title">
+                        <label for="titleInput">Titulo</label>
+                    </span>
+                </div>
+                <div class="field col-12">
+                    <span class="p-float-label p-input-icon-left">
+                        <i class="pi pi-link"></i>
+                        <input pInputText type="url" id="hyperlinkInput" formControlName="hyperlink">
+                        <label for="hyperlinkInput">Hipervínculo</label>
+                    </span>
+                </div>
+                <div class="field col-12">
+                    <p-editor 
+                        formControlName="description" 
+                        placeholder="Descripcion"
+                        [pKeyFilter]="blockSpecial"
+                        [formats]="['bold', 'italic', 'link', 'underline']"
+                    >
+                        <ng-template pTemplate="header">
+                            <span class="ql-formats">
+                                <button type="button" class="ql-bold" aria-label="Negrita"></button>
+                                <button type="button" class="ql-italic" aria-label="Cursiva"></button>
+                                <button type="button" class="ql-underline" aria-label="Subrayado"></button>
+                                <button type="button" class="ql-link" aria-label="Enlace"></button>
+                            </span>
+                        </ng-template>
+                    </p-editor>
+                </div>
+                <div class="field col-12">
+					<p-calendar
+						dateFormat="yy-mm-dd"
+						formControlName="expired_date"
+						[required]="true"
+						[showIcon]="true"
+						inputId="expiredDateInput"
+						placeholder="Fecha limite"
+					></p-calendar>
+                </div>
+                <div class="field-checkbox col">
+                    <p-checkbox formControlName="is_active" [binary]="true" inputId="statusInput"></p-checkbox>
+                    <div class="help-content" *ngIf="is_active?.value; else active">
+                        <label class="info" for="statusInput">Activo</label>
+                        <p class="description">
+                            El anuncio será habilitado de forma global.
+                        </p>
+                    </div>
+                    <ng-template #active>
+                        <div class="help-content">
+                            <label class="info" for="statusInput">Inactivo</label>
+                            <p class="description">
+                                El anuncio no se mostrará a nadie
+                            </p>
+                        </div>
+                    </ng-template>
+                </div>
+                <div class="field-checkbox col">
+                    <p-checkbox formControlName="is_public" [binary]="true" inputId="visibilityInput"></p-checkbox>
+                    <div class="help-content" *ngIf="is_public?.value; else visibility">
+                        <label class="info" for="visibilityInput">Publico</label>
+                        <p class="description">
+                            Todas las personas podrán ver el anuncio
+                        </p>
+                    </div>
+                    <ng-template #visibility>
+                        <div class="help-content">
+                            <label class="info" for="visibilityInput">Privado</label>
+                            <p class="description">
+                                Solo cierta cantidad de usuarios podran ver el anuncio
+                            </p>
+                        </div>
+                    </ng-template>
+                </div>
+                <div class="field-checkbox col">
+                    <p-checkbox formControlName="notify" [binary]="true" inputId="notifyInput"></p-checkbox>
+                    <div class="help-content">
+                        <label for="notifyInput">Notificar</label>
+                    </div>
+                </div>
+                <div class="field">
+                    <button
+                        pButton
+                        type="submit"
+                        icon="pi pi-plus"
+                        iconPos="right"
+                        label="Crear"
+                        class="o-button"
+                        [disabled]="!advertisementForm.valid"
+                    ></button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
