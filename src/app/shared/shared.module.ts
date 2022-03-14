@@ -28,6 +28,7 @@ import { OverlayPanelModule } from 'primeng/overlaypanel';
 import { SelectButtonModule } from 'primeng/selectbutton';
 import { DynamicDialogModule } from 'primeng/dynamicdialog';
 import { EditorModule } from 'primeng/editor';
+import { SplitButtonModule } from 'primeng/splitbutton';
 
 import { HelpComponent, NavbarComponent, SpinnerComponent } from '@shared/components';
 import { NotificationComponent } from './components/notification/notification.component';
@@ -62,6 +63,7 @@ import { NotificationComponent } from './components/notification/notification.co
 		SelectButtonModule,
 		DynamicDialogModule,
 		EditorModule,
+		SplitButtonModule,
 	],
 	exports: [
 		NavbarComponent,
@@ -94,6 +96,7 @@ import { NotificationComponent } from './components/notification/notification.co
 		SelectButtonModule,
 		DynamicDialogModule,
 		EditorModule,
+		SplitButtonModule,
 	],
 })
 export class SharedModule {}

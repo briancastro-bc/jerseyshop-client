@@ -67,7 +67,11 @@
                 </div>
             </div>
             <div class="notification-options">
-                <p-button label="Editar"></p-button>
+                <p-splitButton 
+                    [model]="advertisementOptions" 
+                    label="Opciones" 
+                    styleClass="p-button-sm"
+                ></p-splitButton>
             </div>
         </li>
     </ul>
