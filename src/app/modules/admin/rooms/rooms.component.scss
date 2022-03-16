@@ -1,9 +1,84 @@
+.rooms-panel {
+	height: 100vh;
+	width: 100%;
+	min-height: 100%;
+	animation: 1s fadeIn 0s ease-in;
+	
+	.rooms-log {
+		width: 70%;
+		height: 40vh;
+		margin: 1.5rem auto 0 auto;
+		border: 1px solid rgba($color: #3d3c3c, $alpha: 1.0);
+		background-color: rgba($color: #0e0d0d, $alpha: 1.0);
+		box-shadow: 1px 1px 1px 10px black;
+		overflow-y: auto;
+
+		.terminal {
+			display: flex;
+			flex-direction: column;
+			flex-wrap: wrap;
+
+			.terminal-header {
+				display: flex;
+				justify-content: center;
+				text-align: center;
+				border-bottom: 1px solid rgba($color: #FFFFFF, $alpha: 0.2);
+				color: var(--light);
+
+				.title {
+					margin: 0;
+					padding: .5rem 1rem;
+				}
+			}
+
+			.terminal-body {
+				width: 100%;
+				display: flex;
+				flex-direction: column;
+				align-items:flex-start;
+				font-family: 'Courier New', Courier, monospace;
+
+				.logger-text {
+					margin: 0 0 0 0;
+					padding: .5rem .5rem;
+					color: var(--light);
+					line-height: 90%;
+					letter-spacing: 2px;
+
+					.prompt {
+						margin: 0 .5rem 0 0;
+						color: green;
+						font-weight: 700;
+					}
+
+					&::selection {
+						color: green;
+						background-color: transparent;
+					}
+				}
+			}
+		}
+
+		&::-webkit-scrollbar {
+			width: 2px;
+		}
+
+		&::-webkit-scrollbar-thumb {
+			background-color: grey;
+			border-radius: 50%;
+		}
+
+		&::-webkit-scrollbar-track {
+			background-color: transparent;
+		}
+	}
+}
+
 :host ::ng-deep {
 	.p-toolbar-group-right {
 		.p-button {
 			border: none;
 			border-radius: 0;
-			background-color: black;
 			color: white;
 
 			&:hover {

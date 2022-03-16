@@ -7,6 +7,7 @@ import { MenuItem } from 'primeng/api';
 	styleUrls: ['./rooms.component.scss'],
 })
 export class RoomsComponent implements OnInit {
+
 	tabMenuItems!: MenuItem[];
 
 	constructor() {}
