@@ -4,7 +4,7 @@
 	rejectButtonStyleClass="p-button-text"
 ></p-confirmDialog>
 <p-card
-	*ngFor="let room of data"
+	*ngFor="let room of data | async"
 	styleClass="p-card-shadow text-center"
 	header="{{ room.name | titlecase }}"
 	subheader="{{ room.code }}"
@@ -21,7 +21,7 @@
 	</ng-template>
 	<div class="body">
 		{{ room.name }}
-		{{ room.is_active }}
+		{{ room.is_active ? 'Online' : 'Offline' }}
 		{{ room.limit }}
 	</div>
 	<ng-template pTemplate="footer">

@@ -1,10 +1,9 @@
 import { Component, OnInit, OnDestroy, Input } from '@angular/core';
 import { Router } from '@angular/router';
+import { Subscription, Observable } from 'rxjs';
 import { ConfirmationService } from 'primeng/api';
-import { Subscription } from 'rxjs';
 
-import { SocketService } from '@app/shared/services/local';
-import { MessageService } from '@common/services'
+import { MessageService, SupportRoomService } from '@common/services'
 import { Room } from '@common/interfaces';
 
 @Component({
@@ -14,13 +13,13 @@ import { Room } from '@common/interfaces';
 })
 export class RoomCardComponent implements OnInit, OnDestroy {
 
-	@Input() data: Room[];
+	@Input() data: Observable<Room[]>;
 	subscriptions$: Subscription[] = [];
 
 	constructor(
 		private router: Router,
 		private message: MessageService,
-		private socketService: SocketService,
+		private supportRoomService: SupportRoomService,
 		private confirmService: ConfirmationService,
 	) {}
 
@@ -39,12 +38,12 @@ export class RoomCardComponent implements OnInit, OnDestroy {
 			acceptLabel: 'Si',
 			rejectLabel: 'No',
 			accept: () => {
-				this.socketService.createRoom({
+				this.supportRoomService.createRoom({
 					room: room,
 				});
 				this.onJoinInRoom(room);
 				this.subscriptions$.push(
-					this.socketService.onRoomExist().subscribe((res) => {
+					this.supportRoomService.onRoomExist().subscribe((res) => {
 						this.message.error('La sala ya esta activa');
 					})
 				);
@@ -54,7 +53,7 @@ export class RoomCardComponent implements OnInit, OnDestroy {
 	}
 
 	join(room: string | undefined) {
-		this.socketService.joinRoom({
+		this.supportRoomService.joinRoom({
 			room: room,
 		});
 		this.onJoinInRoom(room);
@@ -62,7 +61,7 @@ export class RoomCardComponent implements OnInit, OnDestroy {
 
 	private onJoinInRoom(room: string | undefined) {
 		if (room === 'undefined') return;
-		this.socketService.onUserJoined().subscribe((res) => {
+		this.supportRoomService.onUserJoined().subscribe((res) => {
 			this.router.navigate(['support'], {
 				queryParams: {
 					room: room,

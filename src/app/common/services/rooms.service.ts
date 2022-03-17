@@ -9,6 +9,8 @@ import {
 	map,
 	Subject,
 	from,
+	BehaviorSubject,
+	take,
 } from 'rxjs';
 
 import { MessageService } from '@common/services';
@@ -18,23 +20,37 @@ import { Room } from '../interfaces/room.interface';
 	providedIn: 'root',
 })
 export class RoomsService {
-	private rooms$: Subject<Room[]> = new Subject<Room[]>();
+	private privateRoomsSubject$: BehaviorSubject<Room[]> = new BehaviorSubject<Room[]>([]);
+	privateRooms$ = this.privateRoomsSubject$.asObservable();
+
+	private publicRoomsSubject$: BehaviorSubject<Room[]> = new BehaviorSubject<Room[]>([]);
+	publicRooms$ = this.publicRoomsSubject$.asObservable();
 
 	constructor(
 		private http: HttpClient, 
 		private message: MessageService
 	) {}
 
-	rooms(): Observable<Room> {
+	getPublicRooms(): Observable<Room> {
 		return this.http.get<Room>('rooms').pipe(
 			tap((res) => {
-				this.rooms$.next(res.data.rooms);
+				this.publicRoomsSubject$.next(res.data.rooms);
 			}),
 			catchError((err: HttpErrorResponse) => {
 				this.message.error('No hay salas de soporte disponibles');
 				return throwError(() => err);
 			})
 		);
+	}
+
+	getPrivatedRooms(): Observable<Room> {
+		return this.http.get<Room>('admin/rooms').pipe(
+			take(1),
+			filter(response => response && !!response),
+			tap((response) => {
+				this.privateRoomsSubject$.next(response.data.rooms);
+			})
+		)
 	}
 
 	newRoom(data: Room): Observable<Room> {
@@ -50,8 +66,7 @@ export class RoomsService {
 		);
 	}
 
-
 	getRooms(): Observable<Room[]> {
-		return this.rooms$.asObservable();
+		return this.publicRoomsSubject$.asObservable();
 	}
 }

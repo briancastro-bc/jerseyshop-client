@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 import { RoomsService } from '@common/services';
 import { Room } from '@common/interfaces';
+import { Observable } from 'rxjs';
 
 @Component({
 	selector: 'app-room-list',
@@ -9,13 +10,14 @@ import { Room } from '@common/interfaces';
 	styleUrls: ['./room-list.component.scss'],
 })
 export class RoomListComponent implements OnInit {
-	data: Room[];
 
-	constructor(private roomsService: RoomsService) {}
+	privateRooms$: Observable<Room[]> = this.roomsService.privateRooms$;
+
+	constructor(
+		private roomsService: RoomsService
+	) {}
 
 	ngOnInit(): void {
-		this.roomsService.rooms().subscribe((res) => {
-			this.data = res.data.rooms;
-		});
+		this.roomsService.getPrivatedRooms().subscribe();
 	}
 }

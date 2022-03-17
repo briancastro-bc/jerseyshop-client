@@ -1,7 +1,7 @@
 import { Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
 
 import { Support } from '@app/common/interfaces';
-import { SocketService } from '@app/shared/services/local';
+import { SupportRoomService } from '@common/services';
 
 @Component({
 	selector: 'app-support',
@@ -17,7 +17,7 @@ export class SupportComponent implements OnInit, OnDestroy {
 	room: string | undefined;
 
 	constructor(
-		private supportRoomService: SocketService,
+		private supportRoomService: SupportRoomService,
 	) {
 		this.people = [
 			{

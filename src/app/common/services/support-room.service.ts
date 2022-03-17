@@ -9,7 +9,7 @@ import { Support } from '@common/interfaces';
 @Injectable({
 	providedIn: 'root',
 })
-export class SocketService {
+export class SupportRoomService {
 	room?: string;
 
 	constructor(
@@ -102,6 +102,10 @@ export class SocketService {
 	}
 
 	// Client events.
+	onNotifyEntry(): Observable<any> {
+		return this.socket.fromEvent<any>('notify_entry');
+	}
+
 	onMessage(): Observable<Support> {
 		return this.socket.fromEvent<Support>('message');
 	}

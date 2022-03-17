@@ -3,8 +3,7 @@ import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { ConfirmationService, MenuItem } from 'primeng/api';
 
-import { SocketService } from '@shared/services/local';
-import { MessageService, RoomsService } from '@common/services';
+import { MessageService, RoomsService, SupportRoomService } from '@common/services';
 import { Room } from '@common/interfaces';
 
 @Component({
@@ -19,7 +18,7 @@ export class HelpComponent implements OnInit, OnDestroy {
 
 	constructor(
 		private router: Router,
-		private supportRoomService: SocketService,
+		private supportRoomService: SupportRoomService,
 		private roomsService: RoomsService,
 		private confirmationService: ConfirmationService,
 		private message: MessageService
@@ -52,9 +51,9 @@ export class HelpComponent implements OnInit, OnDestroy {
 			acceptLabel: 'Si',
 			rejectLabel: 'No',
 			accept: () => {
-				this.roomsService.rooms().subscribe((res) => {
-					let random = Math.floor(Math.random() * (res.data.rooms.length - 0)) + 0;
-					const room: Room = res.data.rooms[random];
+				this.roomsService.getPublicRooms().subscribe((response) => {
+					let random = Math.floor(Math.random() * (response.data.rooms.length - 0)) + 0;
+					const room: Room = response.data.rooms[random];
 					this.supportRoomService.joinRoom({
 						room: room.code,
 					});

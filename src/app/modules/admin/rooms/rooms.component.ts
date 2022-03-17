@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { MessageService, SupportRoomService } from '@app/common/services';
 import { MenuItem } from 'primeng/api';
+import { Subscription } from 'rxjs';
 
 @Component({
 	selector: 'app-rooms',
@@ -9,8 +11,12 @@ import { MenuItem } from 'primeng/api';
 export class RoomsComponent implements OnInit {
 
 	tabMenuItems!: MenuItem[];
+	logs: any[] = [];
 
-	constructor() {}
+	constructor(
+		private supportRoomService: SupportRoomService,
+		private message: MessageService
+	) {}
 
 	ngOnInit(): void {
 		this.tabMenuItems = [
@@ -23,5 +29,12 @@ export class RoomsComponent implements OnInit {
 				icon: 'pi pi-plus',
 			},
 		];
+		this.supportRoomService.onNotifyEntry().subscribe(
+			data => {
+				console.log(data);
+				this.logs.push(data);
+				this.message.success(data.message, data.operating_system);
+			}
+		)
 	}
 }

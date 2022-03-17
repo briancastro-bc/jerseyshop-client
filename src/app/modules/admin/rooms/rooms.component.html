@@ -7,9 +7,9 @@
 				</h4>
 			</div>
 			<div class="terminal-body">
-				<p class="logger-text">
-					<span class="prompt">&#126; &#36;</span>
-					Lorem ipsum, dolor sit amet consectetur adipisicing elit. Provident pariatur enim recusandae delectus eligendi similique fugit dolorum numquam placeat quod alias ipsam nisi sit cumque doloremque aliquam, voluptas atque nostrum minima corporis fugiat assumenda reiciendis! Eos eaque excepturi, unde quam, quia omnis dignissimos, voluptatibus minima aut ab tempora ad ea!
+				<p class="logger-text" *ngFor="let log of logs">
+					<span class="prompt">&#126; {{log.operating_system}} &#36;</span>
+					{{ log.message }}
 				</p>
 			</div>
 		</div>
