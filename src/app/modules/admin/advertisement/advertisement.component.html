@@ -33,20 +33,20 @@
     </div>
     <ul class="notification-list" *ngIf="(privateNotifications$ | async)?.length! > 0; else loading">
         <li class="notification-element" *ngFor="let notification of privateNotifications$ | async">
-            <div class="notification-content">
+            <form class="notification-content">
                 <small class="identifier">
                     <i class="pi pi-hashtag"></i>
                     {{ notification.uid }}
                 </small>
                 <h3 class="title">
-                    <a href="{{ notification.hyperlink }}" target="__blank" class="hyperlink">
+                    <a href="{{ notification.hyperlink }}" target="__blank" class="hyperlink" contenteditable>
                         {{ notification.title | titlecase }}
                     </a>
                     <span class="status">
                         {{ notification.is_active ? 'Activo' : 'Inactivo' }}
                     </span>
                 </h3>
-                <p class="description">
+                <p class="description editable" contenteditable (input)="onDescriptionChange($event)">
                     {{ notification.description }}
                 </p>
                 <div class="details">
@@ -65,13 +65,15 @@
                         </span>
                     </strong>
                 </div>
-            </div>
+            </form>
             <div class="notification-options">
-                <p-splitButton 
-                    [model]="advertisementOptions" 
-                    label="Opciones" 
-                    styleClass="p-button-sm"
-                ></p-splitButton>
+                <button class="option-button delete-button" (click)="confirmDelete($event, notification.uid)">
+                    <i class="pi pi-trash"></i>
+                </button>
+                <button class="option-button edit-button">
+                    <i class="pi pi-pencil"></i>
+                </button>
+                <p-confirmPopup></p-confirmPopup>
             </div>
         </li>
     </ul>

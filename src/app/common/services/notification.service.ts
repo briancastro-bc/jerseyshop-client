@@ -1,7 +1,7 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { EventEmitter, Injectable, Output } from '@angular/core';
 import { Observable, BehaviorSubject, catchError, throwError } from 'rxjs';
-import { tap, take } from 'rxjs/operators';
+import { tap, take, filter } from 'rxjs/operators';
 
 import { Advertisement } from '@app/common/interfaces';
 import { MessageService } from '@app/common/services';
@@ -26,7 +26,7 @@ export class NotificationService {
   ) {}
 
   getPublicNotifications(): Observable<Advertisement> {
-    return this.http.get<Advertisement>('advertisements').pipe(
+    return this.http.get<Advertisement>('advertisements/').pipe(
       take(1),
       tap((response) => {
         const { data } = response;
@@ -36,7 +36,7 @@ export class NotificationService {
   }
 
   getProtectedNotifications(): Observable<Advertisement> {
-    return this.http.get<Advertisement>('admin/advertisements').pipe(
+    return this.http.get<Advertisement>('admin/advertisements/').pipe(
       tap((response) => {
         const { data } = response;
         this.privateNotificationSubject$.next(data.advertisements);
@@ -47,13 +47,29 @@ export class NotificationService {
     );
   }
 
-  createNotification(advertisement: Advertisement): Observable<any> {
-    return this.http.post('admin/advertisements/create', advertisement).pipe(
+  createNotification(advertisement: Advertisement): Observable<Advertisement> {
+    return this.http.post('admin/advertisements/', advertisement).pipe(
       catchError((err: HttpErrorResponse) => {
         this.message.error('Algo ha ido mal creando la notificacion', 'Oh-no!');
         return throwError(() => err);
       })
     );
+  }
+
+  deleteNotification(uid: string): Observable<any> {
+    return this.http.delete<any>(`admin/advertisements/${uid}`).pipe(
+      take(1),
+      filter(response => response && !!response),
+      tap(
+        response => {
+          this.message.success('El anuncio ha sido eliminado', 'Hecho');
+        }
+      ),
+      catchError((err: HttpErrorResponse) => {
+        this.message.error(err.error.data.message || err.message, 'Oh-no!')
+        return throwError(() => err);
+      })
+    )
   }
 
   toggle(): void {

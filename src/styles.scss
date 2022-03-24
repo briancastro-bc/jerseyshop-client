@@ -15,10 +15,6 @@
 	-webkit-box-sizing: border-box;
 }
 
-html {
-	scroll-behavior: smooth;
-}
-
 body {
 	margin: 0;
 	padding: 0;
@@ -26,7 +22,8 @@ body {
 	scroll-behavior: smooth;
 
 	&::-webkit-scrollbar {
-		width: 8px;
+		height: 5px;
+		width: 5px;
 	}
 
 	&::-webkit-scrollbar-track {
@@ -34,7 +31,7 @@ body {
 	}
 
 	&::-webkit-scrollbar-thumb {
-		border-radius: 20px;
+		border-radius: 50px;
 		background-color: var(--primary-color);
 	}
 }
@@ -71,6 +68,15 @@ img {
 	}
 }
 
+.editable {
+	
+	&:focus {
+		padding: .2rem;
+		outline: 1px solid rgba($color: #000000, $alpha: 0.2);
+		border-radius: 2px;
+	}
+}
+
 .required-field {
 	color: rgb(0, 0, 0, 0.5);
 }
@@ -100,7 +106,6 @@ img {
 	}
 }
 
-/* NO SCRIPT STYLES */
 #no-script-content {
 	background-color: var(--light-white);
 	display: flex;

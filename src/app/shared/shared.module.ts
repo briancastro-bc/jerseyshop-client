@@ -13,6 +13,7 @@ import { ScrollTopModule } from 'primeng/scrolltop';
 import { SpeedDialModule } from 'primeng/speeddial';
 import { PanelMenuModule } from 'primeng/panelmenu';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
+import { ConfirmPopupModule } from 'primeng/confirmpopup';
 import { CardModule } from 'primeng/card';
 import { ImageModule } from 'primeng/image';
 import { AvatarModule } from 'primeng/avatar';
@@ -47,6 +48,7 @@ import { NotificationComponent } from './components/notification/notification.co
 		PanelMenuModule,
 		SpeedDialModule,
 		ConfirmDialogModule,
+		ConfirmDialogModule,
 		CardModule,
 		ToolbarModule,
 		ImageModule,
@@ -80,6 +82,7 @@ import { NotificationComponent } from './components/notification/notification.co
 		PanelMenuModule,
 		SpeedDialModule,
 		ConfirmDialogModule,
+		ConfirmPopupModule,
 		CardModule,
 		ToolbarModule,
 		ImageModule,

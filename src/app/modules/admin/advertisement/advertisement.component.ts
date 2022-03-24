@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import { DialogService } from 'primeng/dynamicdialog';
+import { ConfirmationService } from 'primeng/api';
+import { Observable } from 'rxjs';
 
 import { NotificationService } from '@app/common/services';
 import { Advertisement } from '@app/common/interfaces';
 import { AdvertisementCreateComponent } from './components/advertisement-create/advertisement-create.component';
-import { Observable } from 'rxjs';
-import { MenuItem } from 'primeng/api';
 
 @Component({
 	selector: 'app-advertisement',
@@ -15,33 +16,32 @@ import { MenuItem } from 'primeng/api';
 export class AdvertisementComponent implements OnInit {
 
 	privateNotifications$: Observable<Advertisement[]> = this.notificationService.privateNotifications$;
-	advertisementOptions: MenuItem[];
+	advertisementEditOrUpdateForm: FormGroup = this.formBuilder.group({
+		hyperlink: ['', []],
+		description: ['', []]
+	})
 	search: string;
 
 	constructor(
 		private notificationService: NotificationService,
-		private dialogService: DialogService
-	) {	
-		this.advertisementOptions = [
-			{
-				label: 'Editar',
-				icon: 'pi pi-pencil',
-				command: () => {
-
-				}
-			},
-			{
-				label: 'Eliminar',
-				icon: 'pi pi-trash',
-				command: () => {
-
-				}
-			}
-		]
-	}
+		private dialogService: DialogService,
+		private confirmation: ConfirmationService,
+		private formBuilder: FormBuilder
+	) {	}
 
 	ngOnInit(): void {
 		this.notificationService.getProtectedNotifications().subscribe();
+	}
+
+	confirmDelete(event: Event, uid?: string): void {
+		this.confirmation.confirm({
+			target: event.target!,
+			message: '¿Estás seguro de que quieres eliminar el anuncio?',
+			icon: 'pi pi-exclamation-triangle',
+			accept: () => {
+				this.delete(uid);
+			}
+		});
 	}
 
 	create(): void {
@@ -52,5 +52,13 @@ export class AdvertisementComponent implements OnInit {
 			closeOnEscape: false,
 			showHeader: true,
 		});
+	}
+
+	delete(uid?: string): void {
+		this.notificationService.deleteNotification(uid!).subscribe();
+	}
+
+	onDescriptionChange(value: any): void {
+		console.log(value)
 	}
 }
