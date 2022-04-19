@@ -1,24 +1,30 @@
-<section class="auth-container">
-	<div class="grid">
-		<div class="col container">
-			<div class="social-links flex justify-content-around align-self-center mb-5">
-				<a routerLink="login" class="hyperlink" routerLinkActive="hyperlink__active">Acceder</a>
-				<a routerLink="signup" class="hyperlink" routerLinkActive="hyperlink__active">Registrarse</a>
-			</div>
-			<router-outlet></router-outlet>
-			<hr class="mt-2">
-			<div class="social-auth">
-				<h4 class="text-center mb-3">O Bien</h4>
-				<div class="social-buttons flex">
-					<button pButton type="button" icon="pi pi-facebook" iconPos="left" label="Continuar con Facebook"
-						class="p-button-outlined facebook-btn" (click)="onSignupFacebook()"></button>
-					<button pButton type="button" icon="pi pi-google" iconPos="left" label="Continuar con Google"
-						class="p-button-outlined google-btn" (click)="onSignupGoogle()"></button>
+<section class="authentication section">
+	<div class="authentication__container">
+		<div class="card">
+			<div class="content">
+				<div class="content__header">
+					<a routerLink="login" routerLinkActive="link__active" class="link">Acceder</a>
+					<a routerLink="signup" routerLinkActive="link__active" class="link">Registrarse</a>
+				</div>
+				<div class="content__body">
+					<router-outlet></router-outlet>
+				</div>
+				<div class="content__footer">
+					<div class="social__authentication">
+						<button class="flex__button facebook__button"
+							(click)="onSignupFacebook()">
+							<i class="icon__sm uil uil-facebook"></i>
+							Facebook
+						</button>
+						<button class="flex__button google__button"
+							(click)="onSignupGoogle()">
+							<i class="icon__sm uil uil-google"></i>
+							Google
+						</button>
+					</div>
 				</div>
 			</div>
-		</div>
-		<div class="col image-container">
-			<img src="assets/images/auth-background.svg" class="image-background" alt="Represantive clothes background" loading="lazy">
+			<img class="container__image" src="assets/images/auth-background.svg" alt="" loading="lazy">
 		</div>
 	</div>
 </section>

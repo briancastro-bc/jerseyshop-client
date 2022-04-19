@@ -1,0 +1,61 @@
+@use '../../../../sass/variables';
+
+$toolbar-height: 50px;
+
+.inventory {
+    animation: 2s fadeIn 0s ease-in-out;
+
+    .toolbar {
+        display: block;
+        position: sticky;
+        top: variables.$navbar-height;
+        width: 100%;
+        margin: 2rem 0 0 0;
+        height: $toolbar-height;
+        border-bottom: 2px solid rgba($color: variables.$black-color, $alpha: 0.3);
+        background-color: variables.$white-color;
+        z-index: 1;
+
+        &__container {
+            height: 100%;
+            padding: 0 .5rem;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+
+            .links {
+                display: flex;
+
+                .link {
+                    text-align: center;
+                    padding: 1rem 1.5rem;
+                    font-size: 14px;
+                    white-space: nowrap;
+                    line-height: 30px;
+                    color: rgba($color: variables.$black-color, $alpha: 0.7);
+                    font-weight: 600;
+                    border: 0;
+
+                    &:hover {
+                        color: rgba($color: variables.$base-color, $alpha: 1.0);
+                    }
+                }
+
+                .link__active {
+                    color: variables.$base-color;
+                    transition: 1s all ease-in;
+
+                    &::after {
+                        display: block;
+                        content: "";
+                        position: relative;
+                        bottom: -10px;
+                        height: 3px;
+                        background-color: variables.$base-color;
+                    }
+                }
+            }
+        }
+    }
+}

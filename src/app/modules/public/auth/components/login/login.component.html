@@ -1,82 +1,37 @@
-<form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
-	<div class="login-container">
-		<div class="p-fluid">
-			<div class="p-field mb-4">
-				<span class="p-float-label">
-					<input
-						type="email"
-						class="p-inputtext-lg mb-1"
-						pInputText
-						formControlName="email"
-						pKeyFilter="email"
-						id="email-input"
-						required
-					/>
-					<label for="email-input">Correo electrónico</label>
-					<div
-						*ngIf="email?.invalid && (email?.dirty || email?.touched)"
-						class="text-center block"
-					>
-						<div *ngIf="email?.errors?.['required']">
-							<small class="required-field">
-								Campo requerido
-							</small>
-						</div>
-						<div *ngIf="email?.errors?.['email']">
-							<small class="required-field">
-								El correo electrónico es inválido
-							</small>
-						</div>
-					</div>
-				</span>
-			</div>
-			<div class="p-field mb-2">
-				<span class="p-float-label">
-					<p-password
-						id="password-input"
-						class="p-inputtext-lg mb-1"
-						formControlName="password"
-						[toggleMask]="true"
-						[feedback]="false"
-						required
-					></p-password>
-					<label for="password-input">Contraseña</label>
-					<div
-						*ngIf="
-							password?.invalid && (password?.dirty || password?.touched)
-						"
-						class="text-center block"
-					>
-						<div *ngIf="password?.errors?.['required']">
-							<small class="required-field">
-								Campo requerido
-							</small>
-						</div>
-					</div>
-				</span>
-			</div>
-			<div class="flex justify-content-end text-center mb-4">
-				<a routerLink="../recovery" class="ml-1 forgot-password"
-					>¿Olvidaste tu contraseña?</a
-				>
-			</div>
-			<div class="p-field mb-3">
-				<button
-					pButton
-					type="submit"
-					icon="pi pi-send"
-					iconPos="right"
-					label="Acceder"
-					class="o-button p-button-rounded"
-					[disabled]="!loginForm.valid"
-				></button>
-			</div>
-			<div class="d-flex justify-content-center align-self-center text-center">
-				¿No tienes una cuenta?
-				<a routerLink="../signup" class="ml-1 not-have-account">
-					Únete
-				</a>
-			</div>
+<form class="login__container" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+	<div class="form__field">
+		<input pInputText pKeyFilter="email" type="email" class="field__input p-inputtext-sm" formControlName="email" autocomplete="email" required
+			placeholder="Correo electrónico"/>
+		<div class="helped__text" *ngIf="email?.invalid && (email?.touched || email?.dirty)">
+			<small class="error" *ngIf="email?.errors?.['required']">
+				El correo electrónico es requerido
+			</small>
+			<small class="error" *ngIf="email?.errors?.['email']">
+				El correo electrónico es inv&aacute;lido
+			</small>
 		</div>
+	</div>
+	<div class="form__field">
+		<input pPassword type="password" class="field__input p-inputtext-sm" formControlName="password" [feedback]="false" placeholder="Contrase&ntilde;a" required/>
+		<div class="helped__text" *ngIf="password?.invalid && (password?.touched || password?.dirty)">
+			<small class="error" *ngIf="password?.errors?.['required']">
+				La contrase&ntilde;a es requerida
+			</small>
+		</div>
+	</div>
+	<div class="forgot__password">
+		<a routerLink="../recovery" class="text">&iquest;Olvidaste la contrase&ntilde;a?</a>
+	</div>
+	<div class="form__field submit">
+		<button type="submit" class="core__button {{!loginForm.valid ? 'disabled' : ''}}" [disabled]="!loginForm.valid">
+			Acceder
+			<i class="icon__sm uil uil-signout"></i>
+		</button>
+	</div>
+	<div class="no__account">
+		&iquest;No tienes cuenta?
+		<a routerLink="../signup" class="link">
+			&nbsp;&Uacute;nete
+		</a>
 	</div>
 </form>

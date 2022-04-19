@@ -1,0 +1,201 @@
+@use '../../../../../../sass/variables';
+
+.product {
+
+    &__options {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        align-items: center;
+        padding: 1rem 2rem;
+
+        .option__group {
+
+            button {
+                font-size: 16px;
+                margin-right: .5rem;
+            }
+
+            .core__button {
+                text-transform: capitalize;
+                font-weight: 600;
+                letter-spacing: 2px;
+                margin-left: 1.5rem;
+            }
+        }
+    }
+
+    &__container {
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: center;
+        margin: 1.5rem 0;
+
+        .product__element {
+            width: 100%;
+            max-width: 768px;
+            //height: 320px;
+            padding: 1.5rem;
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            justify-content: space-evenly;
+            //background-color: variables.$light-color;
+            box-shadow: 0 1px 8px rgba($color: variables.$black-color, $alpha: 0.3);
+            border-top: 2px solid rgba($color: variables.$black-color, $alpha: 0.2);
+            border-radius: 5px;
+            font-family: "Kanit", serif;
+            overflow: hidden;
+
+            .left {
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+
+                .product__picture {
+                    max-height: 160px;
+                    max-width: 160px;
+                    object-fit: contain;
+                    background-repeat: no-repeat;
+                    background-size: cover cover;
+                }
+
+                .colors {
+                    display: inline-flex;
+                    justify-content: center;
+                    align-items: center;
+
+                    .color {
+                        height: 25px;
+                        width: 25px;
+                        outline: none;
+                        border: none;
+                        border-radius: 50%;
+                    }
+                }
+            }
+
+            .content {
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+
+                .header {
+                    display: flex;
+                    flex-direction: column;
+                    //align-items: center;
+
+                    .name {
+                        text-transform: uppercase;
+                        color: rgba($color: variables.$black-color, $alpha: 0.5);
+                        font-weight: 700;
+                        font-size: 1.25rem;
+                        letter-spacing: 1px;
+                        word-spacing: 1px;
+                        overflow: hidden;
+                        white-space: nowrap;
+                        text-overflow: ellipsis;
+                        margin-right: .5rem;
+
+                        a {
+                            color: currentColor;
+                        }
+                    }
+
+                    small {
+                        text-transform: uppercase;
+                        font-size: .75rem;
+                        font-weight: 600;
+                        color: variables.$white-color;
+                        cursor: pointer;
+                    }
+
+                    .available {
+                        color: rgba($color: #085201, $alpha: 1.0);
+                    }
+
+                    .unavailable {
+                        color: rgba($color: #b90202, $alpha: 1.0);
+                    }
+                }
+
+                .body {
+                    display: flex;
+                    flex-direction: column;
+                    
+                    .detail {
+                        max-width: 500px;
+                        color: rgba($color: variables.$black-color, $alpha: 0.8);
+                        font-weight: 500;
+                        letter-spacing: 1px;
+                        line-height: 20px;
+                        font-size: .85rem;
+                    }
+
+                    .sizes {
+                        display: inline-flex;
+                        align-items: center;
+
+                        .desc {
+                            margin-right: .5rem;
+                            text-transform: capitalize;
+                        }
+
+                        .size {
+                            padding: .3rem .5rem;
+                            margin-right: .5rem;
+                            font-size: .75rem;
+                            text-transform: uppercase;
+                            color: variables.$base-color;
+                            background-color: rgba($color: variables.$base-color, $alpha: 0.2);
+                            border: 1px solid rgba($color: variables.$black-color, $alpha: 0.1);
+                            border-radius: 5px;
+                        }
+                    }
+
+                    .price {
+                        display: flex;
+                        margin: .5rem 0;
+                        align-items: center;
+
+                        .value {
+                            font-size: 1.25rem;
+                            margin-right: .5rem;
+                        }
+                    }
+                }
+
+                .footer {
+                    display: flex;
+                    
+                    .brand {
+                        display: inline-flex;
+                        align-items: center;
+
+                        .logo {
+                            max-width: 30px;
+                            max-height: 30px;
+                            background-repeat: no-repeat;
+                            background-size: cover;
+                        }
+
+                        .name {
+                            font-weight: 600;
+                            margin-left: .3rem;
+                            color: rgba($color: #000000, $alpha: 0.5);
+                        }
+                    }
+                }
+            }
+
+            /*.right {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }*/
+        }
+    }
+}

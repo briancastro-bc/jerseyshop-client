@@ -12,7 +12,7 @@ const routes: Routes = [
 	{
 		path: 'home',
 		data: {
-			title: 'Inicio',
+			title: 'Jersey Shop',
 		},
 		loadChildren: () =>
 			import('./modules/public/home/home.module').then((m) => m.HomeModule),

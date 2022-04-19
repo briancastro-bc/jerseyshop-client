@@ -49,6 +49,11 @@ export class NotificationService {
 
   createNotification(advertisement: Advertisement): Observable<Advertisement> {
     return this.http.post('admin/advertisements/', advertisement).pipe(
+      take(1),
+      filter(response => response && !!response),
+      tap((response) => {
+        this.message.success('Se ha creado el anuncio', 'Hecho');
+      }),
       catchError((err: HttpErrorResponse) => {
         this.message.error('Algo ha ido mal creando la notificacion', 'Oh-no!');
         return throwError(() => err);

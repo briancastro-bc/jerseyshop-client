@@ -1,0 +1,41 @@
+<div class="product__create section">
+    <div class="container">
+        <div class="create__content">
+            <div class="heading">
+                <h1 class="heading__sub">
+                    Agregar nuevo producto
+                </h1>
+                <p class="heading__description">
+                    Los productos son la clave de tu negocio, 
+                    por ello siempre intenta rellenar la informacion 
+                    de la mejor manera posible.
+                </p>
+            </div>
+            <form class="body">
+                <div class="input__group">
+                    <div class="form__field">
+                        <label class="label__required" for="name">Nombre</label>
+                        <input pKeyFilter="alpha" class="input__name" type="text" id="name">
+                    </div>
+                    <div class="form__field">
+                        <label class="label__required" for="stock">Stock</label>
+                        <input pKeyFilter="pnum" class="input__stock" type="text" id="stock">
+                    </div>
+                </div>
+                <p class="information">
+                    Los campos con asterisco (*) son requeridos
+                </p>
+                <div class="upload">
+                    <p class="label__input">Imagenes</p>
+                    <label class="input__upload input">
+                        <input type="file" [multiple]="true" [draggable]="true">
+                        <i class="icon uil uil-upload"></i>
+                        <span class="text">
+                            Drag & Drop
+                        </span>
+                    </label>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

@@ -6,6 +6,7 @@
 		"paths": {
 			"@app/*": ["src/app/*"],
 			"@env/*": ["src/environments/*"],
+			"@sass/*": ["src/sass/*"],
 			"@modules/*": ["src/app/modules/*"],
 			"@shared/*": ["src/app/shared/*"],
 			"@common/*": ["src/app/common/*"],

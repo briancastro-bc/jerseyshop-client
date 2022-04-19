@@ -126,10 +126,6 @@ export class AuthService {
 		return this.isLoggedIn$.asObservable();
 	}
 
-	/*getUser(): Observable<User> {
-		return this.user$.asObservable();
-	}*/
-
 	logOut(): void {
 		this.localStorage.removeItem('access_token');
 		this.loggedIn = false;

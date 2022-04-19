@@ -1,0 +1,134 @@
+@use "variables";
+
+/* BUTTONS */
+.button {
+	display: inline-block;
+	border: none;
+	outline: none;
+	padding: 0.5rem 1rem;
+	border-radius: 0;
+	cursor: pointer;
+}
+
+.flex__button {
+	@extend .button;
+	display: inline-flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.core__button {
+	@extend .flex__button;
+	color: variables.$white-color;
+	background-color: variables.$base-color;
+	border: 1px solid rgba($color: variables.$black-color, $alpha: 0.3);
+	border-radius: 5px;
+
+	&:hover {
+		background-color: rgba($color: variables.$secondary-color, $alpha: 1);
+		transition: 1s ease-out;
+		border-radius: 0;
+	}
+}
+
+.disabled {
+	background-color: rgba($color: variables.$secondary-color, $alpha: 0.5);
+	cursor: default;
+
+	&:hover {
+		background-color: rgba($color: variables.$secondary-color, $alpha: 0.5);
+	}
+}
+/* END BUTTONS */
+
+/* ICONS */
+.icon {
+	font-weight: 600;
+	font-size: 1.5rem;
+
+	&__sm {
+		@extend .icon;
+		font-size: 1rem;
+	}
+
+	&__lg {
+		@extend .icon;
+		font-size: 2rem;
+	}
+}
+/* END ICONS */
+
+/* SECTIONS */
+.section {
+	display: block;
+	height: calc(100vh - variables.$navbar-height);
+	max-height: 100%;
+
+	&__container {
+		height: 100%;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	}
+}
+/* END SECTIONS */
+
+/* FORMS */
+.form__field {
+	display: flex;
+	flex-direction: column;
+	margin: 0 0 0.5rem 0;
+	padding: 0 0 1rem 0;
+	align-items: center;
+
+	.helped__text {
+		display: flex;
+		justify-content: center;
+
+		small {
+			color: rgba($color: variables.$black-color, $alpha: 0.5);
+		}
+	}
+}
+
+.input {
+	padding: 0.35rem 1rem;
+	font-size: 12px;
+	background-color: rgba($color: variables.$light-color, $alpha: 1);
+	border: 1px solid rgba($color: variables.$black-color, $alpha: 0.5);
+	border-radius: 5px;
+
+	&:focus {
+		outline-color: rgba($color: variables.$base-color, $alpha: 1);
+	}
+}
+
+.label__input {
+	font-size: 0.85rem;
+	font-weight: 600;
+}
+/* END FORMS */
+
+.overlay {
+	position: fixed;
+	width: 100%;
+	height: 100%;
+	background-color: var(--dark);
+	z-index: 2000;
+	display: flex;
+	align-items: center;
+	align-self: center;
+	justify-content: center;
+	flex-direction: column;
+
+	.loading {
+		color: var(--light);
+		text-align: center;
+		margin-right: auto;
+		margin-left: auto;
+	}
+
+	&::-webkit-scrollbar {
+		display: none;
+	}
+}

@@ -1,103 +1,56 @@
-<p-menubar styleClass="menubar">
-	<ng-template pTemplate="start">
-		<button
-			pButton
-			pRipple
-			type="button"
-			icon="pi pi-bars"
-			class="p-button-rounded p-button-text mr-2"
-			(click)="displaySidebar()"
-			pTooltip="Menu"
-			tooltipPosition="bottom"
-		></button>
-		<a routerLink="home">
-			<img
-				class="menubar-logo"
-				src="assets/logos/js.svg"
-				alt="Logo principal de Jersey Shop"
-			/>
-		</a>
-	</ng-template>
-	<ng-template pTemplate="end">
-		<!--<button
-			pButton
-			pRipple
-			pBadge
-			[value]="(notifications$ | async)?.length?.toString()!"
-			icon="pi pi-bell"
-			class="p-button-rounded p-button-text {{ active ? 'active' : '' }}"
-			pTooltip="Notificaciones"
-			tooltipPosition="bottom"
-			(click)="showNotifications()"
-		></button>-->
-		<a class="notification-button {{ active ? 'active-n' : ''}}" (click)="showNotifications()" pTooltip="Notificaciones" tooltipPosition="bottom">
-			<i class="icon pi pi-bell" pBadge [value]="(notifications$ | async)?.length?.toString()!"></i>
-		</a>
-		<button
-			pButton
-			pRipple
-			type="button"
-			icon="pi pi-heart"
-			class="p-button-rounded p-button-text"
-			pTooltip="Favoritos"
-			tooltipPosition="bottom"
-			routerLink="#"
-			routerLinkActive="active"
-		></button>
-		<button
-			pButton
-			pRipple
-			type="button"
-			icon="pi pi-user"
-			class="p-button-rounded p-button-text"
-			[pTooltip]="userSetup.status"
-			tooltipPosition="bottom"
-			routerLink="auth"
-			routerLinkActive="active"
-		></button>
-		<button
-			pButton
-			pRipple
-			type="button"
-			icon="pi pi-shopping-cart"
-			class="p-button-rounded p-button-text"
-			pTooltip="Carrito"
-			tooltipPosition="bottom"
-			routerLink="#"
-			routerLinkActive="active"
-		></button>
-		<ng-template [ngIf]="this.isLoggedIn | async">
-			<button
-				pButton
-				pRipple
-				type="button"
-				icon="pi pi-shield"
-				class="p-button-rounded p-button-text"
-				pTooltip="Panel"
-				tooltipPosition="bottom"
-				routerLink="/admin"
-				routerLinkActive="active"
-			></button>
-			<button
-				pButton
-				pRipple
-				type="button"
-				icon="pi pi-sign-out"
-				class="p-button-rounded p-button-text"
-				pTooltip="Salir"
-				tooltipPosition="bottom"
-				(click)="logout()"
-			></button>
-		</ng-template>
-	</ng-template>
-</p-menubar>
-<p-sidebar
-	[(visible)]="this.userSetup.display"
-	[baseZIndex]="10000"
-	[transitionOptions]="'300ms'"
-	[blockScroll]="true"
->
+<header class="navbar" #navbar>
+	<div class="navbar__container">
+		<div class="navbar__container__left">
+			<button title="Menu" type="menu" class="flex__button menu__bars {{sidebarIsOpen ? 'active' : ''}}" (click)="displaySidebar()">
+				<i class="icon uil uil-bars"></i>
+			</button>
+			<div class="logo">
+				<a routerLink="home">
+					<img src="assets/logos/js.svg" alt="Main Jersey Shop logo" class="logo__image">
+				</a>
+			</div>
+		</div>
+		<!--<div class="navbar__container__center">
+			<form class="search__container">
+				<label for="search" class="search__icon">
+					<i class="uil uil-search"></i>
+				</label>
+				<input type="search" class="search__input" id="search" placeholder="Buscar prenda">
+			</form>
+		</div>-->
+		<div class="navbar__container__right">
+			<a class="flex__button profile__button" routerLink="auth" routerLinkActive="active">
+				<i class="icon__sm uil uil-user"></i>
+				{{ (isLoggedIn | async) ? 'Perfil' : 'Acceder' }}
+			</a>
+			<div class="rounded__group">
+				<button pTooltip="Notificaciones" tooltipPosition="bottom" type="button"
+					class="flex__button rounded__button {{active ? 'active' : ''}}" (click)="showNotifications()">
+					<i class="icon uil uil-bell"></i>
+				</button>
+				<button type="button" class="flex__button rounded__button" role="button">
+					<i class="icon uil uil-heart"></i>
+				</button>
+				<button type="button" class="flex__button rounded__button" role="button">
+					<i class="icon uil uil-shopping-bag"></i>
+				</button>
+				<ng-template [ngIf]="this.isLoggedIn | async">
+					<button type="button" class="flex__button rounded__button" pTooltip="Panel" tooltipPosition="bottom"
+						routerLink="/admin" routerLinkActive="active">
+						<i class="icon uil uil-window"></i>
+					</button>
+					<button type="button" class="flex__button rounded__button" pTooltip="Salir"
+						tooltipPosition="bottom" (click)="logout()">
+						<i class="icon uil uil-signout"></i>
+					</button>
+				</ng-template>
+			</div>
+		</div>
+	</div>
+</header>
+<p-sidebar [(visible)]="this.sidebarIsOpen" [baseZIndex]="10000" [transitionOptions]="'300ms'"
+	[blockScroll]="false">
 	<ng-template pTemplate="content">
-		<p-panelMenu [model]="sidebarContent"> </p-panelMenu>
+		<p-panelMenu [model]="sidebarContent"></p-panelMenu>
 	</ng-template>
 </p-sidebar>

@@ -1,16 +1,19 @@
+@use '../../../sass/variables';
+
 :host ::ng-deep {
 	$sidebar-width: 68px;
 
 	.sidebar-menu {
-		font-family: "Spline Sans", sans-serif;
 		position: fixed;
 		display: block;
 		left: 0;
-		top: 80px;
+		top: variables.$navbar-height;
 		width: $sidebar-width;
 		height: 100vh;
-		background: var(--light);
 		padding: 0.5rem 1rem 0 0;
+		background: var(--light);
+		font-family: "Kanit Sans", sans-serif;
+		font-weight: 600;
 		transition: all 0.3s ease;
 		border-right: 2px solid rgb(0, 0, 0, 0.2);
 		z-index: 100;
@@ -66,15 +69,15 @@
 		padding-left: $sidebar-width;
 	}
 
-	@media screen and (min-width: 768px) {
-		.panel-content {
+	@media screen and (max-width: 768px) {
+		/*.panel-content {
 			padding-left: calc(($sidebar-width + 140px) + 0rem);
 		}
 
 		.sidebar-menu {
 			width: calc($sidebar-width + 140px);
 			padding: 1rem 1rem 0 0;
-		}
+		}*/
 	}
 
 	@media screen and (max-width: 411px) {

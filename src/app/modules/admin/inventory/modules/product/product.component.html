@@ -1,0 +1,73 @@
+<div class="product section">
+    <div class="product__options">
+        <div>
+            <input type="search" class="search__box">
+        </div>
+        <div class="option__group">
+            <button type="button" class="flex__button">
+                Ordenar
+                <i class="icon__sm uil uil-sort"></i>
+            </button>
+            <button type="button" class="flex__button">
+                Filtrar
+                <i class="icon__sm uil uil-filter"></i>
+            </button>
+            <a routerLink="create" class="core__button">
+                nuevo
+                <i class="icon__sm uil uil-plus-circle"></i>
+            </a>
+        </div>
+    </div>
+    <div class="product__container">
+        <div class="product__element">
+            <div class="left">
+                <img class="product__picture" src="assets/images/shirt.jpg" alt="Product description" loading="lazy">
+                <div class="colors">
+                    <input class="color" type="color" value="#000" disabled>
+                    <input class="color" type="color" value="#ff0000" disabled>
+                </div>
+            </div>
+            <div class="content">
+                <div class="header">
+                    <h2 class="name">
+                        <a routerLink="!#">
+                            Lorem Assda As
+                        </a>
+                    </h2>
+                    <small class="available">
+                        available
+                    </small>
+                </div>
+                <div class="body">
+                    <p class="detail">
+                        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Tenetur, ipsum!
+                    </p>
+                    <div class="sizes">
+                        <strong class="desc">tallas:</strong>
+                        <span class="size">
+                            l
+                        </span>
+                        <span class="size">
+                            m
+                        </span>
+                    </div>
+                    <div class="price">
+                        <p class="value">{{ 10.000 | currency }}</p>
+                        <span class="currency">USD</span>
+                    </div>
+                </div>
+                <div class="footer">
+                    <div class="brand">
+                        <img class="logo" src="assets/logos/adidas.png" alt="Brands name logo">
+                        <!--<span class="name">Adidas</span>-->
+                    </div>
+                </div>
+            </div>
+            <!--<div class="right">
+                <a class="core__button">
+                    Detalles
+                </a>
+            </div>-->
+        </div>
+    </div>
+</div>

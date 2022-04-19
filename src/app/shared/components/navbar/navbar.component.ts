@@ -1,6 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { MenuItem } from 'primeng/api';
-import { Observable, Subscription } from 'rxjs';
+import { Observable } from 'rxjs';
 
 import { AuthService } from '@app/common/services';
 import { NotificationService } from '@app/common/services';
@@ -14,13 +14,9 @@ import { Advertisement } from '@app/common/interfaces';
 export class NavbarComponent implements OnInit, OnDestroy {
 
 	notifications$: Observable<Advertisement[]> = this.notificationService.publicNotifications$;
-	userSetup: any = {
-		status: 'Acceder',
-		display: false,
-	};
 	active: boolean = false;
+	sidebarIsOpen: boolean = false;
 	sidebarContent!: MenuItem[];
-	user$!: Subscription;
 	isLoggedIn!: Observable<boolean>;
 
 	constructor(
@@ -30,15 +26,12 @@ export class NavbarComponent implements OnInit, OnDestroy {
 
 	ngOnInit(): void {
 		this.isLoggedIn = this.authService.isLoggedIn();
-		//this.setUp();
 	}
 
-	ngOnDestroy(): void {
-		this.user$.unsubscribe();
-	}
+	ngOnDestroy(): void {  }
 
 	displaySidebar(): void {
-		this.userSetup.display = true;
+		this.sidebarIsOpen = !this.sidebarIsOpen;
 	}
 
 	showNotifications(): void {
@@ -49,10 +42,4 @@ export class NavbarComponent implements OnInit, OnDestroy {
 	logout(): void {
 		this.authService.logOut();
 	}
-
-	/*private setUp(): void {
-		this.user$ = this.authService.getUser().subscribe((user) => {
-			this.userSetup.status = 'Perfil';
-		});
-	}*/
 }

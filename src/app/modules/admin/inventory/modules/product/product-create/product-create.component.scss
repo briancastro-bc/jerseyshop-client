@@ -1,0 +1,132 @@
+@use '../../../../../../../sass/variables';
+
+.product__create {
+    padding: 2.5rem 1rem;
+    animation: 2s fadeIn 0s ease-in-out;
+
+    .container {
+        //background-color: variables.$white-color;
+        height: 100%;
+        max-width: 768px;
+        margin: 0 auto 0 auto;
+
+        .create__content {
+            //height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            //align-items: center;
+
+            .heading {
+                display: flex;
+                flex-direction: column;
+                padding-bottom: 1rem;
+                border-bottom: 2px solid rgba($color: variables.$black-color, $alpha: 0.3);
+                margin-bottom: 1.5rem;
+
+                &__sub {
+                    margin-bottom: .5rem;
+                    font-size: 1.75rem;
+                    font-weight: 600;
+                    color: rgba($color: variables.$black-color, $alpha: 0.5);
+                }
+
+                &__description {
+                    line-height: 20px;
+                }
+            }
+
+            .body {
+                width: 100%;
+                height: 100%;
+                
+                .input__group {
+                    display: flex;
+                    flex-wrap: wrap;
+                    justify-content: flex-start;
+                    //align-items: flex-end;
+
+                    .form__field {
+                        padding-bottom: 0;
+                        margin: 0 1rem .3rem 0;
+                        align-items: flex-start;
+
+                        label {
+                            font-size: .85rem;
+                            font-weight: 600;
+                        }
+
+                        input {
+                            padding: .35rem 1rem;
+                            font-size: 12px;
+                            background-color: rgba($color: variables.$light-color, $alpha: 1.0);
+                            border: 1px solid rgba($color: variables.$black-color, $alpha: 0.5);
+                            border-radius: 5px;
+
+                            &:focus {
+                                outline-color: rgba($color: variables.$base-color, $alpha: 1.0);
+                            }
+                        }
+
+                        .label__required {
+                            &::after {
+                                content: " *";
+                                color: rgba($color: #c00707, $alpha: 1.0);
+                            }
+                        }
+
+                        .input__name {
+                            width: 20em;
+                        }
+
+                        .input__photos {
+                            width: 100%;
+                        }
+                    }
+                }
+
+                .information {
+                    display: block;
+                    color: rgba($color: variables.$black-color, $alpha: 0.5);
+                    font-size: .85rem;
+                    margin-bottom: .5rem;
+                }
+
+                .upload {
+                    width: 100%;
+                    flex-direction: column;
+                    display: flex;
+                    padding-bottom: 1rem;
+                    border-bottom: 2px solid gray;
+
+                    input[type="file"] {
+                        display: none;
+                    }
+
+                    .input__upload {
+                        display: flex;
+                        flex-direction: column;
+                        justify-content: center;
+                        align-items: center;
+                        border: 1px solid rgba($color: variables.$black-color, $alpha: 0.5);
+                        padding: 1rem 2.5rem;
+                        width: 100%;
+                        cursor: pointer;
+
+                        .text {
+                            color: rgba($color: variables.$black-color, $alpha: 0.5);
+                            font-weight: 600;
+                        }
+
+                        &:hover {
+                            .icon {
+                                transition: 1s all ease;
+                                transform: translateY(-0.5rem);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

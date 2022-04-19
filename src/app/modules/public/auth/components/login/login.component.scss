@@ -1,29 +1,55 @@
-:host ::ng-deep {
-	.login-container {
-		width: 80%;
-		margin-left: auto;
-		margin-right: auto;
+@use '../../../../../../sass/variables';
+
+.login__container {
+	width: 90%;
+	display: flex;
+	flex-direction: column;
+	margin: 0 auto 0 auto;
+
+	.form__field {
+
+		.field__input {
+			width: 90%;
+		}
 	}
 
-	.forgot-password {
-		text-decoration: none;
-		color: rgb(94, 99, 99);
+	.forgot__password {
+		display: flex;
+		justify-content: flex-end;
+		margin-bottom: 1rem;
+
+		.text {
+			color: rgba($color: variables.$black-color, $alpha: 0.5);
+
+			&:hover {
+				color: rgba($color: variables.$base-color, $alpha: 1);
+			}
+		}
 	}
 
-	.forgot-password:hover {
-		color: var(--light-ice-color);
+	.submit {
+		padding-bottom: .5rem;
+
+		button {
+			font-weight: 600;
+			text-transform: uppercase;
+
+			.icon__sm {
+				margin-left: 1rem;
+			}
+		}
 	}
 
-	.not-have-account {
-		text-decoration: none;
-		color: var(--primary-color);
-	}
+	.no__account {
+		display: flex;
+		justify-content: center;
 
-	.not-have-account:hover {
-		color: var(--primary-alt-color);
-	}
+		.link {
+			color: rgba($color: variables.$base-color, $alpha: 1.0);
 
-	.p-button-rounded {
-		border-radius: 10px;
+			&:hover {
+				color: rgba($color: variables.$secondary-color, $alpha: 1.0);
+			}
+		}
 	}
 }

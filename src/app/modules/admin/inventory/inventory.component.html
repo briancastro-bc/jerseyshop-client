@@ -1,1 +1,37 @@
-<p>inventory works!</p>
+<section class="inventory section">
+    <div class="toolbar">
+        <div class="toolbar__container">
+            <nav class="links">
+                <a routerLink="overview" routerLinkActive="link__active" class="link">
+                    <i class="icon__sm uil uil-eye"></i>
+                    Resumen
+                </a>
+                <a routerLink="products" routerLinkActive="link__active" class="link">
+                    <i class="icon__sm uil uil-store-alt"></i>
+                    Productos
+                </a>
+                <a routerLink="categories" routerLinkActive="link__active" class="link">
+                    <i class="icon__sm uil uil-books"></i>
+                    Categorias
+                </a>
+                <a routerLink="sizes" routerLinkActive="link__active" class="link">
+                    <i class="icon__sm uil uil-icons"></i>
+                    Tallas
+                </a>
+                <a routerLink="colors" routerLinkActive="link__active" class="link">
+                    <i class="icon__sm uil uil-adjust-circle"></i>
+                    Colores
+                </a>
+                <a routerLink="brands" routerLinkActive="link__active" class="link">
+                    <i class="icon__sm uil uil-tag-alt"></i>
+                    Marcas
+                </a>
+            </nav>
+            <div>
+            </div>
+        </div>
+    </div>
+    <!-- ROUTING INVENTORY MODULES -->
+    <router-outlet></router-outlet>
+    <!-- END ROUNTING INVENTORY MODULES -->
+</section>

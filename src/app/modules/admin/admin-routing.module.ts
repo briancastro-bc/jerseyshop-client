@@ -29,9 +29,7 @@ const routes: Routes = [
 					title: 'Notificaciones',
 				},
 				loadChildren: () =>
-					import('./advertisement/advertisement.module').then(
-						(m) => m.AdvertisementModule
-					),
+					import('./advertisement/advertisement.module').then((m) => m.AdvertisementModule),
 			},
 			{
 				path: 'rooms',

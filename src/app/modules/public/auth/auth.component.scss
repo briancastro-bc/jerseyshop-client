@@ -1,107 +1,136 @@
-:host ::ng-deep {
-	.auth-container {
-		background-color: var(--light);
+@use '../../../../sass/variables';
+
+.authentication {
+	animation: 2s fadeIn 0s ease-in-out;
+
+	&__container {
 		height: 100%;
-		box-shadow: rgb(0 0 0 / 60%) 0.5rem 0.5rem 1rem 0px !important;
-		border-radius: 10px;
-		animation: 1s fadeIn 0s ease-in;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+		padding: 0 2.5rem;
 
-		.grid {
-			margin: 0;
-		}
+		.card {
+			height: 80%;
+			width: 80%;
+			display: flex;
+			flex-direction: row;
+			justify-content: center;
+			background-color: variables.$light-color;
+			box-shadow: rgb(0 0 0 / 20%) 0.5rem 0.5rem 1rem 0px;
+			border: 2px solid rgba($color: variables.$dark-color, $alpha: 0.2);
+			border-radius: 10px;
 
-		.col {
-			padding: 0;
-		}
-
-		.container {
-			margin: 3.5rem 2rem;
-			overflow: hidden;
-
-			.social-links {
-				.hyperlink {
-					display: inline-block;
-					padding: 0.1rem 1rem;
-					text-decoration: none;
-					text-transform: uppercase;
-					color: var(--dark);
-				}
-
-				.hyperlink:hover {
-					color: var(--primary-alt-color);
-				}
-
-				.hyperlink__active {
-					color: var(--primary-color);
-					font-weight: bold;
-					border-bottom: 2px solid var(--primary-color);
-				}
-			}
-
-			.social-auth {
-				margin-top: 1rem;
-				text-transform: uppercase;
-
-				.social-buttons {
-					flex-direction: column;
-					align-items: center;
-
-					button {
-						color: var(--light);
-						width: 70%;
-						max-width: 70%;
-						margin-bottom: 0.5rem;
-						border-width: 0;
-						border-radius: 3px;
-						box-shadow: rgb(0 0 0 / 20%) 1px 1px 5px 0px !important;
-						font-size: inherit;
-						font-family: inherit;
-					}
-
-					.facebook-btn {
-						background-color: #0770cf;
-					}
-
-					.google-btn {
-						background-color: #db4437;
-					}
-				}
-			}
-		}
-
-		.image-container {
-			padding: 0;
-			background-color: var(--primary-color);
-
-			.image-background {
-				background-color: var(--light-color);
-				fill: var(--primary-color);
-				width: 100%;
+			.content {
 				height: 100%;
-				padding: 0 2rem;
-				border-left: 2px solid gray;
-				background-position: center center;
-				background-size: cover;
-				background-repeat: no-repeat;
-			}
-		}
+				width: 100%;
+				display: flex;
+				flex-direction: column;
+				justify-content: space-evenly;
+				overflow: hidden;
 
-		@media screen and (max-width: 768px) {
-			.image-container {
-				display: none;
+				&__header {
+					display: flex;
+					justify-content: space-around;
+					padding: 1rem 0;
+
+					.link {
+						color: rgba($color: variables.$black-color, $alpha: 0.5);
+						text-transform: uppercase;
+						font-weight: 600;
+
+						&:hover {
+							color: variables.$secondary-color;
+						}
+
+						&__active {
+							color: variables.$base-color;
+							border-bottom: 2px solid variables.$base-color;
+						}
+					}
+				}
+
+				&__body {
+					margin: 1rem 0;
+					font-family: "Kanit", serif;
+					overflow-y: scroll;
+
+					&::-webkit-scrollbar-thumb {
+						background-color: variables.$dark-color;
+					}
+				}
+
+				&__footer {
+					padding: 1rem;
+					display: flex;
+					flex-direction: column;
+
+					.social__authentication {
+						display: flex;
+						justify-content: space-evenly;
+
+						button {
+							color: variables.$white-color;
+							font-weight: 600;
+							letter-spacing: 1px;
+							border: 1px solid rgba($color: variables.$dark-color, $alpha: 0.3);
+
+							.icon__sm {
+								margin-right: .5rem;
+							}
+
+							&:hover {
+								transition: .5s all ease;
+								border-radius: 5px;
+								background-color: fade-in($color: variables.$base-color, $amount: .5);
+							}
+						}
+
+						.facebook__button {
+							background-color: #0770cf;
+						}
+
+						.google__button {
+							background-color: #db4437;;
+						}
+					}
+				}
+			}
+
+			.container__image {
+				background-color: variables.$base-color;
+				border: 1px solid variables.$base-color;
+				border-radius: 0 10px 10px 0;
+				height: 100%;
+				width: 50%;
+				padding: .5rem 1.5rem;
+				box-sizing: border-box;
 			}
 		}
 	}
+}
 
-	@media screen and (min-width: 1367px) {
-		.auth-container {
-			max-width: 1366px;
-			margin-left: auto;
-			margin-right: auto;
-			margin-top: 10vh;
-			align-self: center;
-			align-items: center;
-			justify-content: center;
-		}
+@media screen and (max-width: 768px) {
+
+	.content__header {
+		padding-top: 2rem;
+	}
+
+	.content__footer {
+		padding: .5rem;
+	}
+
+	.card {
+		min-width: 100%;
+		font-size: 14px;
+	}
+
+	.social__authentication {
+		flex-direction: column;
+	}
+
+	.container__image {
+		display: none;
 	}
 }
